@@ -1,2 +1,2 @@
 # auth-jwt
-Learning JWT with reverse engineering, a demo
+A demo to learn JWT by reverse engineering
