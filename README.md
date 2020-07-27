@@ -6,7 +6,7 @@ A demo to learn JWT by reverse engineering
 
 1. Head over to the [demo hosted on repl.it](https://auth-jwt--gitcommitshow.repl.co/) (Or run it on your local machine : clone repo -> npm install -> npm start)
 2. Play around with the configurations
-3. Read the cues at every page with more resources to go into deep
+3. Read the cues at every page with more resources to go deeper into concepts
 
 
 ## References
