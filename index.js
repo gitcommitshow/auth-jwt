@@ -1,7 +1,5 @@
-//Alternative express wrapper by runkit : @runkit/runkit/express-endpoint/1.0.0
 const express = require('express')
 const jwt = require('jsonwebtoken')
-
 const fs = require('fs')
 var cookieParser = require('cookie-parser')
 
@@ -111,7 +109,7 @@ app.get('', function(req, res) {
         <br/><br/>
         <a href="/jwt">Next: Create JWT token</a>
         <br/><br/><br/><br/><br/><br/>
-        <small style="opacity:0.8;">Credits: Serving this page via <a target="_blank" href="https://runkit.com/invider/jwt-authentication-demo">Runkit</a></small>
+        <small style="opacity:0.8;">Made by <a target="_blank" href="https://twitter.com/pradeep_io">@pradeep_io</a></small>
         `)
 })
 
