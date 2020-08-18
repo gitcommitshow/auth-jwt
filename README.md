@@ -9,6 +9,9 @@ A demo to learn JWT by reverse engineering
 3. Read the cues at every page with more resources to go deeper into concepts
 
 
+![Demo GIF](./demo.gif)
+
+
 ## References
 
 ### About Tokens
