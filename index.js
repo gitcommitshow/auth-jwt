@@ -1,10 +1,17 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
 const fs = require('fs')
-var cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser')
+
+// Some info from package.json
+const package_json = require('./package.json')
+const CODE_REPOSITORY = package_json.repository && package_json.repository.url ? package_json.repository.url : package_json.repository;
+const AUTHOR_NAME = package_json.author && package_json.author.name ? package_json.author.name : "";
+const AUTHOR_URL = package_json.author && package_json.author.url ? package_json.author.url : "";
+const ISSUE_TRACKER = package_json.bugs;
+const NEW_ISSUE_URL = ISSUE_TRACKER ? `${ISSUE_TRACKER.replace(/\/$/, "")}/new` : '';
 
 const PORT = 3000
-
 
 // ---JWT signing and verification options starts-----
 //To make the JWT more efficient we need 3 things
@@ -107,9 +114,39 @@ app.get('', function(req, res) {
         This is a tutorial with live demo to show how jwt authentication can be implemented using node.js, express, jsonwebtoken. 
         <br/>We'll start with examples and then reverse engineer by deconstructing each part.
         <br/><br/>
+
+        <details>
+            <summary>Topics Covered</summary>
+            <div>
+                <ul>
+                    <li onclick="window.location='/jwt'" style="cursor:pointer;">Anatomy of a token</li>
+                    <li onclick="window.location='/jwt'" style="cursor:pointer;">Verifying a token</li>
+                    <li onclick="window.location='/jwt/custom'" style="cursor:pointer;">Generating a secure token</li>
+                    <li onclick="window.location='/lesson/jwt-in-web-cookies'" style="cursor:pointer;">Using token to authenticate request</li>
+                    <li onclick="window.location='/lesson/jwt-in-web-cookies'" style="cursor:pointer;">Sending token to authorization server</li>
+                    <li onclick="window.location='/lesson/implementing-logout'" style="cursor:pointer;">Implementing logout</li>
+                    <li onclick="window.location='/lesson/finish'" style="cursor:pointer;">Resources to learn more</li>
+                </ul>
+            </div>
+        </details>
+
+        <br/><br/>
         <a href="/jwt">Next: Create JWT token</a>
         <br/><br/><br/><br/><br/><br/>
-        <small style="opacity:0.8;">Made by <a target="_blank" href="https://twitter.com/pradeep_io">@pradeep_io</a></small>
+
+        <footer>
+            <span style="opacity:0.8;float:left;font-size:80%;">
+                <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
+                <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
+
+                <script async defer src="https://buttons.github.io/buttons.js"></script>
+                <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+            </span>
+            <span style="opacity:0.8;float:right;font-size:80%;">
+                <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+            </span>
+            <br/><br/><br/>
+        </footer>
         `)
 })
 
@@ -122,26 +159,47 @@ app.get('/jwt', function(req, res) {
     res.send(`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
             <h2>✓ Generated a new token signed with secret!</h2>
-            <div>
-            <div style="display:inline; margin: 4px;">
-            <span style="color:red;">${token.split(".")[0]}</span><span style="font-weight:bold;font-size:120%;">.</span><span style="color:blue;">${token.split(".")[1]}</span><span style="font-weight:bold;font-size:120%;">.</span><span style="color:green;">${token.split(".")[2]}</span>
-            </div></div>
+            <div style="margin:4px;font-size:70%;overflow-wrap:anywhere;">
+            <span id="token-part-header" style="color:red;">${token.split(".")[0]}</span><span style="font-weight:bold;font-size:120%;">.</span>
+            <span id="token-part-payload" style="color:blue;">${token.split(".")[1]}</span><span style="font-weight:bold;font-size:120%;">.</span>
+            <span id="token-part-signature" style="color:green;">${token.split(".")[2]}</span>
+            </div>
             <br/><br/>
             <h3>Token schema</h3>
             <p>Did you notice 3 dots(.) in the token? Dots (.) separate 3 important parts of the token</p>
             
             <b><code>{<span style="color:red;">header</span>}.{<span style="color:blue;">payload</span>}.{<span style="color:green;">signature</span>}</code></b><br/>
-            <ul>
-                <li>Header : Metadata about the cryptography methods e.g. Algorithm, Token type. Encoded with base64UrlEncode, visible to anyone who has access to token.</li>
-                <li>Payload: Actual data we want to exchange e.g. userId.  Encoded with base64UrlEncode, visible to anyone who has access to token.</li>
-                <li>Signature: To verify sender or ensure message integrity. Can be verified by anyone if they know secret/publicKey, but can't be changed.</li>
-            </ul>
+            <ol>
+                <li><b>Header</b>: Metadata about the cryptography methods e.g. Algorithm, Token type.
+                <br/>Encoded with base64UrlEncode, can easily be decoded by anyone who has access to token.
+                <br/><span>Let's <a href="javascript:alert(window.atob(document.getElementById('token-part-header').textContent))">decode header</a> with browser's <code>atob()</code> method</span>
+                </li>
+                <li><b>Payload</b>: Actual data we want to exchange e.g. userId.
+                <br/>This is also encoded with base64UrlEncode. <span>Let's <a href="javascript:alert(window.atob(document.getElementById('token-part-payload').textContent))">decode payload</a></span>
+                </li>
+                <li><b>Signature</b>: To verify sender or ensure message integrity. Can be verified by anyone if they know secret/publicKey. But changing data(spoofing) is not possible.</li>
+            </ol>
 
             
             <a target="_blank" href="https://jwt.io/introduction/">Read more..</a><br/>
             
             <br/><br/>
             <a href="/verify/${token}">Next: Verify JWT.</a><br/>
+            
+            <br/><br/><br/><br/><br/><br/>
+            <footer>
+            <span style="opacity:0.8;float:left;font-size:80%;">
+                <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
+                <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
+
+                <script async defer src="https://buttons.github.io/buttons.js"></script>
+                <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+            </span>
+            <span style="opacity:0.8;float:right;font-size:80%;">
+                <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+            </span>
+            <br/><br/><br/>
+            </footer>
             `);
 })
 
@@ -155,17 +213,47 @@ app.get('/verify/:token', function(req, res) {
             res.send(`
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
                 <h2>✓ Verified and payload decoded successfully!</h2>
-                <code>${JSON.stringify(decoded)}</code>
+                <code style="overflow-wrap:anywhere;overflow-wrap:anywhere;">${JSON.stringify(decoded)}</code>
                 <br/><br/>
                 <a href="/jwt/custom">Next: Create a more complex token</a> to address real world scenerios
                 <br/><br/><br/><br/>
                 <a href="/">Go Home</a><br/>
+
+                <br/><br/><br/><br/><br/><br/>
+                <footer>
+                <span style="opacity:0.8;float:left;font-size:80%;">
+                    <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
+                    <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
+
+                    <script async defer src="https://buttons.github.io/buttons.js"></script>
+                    <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+                </span>
+                <span style="opacity:0.8;float:right;font-size:80%;">
+                    <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+                </span>
+                <br/><br/><br/>
+                </footer>
             `);
         } else {
             res.send(`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
             <b>Verification Failed!</b><br/><code>${JSON.stringify(err)}</code>
             <a href="/">Go Home</a><br/>
+            
+            <br/><br/><br/><br/><br/><br/>
+            <footer>
+            <span style="opacity:0.8;float:left;font-size:80%;">
+                <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
+                <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
+
+                <script async defer src="https://buttons.github.io/buttons.js"></script>
+                <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+            </span>
+            <span style="opacity:0.8;float:right;font-size:80%;">
+                <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+            </span>
+            <br/><br/><br/>
+            </footer>
             `)
         }
     })
@@ -205,6 +293,21 @@ app.get('/jwt/custom', function(req, res) {
             </form>
             <br/><br/>
             <a href="/">Go Home</a><br/>
+
+            <br/><br/><br/><br/><br/><br/>
+            <footer>
+            <span style="opacity:0.8;float:left;font-size:80%;">
+                <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
+                <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
+
+                <script async defer src="https://buttons.github.io/buttons.js"></script>
+                <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+            </span>
+            <span style="opacity:0.8;float:right;font-size:80%;">
+                <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+            </span>
+            <br/><br/><br/>
+            </footer>
             `);
 })
 
@@ -230,7 +333,9 @@ app.post('/jwt/custom', function(req, res) {
     res.send(`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
             <h2>✓ Generated a new token</h2>
+            <div style="font-size:70%;overflow-wrap:anywhere;">
             ${token}
+            </div>
             <br/><br/>
             <b>For following options</b><br/>
             <ul>
@@ -244,10 +349,25 @@ app.post('/jwt/custom', function(req, res) {
             with secret key(for HMAC algorithm) or the public key(for RSA algorithm)<br/>
             <br/><br/>
             <h3>Let's put the token to some use now</h3>
-            <a href="/protected?access_token=${token}" style="opacity:0.7;">Next: Access resource protected with this token</a>
+            <a href="/protected?access_token=${token}">Next: Access resource protected with this token</a>
             <br/><br/><br/><br/>
             <a href="/jwt/custom" style="opacity:0.7;">Create a new token with different algorithm</a><br/><br/>
             <a href="/">Go Home</a><br/>
+
+            <br/><br/><br/><br/><br/><br/>
+            <footer>
+            <span style="opacity:0.8;float:left;font-size:80%;">
+                <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
+                <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
+
+                <script async defer src="https://buttons.github.io/buttons.js"></script>
+                <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+            </span>
+            <span style="opacity:0.8;float:right;font-size:80%;">
+                <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+            </span>
+            <br/><br/><br/>
+            </footer>
             `);
 })
 
@@ -268,7 +388,21 @@ app.get('/protected', isAuthenticated, function(req, res) {
                 > Content-Type: application/x-www-form-urlencoded<br/>
                 > <a href="https://tools.ietf.org/html/rfc6750#section-2.2" target="_blank">Read about standards to send token via form-encoded body parameters</a>
             </p>
-            <br/><br/>
+            
+            <br/><br/><br/><br/><br/><br/>
+            <footer>
+            <span style="opacity:0.8;float:left;font-size:80%;">
+                <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
+                <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
+
+                <script async defer src="https://buttons.github.io/buttons.js"></script>
+                <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+            </span>
+            <span style="opacity:0.8;float:right;font-size:80%;">
+                <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+            </span>
+            <br/><br/><br/>
+            </footer>
             `)
 })
 
@@ -283,7 +417,7 @@ app.post('/protected/web-form', isAuthenticated, function(req, res) {
                 There are other ways to send token to authorization server as well. 
                 Next, lets's explore
             </p>
-            <a id="apiReqBtn" href="#!" onclick="javasctipt:requestProtectedAPI()">Sending token in request header</a>
+            <a id="apiReqBtn" href="#!" onclick="javasctipt:requestProtectedAPI()">Send token in request header now</a>
             <small id="apiReqResponse" style="font-weight:bold;background-color:grey;color:#ffffff;margin-left:16px;"></small><br/><br/>
             <script>function requestProtectedAPI(){
                 console.log("Going to request API")
@@ -322,21 +456,29 @@ app.post('/protected/web-form', isAuthenticated, function(req, res) {
             > <a href="https://tools.ietf.org/html/rfc6750#section-2.1" target="_blank" style="opacity:0.7;">Read about standards to send token via request headers</a>
             <br/><br/><br/><br/>
             <b>And there are more ways to send token to authorization server</b><br/>
-            <a href="/tutorial/jwt-in-web-cookies" style="opacity:0.7;">Sending token in cookies</a><br/><br/>
+            <a href="/lesson/jwt-in-web-cookies">Next: Sending token in cookies</a><br/><br/>
 
-            <b>So, which method is the best to send tokens to authorization server?</b><br/>
-            For APIs, the recommended approach is to send token in authorization header as per Oauth RFC (Bearer Token).<br/>
-            For web, it's debatable how to send and store the token, considering the possible attacs such as XSS and CSRF vs performance.<br/>
-            <br/>
-            <b>So now, we can generate token, we can send it to server to access the protected resource, verify if the token is valid.<br/> But how do we implement logout?</b><br/>
-            <a href="/protected/web-refresh" style="opacity:0.7;">Invalidating tokens</a><br/><br/>
+            <br/><br/><br/><br/><br/><br/>
+            <footer>
+            <span style="opacity:0.8;float:left;font-size:80%;">
+                <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
+                <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
+
+                <script async defer src="https://buttons.github.io/buttons.js"></script>
+                <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+            </span>
+            <span style="opacity:0.8;float:right;font-size:80%;">
+                <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+            </span>
+            <br/><br/><br/>
+            </footer>
             `)
 })
 
-app.get('/tutorial/jwt-in-web-cookies', function(req, res) {
+app.get('/lesson/jwt-in-web-cookies', function(req, res) {
     res.send(`
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
-    <h2>Tutorial : Authentication workflow for web using cookies as token store</h2>
+    <h2>Lesson : Authentication workflow for web using cookies as token store</h2>
     <a href="#!" onclick="openSignInWindow('/authorize','login')">1. Login to get the token</a>
     <script>
         let windowObjectReference = null;
@@ -410,9 +552,26 @@ app.get('/tutorial/jwt-in-web-cookies', function(req, res) {
     4. <a href="/logout">Logout</a>
     <br/><br/><br/><br/>
     <a href="https://tools.ietf.org/html/rfc6265" target="_blank" style="opacity:0.7;">Read about securely storing cookies</a>
+    <br/><br/>
+    <a href="/lesson/token-transmit-method-comparison">Next: Choosing best method to send tokens to auth server</a>
     <br/><br/><br/><br/>
     
     <a href="/jwt/custom" style="opacity:0.7;">Go Home</a><br/><br/>
+
+    <br/><br/><br/><br/><br/><br/>
+    <footer>
+    <span style="opacity:0.8;float:left;font-size:80%;">
+        <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
+        <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
+
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+        <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+    </span>
+    <span style="opacity:0.8;float:right;font-size:80%;">
+        <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+    </span>
+    <br/><br/><br/>
+    </footer>
     `)
 })
 
@@ -481,6 +640,120 @@ app.get('/authorize', function(req, res) {
         </script>
     `)
 })
+
+app.get('/lesson/token-transmit-method-comparison', [], function(req, res) {
+    res.send(`
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
+            <h2>So, which method is the best to send tokens to authorization server?</h2>
+            <br/>
+            <p>
+            For APIs, the recommended approach is to send token in authorization header as per Oauth RFC (Bearer Token).<br/>
+            For web, it's debatable how to send and store the token, considering the possible attacks(e.g. XSS, CSRF, etc.) vs Performance.<br/>
+            <br/>
+            <b>So now, we can generate token, we can send it to server to access the protected resource, verify if the token is valid.<br/> But how do we implement logout?</b><br/>
+            </p>
+            <a href="/lesson/implementing-logout">Next: Implementing logout</a><br/><br/>
+
+            <br/><br/><br/><br/><br/><br/>
+            <footer>
+            <span style="opacity:0.8;float:left;font-size:80%;">
+                <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
+                <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
+
+                <script async defer src="https://buttons.github.io/buttons.js"></script>
+                <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+            </span>
+            <span style="opacity:0.8;float:right;font-size:80%;">
+                <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+            </span>
+            <br/><br/><br/>
+            </footer>
+    `)
+})
+
+app.get('/lesson/implementing-logout', [], function(req, res) {
+    res.send(`
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
+        <h2>Lesson: Logout = Invalidating tokens</h2>
+        <p>
+        <mark>Warning: This is a complex and highly debatable topic.</mark> Don't leave without reading the last paragraph.
+        <br/><br/>You may simply remove the token from the client side => No token, No access
+        <br/><br/><b>But...</b><br/>
+        The token you created earlier is still valid(till the expiry time of that token). So if anyone who makes the request with that token, will get access to the protected resources just like before.
+        <br/><br/>Also what happens when you change your password? The token is still valid.
+        <br/><br/><b>So, what are common strategies to avoid such misuse of the tokens?</b>
+        <ul>
+            <li>Create a token blacklist e.g. on logout request, add the token to blacklist; use the blacklist to deny access to tokens which are still valid but should not be authorized</li>
+            <li>Keep token expiry times short and rotate them often</li>
+            <li>Contingency Plan : allow the user to change an underlying user lookup ID with their login credentials</li>
+            <li>A common approach for invalidating tokens when a user changes their password is to sign the token with a hash of their password. Thus if the password changes, any previous tokens automatically fail to verify. You can extend this to logout by including a last-logout-time in the user's record and using a combination of the last-logout-time and password hash to sign the token. This requires a DB lookup each time you need to verify the token signature, but presumably you're looking up the user anyway.</li>
+        </ul>
+        <br/>
+        These strategies can be debated based on the trade offs that need to be made between Performance vs Security.
+        </p> 
+        <br/><br/>
+        <a href="/lesson/finish">Next: Finish Tutorial</a><br/>
+        
+        <br/><br/>
+        <blockquote>
+        We just touched the surface of the topic here. I would recommend to further read the references on this project's <a href="${CODE_REPOSITORY}">code repository</a> and <a href="https://github.com/gitcommitshow/awesome-authentication">awesome-authentication</a> for more details.
+        <br/><br/>You can help me add more topics here and make this tutorial better. Contributing is as easy as creating an <a href="${NEW_ISSUE_URL}">issue for suggestion</a> or <a href="${CODE_REPOSITORY}">make a pull request</a>.
+        </blockquote>
+
+        <br/><br/><br/><br/>
+        <footer>
+        <span style="opacity:0.8;float:left;font-size:80%;">
+            <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
+            <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
+
+            <script async defer src="https://buttons.github.io/buttons.js"></script>
+            <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+        </span>
+        <span style="opacity:0.8;float:right;font-size:80%;">
+            <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+        </span>
+        <br/><br/><br/>
+        </footer>
+        `)
+})
+
+
+app.get('/lesson/finish', [], function(req, res) {
+    res.send(`
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
+        <h2>Congratulations on finishing this tutorial</h2>
+
+        <br/><br/>
+        <button type="button" onclick="window.location='https://twitter.com/intent/tweet?text=Just%20finished%20totorial%20on%20JWT.%20@pradeep_io&url=${CODE_REPOSITORY}'">Celebrate on Twitter</button>
+
+        <br/><br/>
+        <blockquote>
+        To be honest, we just touched the surface of the topic here. I would recommend to further read the references on this project's <a href="${CODE_REPOSITORY}">code repository</a> and <a href="https://github.com/gitcommitshow/awesome-authentication">awesome-authentication</a> for more details.
+        <br/>
+        <br/>You can help me add more topics here and make this tutorial better. Contributing is as easy as creating an <a href="${NEW_ISSUE_URL}">issue for suggestion</a> or <a href="${CODE_REPOSITORY}">make a pull request</a>.
+        </blockquote>
+        <br/><br/>
+        <button type="button" onclick="window.location='https://github.com/gitcommitshow/awesome-authentication'">Visit awesome-authentication</button>
+
+        <br/><br/><br/><br/>
+        <footer>
+        <span style="opacity:0.8;float:left;font-size:80%;">
+            <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
+            <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
+
+            <script async defer src="https://buttons.github.io/buttons.js"></script>
+            <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+        </span>
+        <span style="opacity:0.8;float:right;font-size:80%;">
+            <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+        </span>
+        <br/><br/><br/>
+        </footer>
+
+        `)
+})
+
+
 
 // Using multer to handle form data
 const multer = require('multer');
@@ -555,6 +828,10 @@ app.get('/logout', [], function(req, res) {
     res.clearCookie('access_token');
     return res.redirect('back');
 })
+
+
+
+
 
 // Middleware for authentication using JWT paradigm
 function isAuthenticated(req, res, next) {

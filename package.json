@@ -1,19 +1,33 @@
 {
     "name": "auth-jwt",
-    "version": "2.0.0",
-    "description": "",
+    "version": "2.0.1",
+    "description": "A demo to learn JWT by reverse engineering",
+    "keywords": ["jwt", "token", "jsonwebtoken", "authentication", "rfc-7519", "signature", "rsa", "learn-by-doing", "express", "node authentication"],
     "main": "index.js",
+    "author": {
+        "name": "Pradeep Sharma",
+        "url": "https://github.com/gitcommitshow"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/gitcommitshow/auth-jwt"
+    },
+    "bugs": "https://github.com/gitcommitshow/auth-jwt/issues",
+    "homepage": "https://auth-jwt--gitcommitshow.repl.co",
+    "private": false,
     "scripts": {
         "start": "node index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "Pradeep Sharma",
-    "license": "MIT",
     "dependencies": {
         "body-parser": "^1.19.0",
         "cookie-parser": "^1.4.5",
         "express": "^4.17.1",
         "jsonwebtoken": "^8.5.1",
         "multer": "^1.4.2"
+    },
+    "engines": {
+        "node": ">= 0.10.0"
     }
 }
