@@ -11,6 +11,9 @@ A demo to learn JWT by reverse engineering
 
 ![Demo GIF](./demo.gif)
 
+## Documentation
+
+If you want to extend code for more functionalities, [checkout the documentation](./docs.md)
 
 ## References
 

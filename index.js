@@ -91,6 +91,7 @@ function updateSecretMethod(algorithm, isSigningRequest) {
 
 var app = express(module.exports)
 app.disable('x-powered-by');
+app.use('/docs', express.static('docs'))
 
 // support parsing of application/json type post data
 app.use(express.json());
@@ -138,7 +139,7 @@ app.get('', function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-
+                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -191,7 +192,7 @@ app.get('/jwt', function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-
+                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -224,7 +225,7 @@ app.get('/verify/:token', function(req, res) {
                 <span style="opacity:0.8;float:left;font-size:80%;">
                     <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                     <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-
+                    <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
                     <script async defer src="https://buttons.github.io/buttons.js"></script>
                     <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
                 </span>
@@ -245,7 +246,7 @@ app.get('/verify/:token', function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-
+                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -299,7 +300,7 @@ app.get('/jwt/custom', function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-
+                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -359,7 +360,7 @@ app.post('/jwt/custom', function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-
+                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -394,7 +395,7 @@ app.get('/protected', isAuthenticated, function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-
+                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -463,7 +464,7 @@ app.post('/protected/web-form', isAuthenticated, function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-
+                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -563,7 +564,7 @@ app.get('/lesson/jwt-in-web-cookies', function(req, res) {
     <span style="opacity:0.8;float:left;font-size:80%;">
         <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
         <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-
+        <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
         <script async defer src="https://buttons.github.io/buttons.js"></script>
         <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
     </span>
@@ -659,7 +660,7 @@ app.get('/lesson/token-transmit-method-comparison', [], function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-
+                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -705,7 +706,7 @@ app.get('/lesson/implementing-logout', [], function(req, res) {
         <span style="opacity:0.8;float:left;font-size:80%;">
             <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
             <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-
+            <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
             <script async defer src="https://buttons.github.io/buttons.js"></script>
             <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
         </span>
@@ -740,7 +741,7 @@ app.get('/lesson/finish', [], function(req, res) {
         <span style="opacity:0.8;float:left;font-size:80%;">
             <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
             <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-
+            <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
             <script async defer src="https://buttons.github.io/buttons.js"></script>
             <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
         </span>
@@ -833,7 +834,15 @@ app.get('/logout', [], function(req, res) {
 
 
 
-// Middleware for authentication using JWT paradigm
+/**
+ * Express middleware for authentication using JWT paradigm
+ * @param {} req : Express request object
+ * @param {} res : Express response object
+ * @param {} next : Express next callback
+ * 
+ * @example
+ * app.get('protectedEndpoint', [isAuthenticated], function(req, res){})
+ */
 function isAuthenticated(req, res, next) {
     // Get the token (Different ways : from query, from header, from body)
     // Verify
@@ -886,6 +895,20 @@ function isAuthenticated(req, res, next) {
     }
 }
 
+
+/**
+ * 
+ * Abstract implementation of strategy to read/manipulate token in request
+ * @example 
+ * let tokenExchange = new TokenExchange()
+ * // Define your own strategy(a function) to read token, let's call it MyTokenReadStrategy
+ * tokenExchange.setTokenReadStrategy(new MyTokenReadStrategy())
+ * tokenExchange.read(req);
+ * returns token
+ * @property {Function} read(req) - Function that extracts token from request object
+ * @property {Function} setTokenReadStrategy(strategyInstance) - Set strategy for reading token
+ * 
+ */
 var TokenExchange = function() {
     this.tokenReadStrategy = null;
     this.token = "";
@@ -899,17 +922,17 @@ var TokenExchange = function() {
     }
 }
 
-function setDefaultStrategy(req, tokenExchange) {
-    // First check header - authorization
-    if (req.get('Authorization')) {
-        tokenExchange.setTokenReadStrategy(new ReadFromHeaderWithBearerScheme()).read(req);
-    } else if (req && req.cookies && req.cookies.access_token) {
-        tokenExchange.setTokenReadStrategy(new ReadFromCookies()).read(req);
-    }
-    // Second check cookie
-}
 
 // Resource: Recommended practices for authorization bearer token -> https://tools.ietf.org/html/rfc6750#section-1.1
+
+/**
+ * A strategy to read token from request query parameters. Sent via
+ * Can be implemted via TokenExchange
+ * @example 
+ * new TokenExchange().setTokenReadStrategy(new ReadFromBody())
+ * // When token was sent /apiEndpoint?access_token=String
+ * @see {@link TokenExchange}
+ */
 var ReadFromUrlParam = function() {
     this.read = function(req) {
         if (req && req.query.access_token) {
@@ -919,6 +942,14 @@ var ReadFromUrlParam = function() {
     }
 }
 
+/**
+ * A strategy to read token from request body
+ * Can be implemted via TokenExchange
+ * @example 
+ * new TokenExchange().setTokenReadStrategy(new ReadFromBody())
+ * // When token was sent ia `POST /apiEndpoint -d '{access_token: String}'`
+ * @see {@link TokenExchange}
+ */
 var ReadFromBody = function() {
     // Should have content type application/x-www-form-urlencoded
     // Should have this middleware enabled to parse body data : app.use(express.urlencoded({ extended: true })) 
@@ -931,6 +962,13 @@ var ReadFromBody = function() {
     }
 }
 
+/**
+ * A strategy to read token from request cookies
+ * Can be implemted via TokenExchange
+ * @example 
+ * new TokenExchange().setTokenReadStrategy(new ReadFromCookies())
+ * @see {@link TokenExchange}
+ */
 var ReadFromCookies = function() {
     this.read = function(req) {
         if (req && req.cookies && req.cookies.access_token) {
@@ -940,6 +978,13 @@ var ReadFromCookies = function() {
     }
 }
 
+/**
+ * A strategy to read token from request header named `authorization`
+ * Can be implemted via TokenExchange
+ * @example 
+ * new TokenExchange().setTokenReadStrategy(new ReadFromHeader())
+ * @see {@link TokenExchange}
+ */
 var ReadFromHeader = function(req) {
     this.read = function(req) {
         if (req.get('Authorization')) {
@@ -950,6 +995,14 @@ var ReadFromHeader = function(req) {
     }
 }
 
+/**
+ * A strategy to read token from **header with bearer scheme**.
+ * Can be implemted via TokenExchange
+ * @param {*} req : Express Request object
+ * @example 
+ * new TokenExchange().setTokenReadStrategy(new ReadFromHeaderWithBearerScheme())
+ * @see {@link TokenExchange}
+ */
 var ReadFromHeaderWithBearerScheme = function(req) {
     this.read = function(req) {
         if (req.get('Authorization')) {
@@ -968,4 +1021,23 @@ var ReadFromHeaderWithBearerScheme = function(req) {
         console.log('No authorization header ');
         return null;
     }
+}
+
+/**
+ * Default strategy for TokenExchange
+ * @description 
+ * Default strategy when authorization header is available in request : ReadFromHeaderWithBearerScheme
+ * Default strategy when cookies have `access_token` : ReadFromCookie
+ * @param {*} req 
+ * @param {*} tokenExchange 
+ * @see {@link TokenExchange}
+ */
+function setDefaultStrategy(req, tokenExchange) {
+    // First check header - authorization
+    if (req.get('Authorization')) {
+        tokenExchange.setTokenReadStrategy(new ReadFromHeaderWithBearerScheme()).read(req);
+    } else if (req && req.cookies && req.cookies.access_token) {
+        tokenExchange.setTokenReadStrategy(new ReadFromCookies()).read(req);
+    }
+    // Second check cookie
 }
