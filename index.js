@@ -139,7 +139,7 @@ app.get('', function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
+                <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
