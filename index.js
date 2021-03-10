@@ -167,7 +167,7 @@ app.get('/jwt', function(req, res) {
             </div>
             <br/><br/>
             <h3>Token schema</h3>
-            <p>Did you notice 3 dots(.) in the token? Dots (.) separate 3 important parts of the token</p>
+            <p>Did you notice two dots(.) in the token? These dots (.) separate 3 important parts of the token</p>
             
             <b><code>{<span style="color:red;">header</span>}.{<span style="color:blue;">payload</span>}.{<span style="color:green;">signature</span>}</code></b><br/>
             <ol>
