@@ -192,7 +192,7 @@ app.get('/jwt', function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
+                <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -225,7 +225,7 @@ app.get('/verify/:token', function(req, res) {
                 <span style="opacity:0.8;float:left;font-size:80%;">
                     <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                     <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-                    <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
+                    <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
                     <script async defer src="https://buttons.github.io/buttons.js"></script>
                     <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
                 </span>
@@ -246,7 +246,7 @@ app.get('/verify/:token', function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
+                <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -300,7 +300,7 @@ app.get('/jwt/custom', function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
+                <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -360,7 +360,7 @@ app.post('/jwt/custom', function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
+                <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -395,7 +395,7 @@ app.get('/protected', isAuthenticated, function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
+                <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -464,7 +464,7 @@ app.post('/protected/web-form', isAuthenticated, function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
+                <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -564,7 +564,7 @@ app.get('/lesson/jwt-in-web-cookies', function(req, res) {
     <span style="opacity:0.8;float:left;font-size:80%;">
         <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
         <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-        <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
+        <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
         <script async defer src="https://buttons.github.io/buttons.js"></script>
         <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
     </span>
@@ -660,7 +660,7 @@ app.get('/lesson/token-transmit-method-comparison', [], function(req, res) {
             <span style="opacity:0.8;float:left;font-size:80%;">
                 <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
                 <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-                <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
+                <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
                 <script async defer src="https://buttons.github.io/buttons.js"></script>
                 <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
             </span>
@@ -706,7 +706,7 @@ app.get('/lesson/implementing-logout', [], function(req, res) {
         <span style="opacity:0.8;float:left;font-size:80%;">
             <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
             <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-            <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
+            <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
             <script async defer src="https://buttons.github.io/buttons.js"></script>
             <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
         </span>
@@ -741,7 +741,7 @@ app.get('/lesson/finish', [], function(req, res) {
         <span style="opacity:0.8;float:left;font-size:80%;">
             <a href="${NEW_ISSUE_URL}" target="_blank" target="_blank">Report a bug/improvement</a>
             <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=${CODE_REPOSITORY}" target="_blank">Share on twitter</a>
-            <br/><br/><a href="/docs" target="_blank">Read Dcoumentation</a>
+            <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
             <script async defer src="https://buttons.github.io/buttons.js"></script>
             <br/><br/><a style="padding-top:12px;" class="github-button" href="${CODE_REPOSITORY}" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
         </span>
