@@ -1,17 +1,26 @@
-const express = require('express')
-const jwt = require('jsonwebtoken')
-const fs = require('fs')
-const cookieParser = require('cookie-parser')
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const cookieParser = require('cookie-parser');
 
 // Some info from package.json
-const package_json = require('./package.json')
-const CODE_REPOSITORY = package_json.repository && package_json.repository.url ? package_json.repository.url : package_json.repository;
-const AUTHOR_NAME = package_json.author && package_json.author.name ? package_json.author.name : "";
-const AUTHOR_URL = package_json.author && package_json.author.url ? package_json.author.url : "";
+const package_json = require('./package.json');
+const CODE_REPOSITORY =
+  package_json.repository && package_json.repository.url
+    ? package_json.repository.url
+    : package_json.repository;
+const AUTHOR_NAME =
+  package_json.author && package_json.author.name
+    ? package_json.author.name
+    : '';
+const AUTHOR_URL =
+  package_json.author && package_json.author.url ? package_json.author.url : '';
 const ISSUE_TRACKER = package_json.bugs;
-const NEW_ISSUE_URL = ISSUE_TRACKER ? `${ISSUE_TRACKER.replace(/\/$/, "")}/new` : '';
+const NEW_ISSUE_URL = ISSUE_TRACKER
+  ? `${ISSUE_TRACKER.replace(/\/$/, '')}/new`
+  : '';
 
-const PORT = 3000
+const PORT = 3000;
 
 // ---JWT signing and verification options starts-----
 //To make the JWT more efficient we need 3 things
@@ -20,78 +29,80 @@ var subject = 'some@user.com'; // Subject (intended user of the token)
 var audience = 'microsoft.com'; // Audience (Domain within which this token will live and function)
 
 const signOptions = {
-    algorithm: 'RS256',
-    expiresIn: '1d',
-    mutatePayload: true,
-    issuer: issuer,
-    subject: subject,
-    audience: audience
-}
+  algorithm: 'RS256',
+  expiresIn: '1d',
+  mutatePayload: true,
+  issuer: issuer,
+  subject: subject,
+  audience: audience,
+};
 
 //Whitelist only 1 algo if you can so attacker cannot fool by changing alg and create new signature with new alg
 const verifyOptions = {
-    algorithms: ['HS256', 'RS256', 'ES256'],
-    complete: true,
-    ignoreExpiration: false,
-    maxAge: '21d',
-    issuer: issuer,
-    subject: subject,
-    audience: audience
-}
+  algorithms: ['HS256', 'RS256', 'ES256'],
+  complete: true,
+  ignoreExpiration: false,
+  maxAge: '21d',
+  issuer: issuer,
+  subject: subject,
+  audience: audience,
+};
 
 // Secret or keys for signing algorithms
 const STATIC_SIGNING_KEY = false;
 var privateKEY, publicKEY;
 var cp = require('child_process'),
-    assert = require('assert');
+  assert = require('assert');
 
 // Genrate public and private key pair programmetically
 function genKeys(cb) {
-    // gen private
-    cp.exec('openssl genrsa 2048', function(err, priv, stderr) {
-        // tmp file
-        var randomfn = './' + Math.random().toString(36).substring(7);
-        fs.writeFileSync(randomfn, priv);
-        // gen public
-        cp.exec('openssl rsa -in ' + randomfn + ' -pubout', function(err, pub, stderr) {
-            // delete tmp file
-            fs.unlinkSync(randomfn);
-            // callback
-            privateKEY = priv;
-            publicKEY = pub;
-            cb(JSON.stringify({ public: pub, private: priv }, null, 4));
-        });
-
-    });
+  // gen private
+  cp.exec('openssl genrsa 2048', function (err, priv, stderr) {
+    // tmp file
+    var randomfn = './' + Math.random().toString(36).substring(7);
+    fs.writeFileSync(randomfn, priv);
+    // gen public
+    cp.exec(
+      'openssl rsa -in ' + randomfn + ' -pubout',
+      function (err, pub, stderr) {
+        // delete tmp file
+        fs.unlinkSync(randomfn);
+        // callback
+        privateKEY = priv;
+        publicKEY = pub;
+        cb(JSON.stringify({ public: pub, private: priv }, null, 4));
+      }
+    );
+  });
 }
 
 if (!STATIC_SIGNING_KEY) {
-    genKeys(console.log);
+  genKeys(console.log);
 } else {
-    // Genrate public and private key pair using openssl on your machine
-    // 1. openssl genrsa -out rsakey 2048
-    // 2. openssl rsa -in rsakey -pubout -out rsakey.pub
-    privateKEY = fs.readFileSync('./keys/rsakey', 'utf8'); // to sign JWT
-    publicKEY = fs.readFileSync('./keys/rsakey.pub', 'utf8'); // to verify JWT
+  // Genrate public and private key pair using openssl on your machine
+  // 1. openssl genrsa -out rsakey 2048
+  // 2. openssl rsa -in rsakey -pubout -out rsakey.pub
+  privateKEY = fs.readFileSync('./keys/rsakey', 'utf8'); // to sign JWT
+  publicKEY = fs.readFileSync('./keys/rsakey.pub', 'utf8'); // to verify JWT
 }
-var secret = "secret"; //ToDo: Move credentials to env
+var secret = 'secret'; //ToDo: Move credentials to env
 
 function updateSecretMethod(algorithm, isSigningRequest) {
-    if (algorithm === "HS256") {
-        secret = "secret";
+  if (algorithm === 'HS256') {
+    secret = 'secret';
+  } else {
+    if (isSigningRequest) {
+      secret = privateKEY;
     } else {
-        if (isSigningRequest) {
-            secret = privateKEY;
-        } else {
-            secret = publicKEY;
-        }
+      secret = publicKEY;
     }
+  }
 }
 // ---JWT signing and verification options ends-----
 
-var app = express(module.exports)
+var app = express(module.exports);
 app.disable('x-powered-by');
-app.use('/docs', express.static('docs'))
+app.use('/docs', express.static('docs'));
 
 // support parsing of application/json type post data
 app.use(express.json());
@@ -99,16 +110,15 @@ app.use(express.json());
 //support parsing of application/x-www-form-urlencoded post data
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cookieParser())
+app.use(cookieParser());
 
-app.listen(PORT, function() {
-    console.log(`Listening on port ${PORT}`)
-})
-
+app.listen(PORT, function () {
+  console.log(`Listening on port ${PORT}`);
+});
 
 //Homepage to get started
-app.get('', function(req, res) {
-    res.send(`
+app.get('', function (req, res) {
+  res.send(`
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
         <h1>JWT Authentication Demo</h1>
         <br/><br/>
@@ -148,22 +158,31 @@ app.get('', function(req, res) {
             </span>
             <br/><br/><br/>
         </footer>
-        `)
-})
-
+        `);
+});
 
 //Endpoint to get a simple token signed with a secret
-app.get('/jwt', function(req, res) {
-    updateSecretMethod(signOptions.algorithm, true);
-    console.log(JSON.stringify(signOptions));
-    var token = jwt.sign({ data: "I secretly like Momina Mustehan" }, secret, signOptions)
-    res.send(`
+app.get('/jwt', function (req, res) {
+  updateSecretMethod(signOptions.algorithm, true);
+  console.log(JSON.stringify(signOptions));
+  var token = jwt.sign(
+    { data: 'I secretly like Momina Mustehan' },
+    secret,
+    signOptions
+  );
+  res.send(`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
             <h2>✓ Generated a new token signed with secret!</h2>
-            <div style="margin:4px;font-size:70%;overflow-wrap:anywhere;">
-            <span id="token-part-header" style="color:red;">${token.split(".")[0]}</span><span style="font-weight:bold;font-size:120%;">.</span>
-            <span id="token-part-payload" style="color:blue;">${token.split(".")[1]}</span><span style="font-weight:bold;font-size:120%;">.</span>
-            <span id="token-part-signature" style="color:green;">${token.split(".")[2]}</span>
+            <div style="margin:4px;font-size:70%;overflow-wrap:anywhere;word-wrap:break-word">
+            <span id="token-part-header" style="color:red;">${
+              token.split('.')[0]
+            }</span><span style="font-weight:bold;font-size:120%;">.</span>
+            <span id="token-part-payload" style="color:blue;">${
+              token.split('.')[1]
+            }</span><span style="font-weight:bold;font-size:120%;">.</span>
+            <span id="token-part-signature" style="color:green;">${
+              token.split('.')[2]
+            }</span>
             </div>
             <br/><br/>
             <h3>Token schema</h3>
@@ -202,19 +221,21 @@ app.get('/jwt', function(req, res) {
             <br/><br/><br/>
             </footer>
             `);
-})
+});
 
 //Endpoint to verify a token
-app.get('/verify/:token', function(req, res) {
-    var token = req.params.token;
-    updateSecretMethod(signOptions.algorithm, false);
-    console.log(JSON.stringify(verifyOptions));
-    jwt.verify(token.toString(), secret, verifyOptions, function(err, decoded) {
-        if (decoded) {
-            res.send(`
+app.get('/verify/:token', function (req, res) {
+  var token = req.params.token;
+  updateSecretMethod(signOptions.algorithm, false);
+  console.log(JSON.stringify(verifyOptions));
+  jwt.verify(token.toString(), secret, verifyOptions, function (err, decoded) {
+    if (decoded) {
+      res.send(`
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
                 <h2>✓ Verified and payload decoded successfully!</h2>
-                <code style="overflow-wrap:anywhere;overflow-wrap:anywhere;">${JSON.stringify(decoded)}</code>
+                <code style="overflow-wrap:anywhere;overflow-wrap:anywhere;">${JSON.stringify(
+                  decoded
+                )}</code>
                 <br/><br/>
                 <a href="/jwt/custom">Next: Create a more complex token</a> to address real world scenerios
                 <br/><br/><br/><br/>
@@ -235,8 +256,8 @@ app.get('/verify/:token', function(req, res) {
                 <br/><br/><br/>
                 </footer>
             `);
-        } else {
-            res.send(`
+    } else {
+      res.send(`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
             <b>Verification Failed!</b><br/><code>${JSON.stringify(err)}</code>
             <a href="/">Go Home</a><br/>
@@ -255,14 +276,14 @@ app.get('/verify/:token', function(req, res) {
             </span>
             <br/><br/><br/>
             </footer>
-            `)
-        }
-    })
-})
+            `);
+    }
+  });
+});
 
 //Page to create a custom token
-app.get('/jwt/custom', function(req, res) {
-    res.send(`
+app.get('/jwt/custom', function (req, res) {
+  res.send(`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
             <h2>Customize JWT Creation</h2>
             <br/><br/>
@@ -310,28 +331,27 @@ app.get('/jwt/custom', function(req, res) {
             <br/><br/><br/>
             </footer>
             `);
-})
-
+});
 
 //Endpoint to create custom token with given parameters
-app.post('/jwt/custom', function(req, res) {
-    console.log(JSON.stringify(req.body))
-    var algorithm = req.body.alg;
-    var payload = req.body.payload;
-    if (typeof payload === 'string') {
-        try {
-            payload = JSON.parse(payload);
-        } catch (e) {
-            if (e) console.log('Invalid json string' + payload + "\n. Error:" + e)
-        }
+app.post('/jwt/custom', function (req, res) {
+  console.log(JSON.stringify(req.body));
+  var algorithm = req.body.alg;
+  var payload = req.body.payload;
+  if (typeof payload === 'string') {
+    try {
+      payload = JSON.parse(payload);
+    } catch (e) {
+      if (e) console.log('Invalid json string' + payload + '\n. Error:' + e);
     }
-    if (algorithm) signOptions['algorithm'] = algorithm;
-    updateSecretMethod(signOptions.algorithm, true);
-    console.log(JSON.stringify(signOptions));
-    var token = jwt.sign(payload, secret, signOptions);
-    res.set('Cache-Control', 'no-store')
-    res.set('Pragma', 'no-cache')
-    res.send(`
+  }
+  if (algorithm) signOptions['algorithm'] = algorithm;
+  updateSecretMethod(signOptions.algorithm, true);
+  console.log(JSON.stringify(signOptions));
+  var token = jwt.sign(payload, secret, signOptions);
+  res.set('Cache-Control', 'no-store');
+  res.set('Pragma', 'no-cache');
+  res.send(`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
             <h2>✓ Generated a new token</h2>
             <div style="font-size:70%;overflow-wrap:anywhere;">
@@ -370,11 +390,10 @@ app.post('/jwt/custom', function(req, res) {
             <br/><br/><br/>
             </footer>
             `);
-})
+});
 
-
-app.get('/protected', isAuthenticated, function(req, res) {
-    res.send(`
+app.get('/protected', isAuthenticated, function (req, res) {
+  res.send(`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
             <h2>✓ You've been successfully authenticated!</h2>
             <p style="width:70%;"><br/><br/>
@@ -404,12 +423,12 @@ app.get('/protected', isAuthenticated, function(req, res) {
             </span>
             <br/><br/><br/>
             </footer>
-            `)
-})
+            `);
+});
 
-app.post('/protected/web-form', isAuthenticated, function(req, res) {
-    console.log(req.get('Content-Type'))
-    res.send(`
+app.post('/protected/web-form', isAuthenticated, function (req, res) {
+  console.log(req.get('Content-Type'));
+  res.send(`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
             <h2>✓ You've been successfully authenticated!</h2>
             <p style="width:70%;"><br/><br/>
@@ -473,11 +492,11 @@ app.post('/protected/web-form', isAuthenticated, function(req, res) {
             </span>
             <br/><br/><br/>
             </footer>
-            `)
-})
+            `);
+});
 
-app.get('/lesson/jwt-in-web-cookies', function(req, res) {
-    res.send(`
+app.get('/lesson/jwt-in-web-cookies', function (req, res) {
+  res.send(`
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
     <h2>Lesson : Authentication workflow for web using cookies as token store</h2>
     <a href="#!" onclick="openSignInWindow('/authorize','login')">1. Login to get the token</a>
@@ -573,11 +592,11 @@ app.get('/lesson/jwt-in-web-cookies', function(req, res) {
     </span>
     <br/><br/><br/>
     </footer>
-    `)
-})
+    `);
+});
 
-app.get('/authorize', function(req, res) {
-    res.send(`
+app.get('/authorize', function (req, res) {
+  res.send(`
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
         <h2>Sign in</h2>
         <form id="login-form" action="/oauth/token" method="POST">
@@ -639,11 +658,11 @@ app.get('/authorize', function(req, res) {
            
           } );
         </script>
-    `)
-})
+    `);
+});
 
-app.get('/lesson/token-transmit-method-comparison', [], function(req, res) {
-    res.send(`
+app.get('/lesson/token-transmit-method-comparison', [], function (req, res) {
+  res.send(`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
             <h2>So, which method is the best to send tokens to authorization server?</h2>
             <br/>
@@ -669,11 +688,11 @@ app.get('/lesson/token-transmit-method-comparison', [], function(req, res) {
             </span>
             <br/><br/><br/>
             </footer>
-    `)
-})
+    `);
+});
 
-app.get('/lesson/implementing-logout', [], function(req, res) {
-    res.send(`
+app.get('/lesson/implementing-logout', [], function (req, res) {
+  res.send(`
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
         <h2>Lesson: Logout = Invalidating tokens</h2>
         <p>
@@ -715,12 +734,11 @@ app.get('/lesson/implementing-logout', [], function(req, res) {
         </span>
         <br/><br/><br/>
         </footer>
-        `)
-})
+        `);
+});
 
-
-app.get('/lesson/finish', [], function(req, res) {
-    res.send(`
+app.get('/lesson/finish', [], function (req, res) {
+  res.send(`
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
         <h2>Congratulations on finishing this tutorial</h2>
 
@@ -751,155 +769,165 @@ app.get('/lesson/finish', [], function(req, res) {
         <br/><br/><br/>
         </footer>
 
-        `)
-})
-
-
+        `);
+});
 
 // Using multer to handle form data
 const multer = require('multer');
 const upload = multer();
 
 // Get token
-app.post('/oauth/token', upload.none(), function(req, res) {
-    console.log('formData: ', req.body)
-    var username = req.body.username;
-    var password = req.body.password;
-    if (username && password && username == 'user' && password == 'pass') {
-        //Issue the token
-        updateSecretMethod(signOptions.algorithm, true);
-        console.log(JSON.stringify(signOptions));
-        var token = jwt.sign({ user: username, lastLogin: new Date().getTime() }, secret, signOptions)
-        res.cookie('access_token', token, {
-            secure: false, // set to true if your using https
-            httpOnly: true,
-        });
-        return res.send({
-            "access_token": token,
-            "token_type": "Bearer",
-            "expires_in": "Do We Need To Send Expiration Date Separately",
-            "refresh_token": "Not_Implemented"
-        })
-    } else {
-        return res.status(401).send({
-            "success": false,
-            "version": "1.0.0"
-        })
-    }
-})
+app.post('/oauth/token', upload.none(), function (req, res) {
+  console.log('formData: ', req.body);
+  var username = req.body.username;
+  var password = req.body.password;
+  if (username && password && username == 'user' && password == 'pass') {
+    //Issue the token
+    updateSecretMethod(signOptions.algorithm, true);
+    console.log(JSON.stringify(signOptions));
+    var token = jwt.sign(
+      { user: username, lastLogin: new Date().getTime() },
+      secret,
+      signOptions
+    );
+    res.cookie('access_token', token, {
+      secure: false, // set to true if your using https
+      httpOnly: true,
+    });
+    return res.send({
+      access_token: token,
+      token_type: 'Bearer',
+      expires_in: 'Do We Need To Send Expiration Date Separately',
+      refresh_token: 'Not_Implemented',
+    });
+  } else {
+    return res.status(401).send({
+      success: false,
+      version: '1.0.0',
+    });
+  }
+});
 
-app.get('/protected/api', isAuthenticated, function(req, res) {
-    res.send({ success: true, version: '1.0.0' })
-})
+app.get('/protected/api', isAuthenticated, function (req, res) {
+  res.send({ success: true, version: '1.0.0' });
+});
 
-app.get('/protected/api/bearer', isAuthenticated, function(req, res) {
-    res.set('Cache-Control', 'no-store')
-    res.set('Pragma', 'no-cache')
-    res.send({
-        confidentialDocs: ['ww2report.doc', 'covid19report.doc'],
-        success: true,
-        version: '1.0.0'
-    })
-})
+app.get('/protected/api/bearer', isAuthenticated, function (req, res) {
+  res.set('Cache-Control', 'no-store');
+  res.set('Pragma', 'no-cache');
+  res.send({
+    confidentialDocs: ['ww2report.doc', 'covid19report.doc'],
+    success: true,
+    version: '1.0.0',
+  });
+});
 
-app.get('/protected/web-cookies', [isAuthenticated], function(req, res) {
-    res.send({
-        confidentialDocs: ['ww2report.doc', 'covid19report.doc'],
-        success: true,
-        version: '1.0.0'
-    })
-})
+app.get('/protected/web-cookies', [isAuthenticated], function (req, res) {
+  res.send({
+    confidentialDocs: ['ww2report.doc', 'covid19report.doc'],
+    success: true,
+    version: '1.0.0',
+  });
+});
 
-app.get('/user', [isAuthenticated], function(req, res) {
-    if (!req.get('Content-Type') || req.get('Content-Type').indexOf('application/json') === -1) {
-        return res.send(
-            `<pre>
+app.get('/user', [isAuthenticated], function (req, res) {
+  if (
+    !req.get('Content-Type') ||
+    req.get('Content-Type').indexOf('application/json') === -1
+  ) {
+    return res.send(
+      `<pre>
             { 
                 success: true, 
                 user: ${JSON.stringify(req.user)}
             }</pre>
             <a href="/logout">Logout</a>
-            `)
-    }
-    return res.send({ success: true, user: req.user })
-})
+            `
+    );
+  }
+  return res.send({ success: true, user: req.user });
+});
 
-app.get('/logout', [], function(req, res) {
-    // Delete the token at client side
-    res.clearCookie('access_token');
-    return res.redirect('back');
-})
-
-
-
-
+app.get('/logout', [], function (req, res) {
+  // Delete the token at client side
+  res.clearCookie('access_token');
+  return res.redirect('back');
+});
 
 /**
  * Express middleware for authentication using JWT paradigm
  * @param {} req : Express request object
  * @param {} res : Express response object
  * @param {} next : Express next callback
- * 
+ *
  * @example
  * app.get('protectedEndpoint', [isAuthenticated], function(req, res){})
  */
 function isAuthenticated(req, res, next) {
-    // Get the token (Different ways : from query, from header, from body)
-    // Verify
-    // next() on success
-    var tokenExchange = new TokenExchange()
-        // TokenRead default Strategy
-    switch (req.path) {
-        case '/protected/api':
-            tokenExchange.setTokenReadStrategy(new ReadFromHeader()).read(req);
-            break;
-        case '/protected/api/bearer':
-            tokenExchange.setTokenReadStrategy(new ReadFromHeaderWithBearerScheme()).read(req);
-            break;
-        case '/protected/web-cookies':
-            tokenExchange.setTokenReadStrategy(new ReadFromCookies()).read(req);
-            break;
-        case '/protected/web-form':
-            tokenExchange.setTokenReadStrategy(new ReadFromBody()).read(req);
-            break;
-        case '/protected':
-            tokenExchange.setTokenReadStrategy(new ReadFromUrlParam()).read(req);
-            break;
-        default:
-            setDefaultStrategy(req, tokenExchange);
-    }
-    if (tokenExchange.token) {
-        updateSecretMethod(signOptions.algorithm, false);
-        jwt.verify(tokenExchange.token, secret, verifyOptions, function(err, decoded) {
-            if (err) {
-                res.status(401).send(`
-                        <b>Not Authenticated! </b><br/><code>${JSON.stringify(err)}</code>
+  // Get the token (Different ways : from query, from header, from body)
+  // Verify
+  // next() on success
+  var tokenExchange = new TokenExchange();
+  // TokenRead default Strategy
+  switch (req.path) {
+    case '/protected/api':
+      tokenExchange.setTokenReadStrategy(new ReadFromHeader()).read(req);
+      break;
+    case '/protected/api/bearer':
+      tokenExchange
+        .setTokenReadStrategy(new ReadFromHeaderWithBearerScheme())
+        .read(req);
+      break;
+    case '/protected/web-cookies':
+      tokenExchange.setTokenReadStrategy(new ReadFromCookies()).read(req);
+      break;
+    case '/protected/web-form':
+      tokenExchange.setTokenReadStrategy(new ReadFromBody()).read(req);
+      break;
+    case '/protected':
+      tokenExchange.setTokenReadStrategy(new ReadFromUrlParam()).read(req);
+      break;
+    default:
+      setDefaultStrategy(req, tokenExchange);
+  }
+  if (tokenExchange.token) {
+    updateSecretMethod(signOptions.algorithm, false);
+    jwt.verify(
+      tokenExchange.token,
+      secret,
+      verifyOptions,
+      function (err, decoded) {
+        if (err) {
+          res.status(401).send(`
+                        <b>Not Authenticated! </b><br/><code>${JSON.stringify(
+                          err
+                        )}</code>
                         <a href="/">Go Home</a><br/>
-                        `)
-            } else {
-                //ToDo: Sanitize the decoded jwt content
-                //ToDo: Set req.user object with fields such as id, name, etc.
-                console.log(JSON.stringify(decoded.payload, null, 4))
-                if (!req.user) {
-                    req.user = {}
-                }
-                req.user.username = decoded.payload.user
-                next()
-            }
-        })
-    } else {
-        res.status(400).send(`
+                        `);
+        } else {
+          //ToDo: Sanitize the decoded jwt content
+          //ToDo: Set req.user object with fields such as id, name, etc.
+          console.log(JSON.stringify(decoded.payload, null, 4));
+          if (!req.user) {
+            req.user = {};
+          }
+          req.user.username = decoded.payload.user;
+          next();
+        }
+      }
+    );
+  } else {
+    res.status(400).send(`
         <h2>No token found</h2><br/><br/>
         <a href="/jwt/custom" style="opacity:0.7;">Create a new token</a><br/><br/>
-        `)
-    }
+        `);
+  }
 }
 
-
 /**
- * 
+ *
  * Abstract implementation of strategy to read/manipulate token in request
- * @example 
+ * @example
  * let tokenExchange = new TokenExchange()
  * // Define your own strategy(a function) to read token, let's call it MyTokenReadStrategy
  * tokenExchange.setTokenReadStrategy(new MyTokenReadStrategy())
@@ -907,137 +935,138 @@ function isAuthenticated(req, res, next) {
  * returns token
  * @property {Function} read(req) - Function that extracts token from request object
  * @property {Function} setTokenReadStrategy(strategyInstance) - Set strategy for reading token
- * 
+ *
  */
-var TokenExchange = function() {
-    this.tokenReadStrategy = null;
-    this.token = "";
-    this.setTokenReadStrategy = function(tokenReadStrategy) {
-        this.tokenReadStrategy = tokenReadStrategy;
-        return this;
-    }
-    this.read = function(req) {
-        this.token = this.tokenReadStrategy.read(req);
-        return this.token;
-    }
-}
-
+var TokenExchange = function () {
+  this.tokenReadStrategy = null;
+  this.token = '';
+  this.setTokenReadStrategy = function (tokenReadStrategy) {
+    this.tokenReadStrategy = tokenReadStrategy;
+    return this;
+  };
+  this.read = function (req) {
+    this.token = this.tokenReadStrategy.read(req);
+    return this.token;
+  };
+};
 
 // Resource: Recommended practices for authorization bearer token -> https://tools.ietf.org/html/rfc6750#section-1.1
 
 /**
  * A strategy to read token from request query parameters. Sent via
  * Can be implemted via TokenExchange
- * @example 
+ * @example
  * new TokenExchange().setTokenReadStrategy(new ReadFromBody())
  * // When token was sent /apiEndpoint?access_token=String
  * @see {@link TokenExchange}
  */
-var ReadFromUrlParam = function() {
-    this.read = function(req) {
-        if (req && req.query.access_token) {
-            return req.query.access_token;
-        }
-        return null;
+var ReadFromUrlParam = function () {
+  this.read = function (req) {
+    if (req && req.query.access_token) {
+      return req.query.access_token;
     }
-}
+    return null;
+  };
+};
 
 /**
  * A strategy to read token from request body
  * Can be implemted via TokenExchange
- * @example 
+ * @example
  * new TokenExchange().setTokenReadStrategy(new ReadFromBody())
  * // When token was sent ia `POST /apiEndpoint -d '{access_token: String}'`
  * @see {@link TokenExchange}
  */
-var ReadFromBody = function() {
-    // Should have content type application/x-www-form-urlencoded
-    // Should have this middleware enabled to parse body data : app.use(express.urlencoded({ extended: true })) 
+var ReadFromBody = function () {
+  // Should have content type application/x-www-form-urlencoded
+  // Should have this middleware enabled to parse body data : app.use(express.urlencoded({ extended: true }))
 
-    this.read = function(req) {
-        if (req && req.body && req.body.access_token) {
-            return req.body.access_token;
-        }
-        return null;
+  this.read = function (req) {
+    if (req && req.body && req.body.access_token) {
+      return req.body.access_token;
     }
-}
+    return null;
+  };
+};
 
 /**
  * A strategy to read token from request cookies
  * Can be implemted via TokenExchange
- * @example 
+ * @example
  * new TokenExchange().setTokenReadStrategy(new ReadFromCookies())
  * @see {@link TokenExchange}
  */
-var ReadFromCookies = function() {
-    this.read = function(req) {
-        if (req && req.cookies && req.cookies.access_token) {
-            return req.cookies.access_token;
-        }
-        return null;
+var ReadFromCookies = function () {
+  this.read = function (req) {
+    if (req && req.cookies && req.cookies.access_token) {
+      return req.cookies.access_token;
     }
-}
+    return null;
+  };
+};
 
 /**
  * A strategy to read token from request header named `authorization`
  * Can be implemted via TokenExchange
- * @example 
+ * @example
  * new TokenExchange().setTokenReadStrategy(new ReadFromHeader())
  * @see {@link TokenExchange}
  */
-var ReadFromHeader = function(req) {
-    this.read = function(req) {
-        if (req.get('Authorization')) {
-            this.token = req.get('Authorization');
-            return this.token;
-        }
-        return null;
+var ReadFromHeader = function (req) {
+  this.read = function (req) {
+    if (req.get('Authorization')) {
+      this.token = req.get('Authorization');
+      return this.token;
     }
-}
+    return null;
+  };
+};
 
 /**
  * A strategy to read token from **header with bearer scheme**.
  * Can be implemted via TokenExchange
  * @param {*} req : Express Request object
- * @example 
+ * @example
  * new TokenExchange().setTokenReadStrategy(new ReadFromHeaderWithBearerScheme())
  * @see {@link TokenExchange}
  */
-var ReadFromHeaderWithBearerScheme = function(req) {
-    this.read = function(req) {
-        if (req.get('Authorization')) {
-            var authHeader = req.get('Authorization');
-            var re = /(\S+)\s+(\S+)/;
-            if (typeof authHeader !== 'string') {
-                return null;
-            }
-            var matches = authHeader.match(re);
-            if (matches && matches.length > 2) {
-                return matches[2];
-            }
-            console.log('Bad authorization header ' + authHeader);
-            return null;
-        }
-        console.log('No authorization header ');
+var ReadFromHeaderWithBearerScheme = function (req) {
+  this.read = function (req) {
+    if (req.get('Authorization')) {
+      var authHeader = req.get('Authorization');
+      var re = /(\S+)\s+(\S+)/;
+      if (typeof authHeader !== 'string') {
         return null;
+      }
+      var matches = authHeader.match(re);
+      if (matches && matches.length > 2) {
+        return matches[2];
+      }
+      console.log('Bad authorization header ' + authHeader);
+      return null;
     }
-}
+    console.log('No authorization header ');
+    return null;
+  };
+};
 
 /**
  * Default strategy for TokenExchange
- * @description 
+ * @description
  * Default strategy when authorization header is available in request : ReadFromHeaderWithBearerScheme
  * Default strategy when cookies have `access_token` : ReadFromCookie
- * @param {*} req 
- * @param {*} tokenExchange 
+ * @param {*} req
+ * @param {*} tokenExchange
  * @see {@link TokenExchange}
  */
 function setDefaultStrategy(req, tokenExchange) {
-    // First check header - authorization
-    if (req.get('Authorization')) {
-        tokenExchange.setTokenReadStrategy(new ReadFromHeaderWithBearerScheme()).read(req);
-    } else if (req && req.cookies && req.cookies.access_token) {
-        tokenExchange.setTokenReadStrategy(new ReadFromCookies()).read(req);
-    }
-    // Second check cookie
+  // First check header - authorization
+  if (req.get('Authorization')) {
+    tokenExchange
+      .setTokenReadStrategy(new ReadFromHeaderWithBearerScheme())
+      .read(req);
+  } else if (req && req.cookies && req.cookies.access_token) {
+    tokenExchange.setTokenReadStrategy(new ReadFromCookies()).read(req);
+  }
+  // Second check cookie
 }
