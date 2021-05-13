@@ -2,7 +2,18 @@
     "name": "auth-jwt",
     "version": "2.0.2",
     "description": "A demo to learn JWT by reverse engineering",
-    "keywords": ["jwt", "token", "jsonwebtoken", "authentication", "rfc-7519", "signature", "rsa", "learn-by-doing", "express", "node authentication"],
+    "keywords": [
+        "jwt",
+        "token",
+        "jsonwebtoken",
+        "authentication",
+        "rfc-7519",
+        "signature",
+        "rsa",
+        "learn-by-doing",
+        "express",
+        "node authentication"
+    ],
     "main": "index.js",
     "author": {
         "name": "Pradeep Sharma",
