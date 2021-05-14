@@ -160,7 +160,7 @@ app.get('/jwt', function(req, res) {
     res.send(`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
             <h2>✓ Generated a new token signed with secret!</h2>
-            <div style="margin:4px;font-size:70%;overflow-wrap:anywhere;">
+            <div style="margin:4px;font-size:70%;overflow-wrap:anywhere;word-wrap:break-word">
             <span id="token-part-header" style="color:red;">${token.split(".")[0]}</span><span style="font-weight:bold;font-size:120%;">.</span>
             <span id="token-part-payload" style="color:blue;">${token.split(".")[1]}</span><span style="font-weight:bold;font-size:120%;">.</span>
             <span id="token-part-signature" style="color:green;">${token.split(".")[2]}</span>
@@ -214,7 +214,7 @@ app.get('/verify/:token', function(req, res) {
             res.send(`
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
                 <h2>✓ Verified and payload decoded successfully!</h2>
-                <code style="overflow-wrap:anywhere;overflow-wrap:anywhere;">${JSON.stringify(decoded)}</code>
+                <code style="overflow-wrap:anywhere;word-wrap:break-word">${JSON.stringify(decoded)}</code>
                 <br/><br/>
                 <a href="/jwt/custom">Next: Create a more complex token</a> to address real world scenerios
                 <br/><br/><br/><br/>
@@ -334,7 +334,7 @@ app.post('/jwt/custom', function(req, res) {
     res.send(`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
             <h2>✓ Generated a new token</h2>
-            <div style="font-size:70%;overflow-wrap:anywhere;">
+            <div style="font-size:70%;overflow-wrap:anywhere;word-wrap:break-word">
             ${token}
             </div>
             <br/><br/>
