@@ -4,7 +4,16 @@ A demo to learn JWT by reverse engineering
 
 ## How To Use It
 
-1. Head over to the [demo hosted on repl.it](https://auth-jwt--gitcommitshow.repl.co/) (Or run it on your local machine : clone repo -> npm install -> npm start)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/gitcommitshow/auth-jwt)
+
+1. Head over to the [demo hosted on repl.it](https://auth-jwt--gitcommitshow.repl.co/)
+
+Or run it on your local machine by cloning the repo and running following commands
+```javascript
+npm install
+npm start
+// Visit localhost:3000
+```
 2. Play around with the configurations
 3. Read the cues at every page with more resources to go deeper into concepts
 
