@@ -1,6 +1,8 @@
 {
   "name": "supertokens-frontend",
   "version": "1.0.0",
+  "author": "Rodrigo Kamada <rodrigo@kamada.com.br> (https://github.com/rodrigokamada)",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,32 +12,34 @@
     "test": "ng test",
     "test:headless": "ng test --watch=false --browsers=ChromeHeadless"
   },
-  "private": true,
   "dependencies": {
-    "@angular/animations": "~13.3.2",
-    "@angular/common": "~13.3.2",
-    "@angular/compiler": "~13.3.2",
-    "@angular/core": "~13.3.2",
-    "@angular/forms": "~13.3.2",
-    "@angular/platform-browser": "~13.3.2",
-    "@angular/platform-browser-dynamic": "~13.3.2",
-    "@angular/router": "~13.3.2",
-    "rxjs": "~7.5.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "@angular/animations": "~13.3.6",
+    "@angular/common": "~13.3.6",
+    "@angular/compiler": "~13.3.6",
+    "@angular/core": "~13.3.6",
+    "@angular/forms": "~13.3.6",
+    "@angular/platform-browser": "~13.3.6",
+    "@angular/platform-browser-dynamic": "~13.3.6",
+    "@angular/router": "~13.3.6",
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "@ngneat/transloco": "^4.0.0",
+    "bootstrap": "^5.1.3",
+    "rxjs": "~7.5.5",
+    "tslib": "^2.4.0",
+    "zone.js": "~0.11.5"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~13.3.2",
-    "@angular/cli": "~13.3.2",
-    "@angular/compiler-cli": "~13.3.2",
-    "@types/jasmine": "~3.10.0",
-    "@types/node": "^12.11.1",
-    "jasmine-core": "~4.0.0",
-    "karma": "~6.3.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.1.0",
-    "karma-jasmine": "~4.0.0",
+    "@angular-devkit/build-angular": "~13.3.5",
+    "@angular/cli": "~13.3.5",
+    "@angular/compiler-cli": "~13.3.6",
+    "@types/jasmine": "~4.0.3",
+    "@types/node": "^16.11.32",
+    "jasmine-core": "~4.1.0",
+    "karma": "~6.3.19",
+    "karma-chrome-launcher": "~3.1.1",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "typescript": "~4.6.2"
+    "typescript": "~4.6.4"
   }
 }

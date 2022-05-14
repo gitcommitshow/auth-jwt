@@ -1,1 +1,25 @@
-<h1>SuperTokens</h1>
+<nav class="nav justify-content-center py-3 mb-5 nav-header">
+  <a class="nav-link" href="#">
+    <i class="fa-solid fa-house me-1"></i>
+    {{ "app.home" | transloco }}
+  </a>
+  <a class="nav-link" href="#">
+    <i class="fa-solid fa-book-open me-1"></i>
+    {{ "app.documentation" | transloco }}
+  </a>
+</nav>
+
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>
+
+<nav class="nav justify-content-center py-3 mt-5 nav-footer">
+  <a class="nav-link" href="#">
+    <i class="fa-solid fa-triangle-exclamation me-1"></i>
+    {{ "app.reportBug" | transloco }}
+  </a>
+  <a class="nav-link" href="#">
+    <i class="fa-brands fa-twitter me-1"></i>
+    {{ "app.shareTwitter" | transloco }}
+  </a>
+</nav>

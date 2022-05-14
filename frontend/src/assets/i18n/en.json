@@ -1,0 +1,28 @@
+{
+
+  "app": {
+    "documentation": "Documentation",
+    "home": "Home",
+    "reportBug": "Report a bug / improvement",
+    "shareTwitter": "Share on Twitter"
+  },
+
+  "home": {
+    "15mins": "15 MINS",
+    "jwtToken": "JWT Token Decoder & Encoder: auth-jwt",
+    "introduction": "Introduction",
+    "introduction1": "This is an interactive tutorial to learn about JWT by reverse engineering.",
+    "introduction2": "By the end of this tutorial, you’ll learn what a JWT is and how you can implement authentication using JWTs in your app.",
+    "introduction3": "We’ll start with examples and then reverse engineer by deconstructing each part.",
+    "knowledge": "Prior Knowledge Expected",
+    "knowledge1": "I am expecting you to have a very high-level overview of following concepts but I  will also make sure to link necessary learning resources wherever you need them.",
+    "knowledge2": "HTML forms and cookies",
+    "knowledge3": "HTTP web requests",
+    "knowledge4": "Public-key cryptography (no need to learn the math, just learn what it does)",
+    "knowledge5": "Base64 encoding (no need to learn the math)",
+    "learnJwt": "Learn JWT by reverse engineering & debug easily",
+    "startInteractive": "Start interactive tutorial",
+    "timeRequired": "TIME REQUIRED:"
+  }
+
+}
