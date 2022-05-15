@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
+<h2>Customize JWT Creation</h2>
+<br/><br/>
+<form method="post" action="/jwt">
+    <label for="alg">Algorithm</label>
+    <select name="alg" placeholder="Algorithm" onchange="algoChanged(this)">
+        <option selected="true">HS256</option>
+        <option>RS256</option>
+        <option>ES256</option>
+    </select><br/>
+    <small id="errorMessage" style="color:red;"></small>
+    <script>
+    function algoChanged(elem){
+        if(elem.value=="ES256"){
+            document.getElementById('errorMessage').style.visibility='visible';
+            document.getElementById('errorMessage').innerHTML = 'WARNING: This algorithm has not been implemented yet<br/><br/>';
+        } else {
+            document.getElementById('errorMessage').style.visibility='hidden';
+        }
+    }</script>
+    > <a href="https://tools.ietf.org/html/rfc7518#section-3" target="_blank" style="opacity:0.7;">Read about recommended algorithms</a>
+    <br/><br/>
+    <label for="payload">Data (Payload)</label><br/>
+    <textarea type="text" name="payload" placeholder="Data" rows="4" style="min-width:40%;">{ "data": "I secretly love Momina Mustehan" }</textarea>
+    <br/>
+    <span style="font-size:80%;background-color:#333333;color:#fff;padding:4px;opacity:0.8;">Note: Payload needs to be a valid json(1. JSON string keys must have double quotes "" 2. No functions allowed in value)</span>
+    <br/><br/>
+    <input type="submit" value="Generate New Token">
+</form>
+<br/><br/>
+<a href="/">Go Home</a><br/>
+
+<br/><br/><br/><br/><br/><br/>
+<footer>
+<span style="opacity:0.8;float:left;font-size:80%;">
+    <a href="<%= NEW_ISSUE_URL %>" target="_blank" target="_blank">Report a bug/improvement</a>
+    <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=<%= CODE_REPOSITORY %>" target="_blank">Share on twitter</a>
+    <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <br/><br/><a style="padding-top:12px;" class="github-button" href="<%= CODE_REPOSITORY %>" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+</span>
+<span style="opacity:0.8;float:right;font-size:80%;">
+    <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+</span>
+<br/><br/><br/>
+</footer>

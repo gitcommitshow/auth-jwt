@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
+<h2>✓ You've been successfully authenticated!</h2>
+<p style="width:70%;"><br/><br/>
+    In this request, we sent the token in the form body<br/>
+    > <a href="https://tools.ietf.org/html/rfc6750#section-2.2" target="_blank">Read about standards to send token via form-encoded body parameters</a><br/><br/>
+    There are other ways to send token to authorization server as well. 
+    Next, lets's explore
+</p>
+<a id="apiReqBtn" href="#!" onclick="javasctipt:requestProtectedAPI()">Send token in request header now</a>
+<small id="apiReqResponse" style="font-weight:bold;background-color:grey;color:#ffffff;margin-left:16px;"></small><br/><br/>
+<script>function requestProtectedAPI(){
+    console.log("Going to request API")
+    var oReq = new XMLHttpRequest();
+    oReq.open("GET", "/demo/protected/api/bearer");
+    oReq.setRequestHeader("Content-Type", "application\/json");
+    oReq.setRequestHeader("Authorization", "Bearer <%= token %>");
+    oReq.addEventListener("load", function(){
+        document.getElementById('apiReqBtn').style.opacity = 0.4;
+        document.getElementById('apiReqResponse').innerText = "✓ HTTP Status: "+this.status;
+        document.getElementById('apiReqResponse').style.padding = "4px";
+        document.getElementById('apiReqResponse').style['background-color'] = this.status=="200" ?  "green" : "red";
+        document.getElementById('responseText').innerHTML = this.getAllResponseHeaders()+'<br/>'+JSON.stringify(JSON.parse(this.responseText), null, 4)
+    });
+    oReq.send()
+}</script>
+<div style="opacity:0.7;">
+<pre id="responseText">
+<b>Sample Response</b>
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Cache-Control: no-store
+Pragma: no-cache
+
+{
+"access_token":"mF_9.B5f-4.1JqM",
+"token_type":"Bearer",
+"expires_in":3600,
+"refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA"
+}<br/>
+</pre>
+</div>
+<br/>
+<small style="opacity:0.6;"><a target="_blank" href="https://tools.ietf.org/html/rfc6750#section-3.1">Error Codes</a> : invalid_request(400-Bad request) | invalid_token(401-Unauthorized) | insufficient_scope(403-Forbidden)</small>
+<br/><br/>
+> <a href="https://tools.ietf.org/html/rfc6750#section-2.1" target="_blank" style="opacity:0.7;">Read about standards to send token via request headers</a>
+<br/><br/><br/><br/>
+<b>And there are more ways to send token to authorization server</b><br/>
+<a href="/lesson/jwt-in-web-cookies">Next: Sending token in cookies</a><br/><br/>
+
+<br/><br/><br/><br/><br/><br/>
+<footer>
+    <span style="opacity:0.8;float:left;font-size:80%;">
+        <a href="<%= NEW_ISSUE_URL %>" target="_blank" target="_blank">Report a bug/improvement</a>
+        <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=<%= CODE_REPOSITORY %>" target="_blank">Share on twitter</a>
+        <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+        <br/><br/><a style="padding-top:12px;" class="github-button" href="<%= CODE_REPOSITORY %>" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+    </span>
+    <span style="opacity:0.8;float:right;font-size:80%;">
+        <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+    </span>
+<br/><br/><br/>
+</footer>

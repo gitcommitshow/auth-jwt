@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
+<h2>Lesson: Logout = Invalidating tokens</h2>
+<p>
+<mark>Warning: This is a complex and highly debatable topic.</mark> Don't leave without reading the last paragraph.
+<br/><br/>You may simply remove the token from the client side => No token, No access
+<br/><br/><b>But...</b><br/>
+The token you created earlier is still valid(till the expiry time of that token). So if anyone who makes the request with that token, will get access to the protected resources just like before.
+<br/><br/>Also what happens when you change your password? The token is still valid.
+<br/><br/><b>So, what are common strategies to avoid such misuse of the tokens?</b>
+<ul>
+<li>Create a token blacklist e.g. on logout request, add the token to blacklist; use the blacklist to deny access to tokens which are still valid but should not be authorized</li>
+<li>Keep token expiry times short and rotate them often</li>
+<li>Contingency Plan : allow the user to change an underlying user lookup ID with their login credentials</li>
+<li>A common approach for invalidating tokens when a user changes their password is to sign the token with a hash of their password. Thus if the password changes, any previous tokens automatically fail to verify. You can extend this to logout by including a last-logout-time in the user's record and using a combination of the last-logout-time and password hash to sign the token. This requires a DB lookup each time you need to verify the token signature, but presumably you're looking up the user anyway.</li>
+</ul>
+<br/>
+These strategies can be debated based on the trade offs that need to be made between Performance vs Security.
+</p> 
+<br/><br/>
+<a href="/lesson/finish">Next: Finish Tutorial</a><br/>
+
+<br/><br/>
+<blockquote>
+We just touched the surface of the topic here. I would recommend to further read the references on this project's <a href="<%= CODE_REPOSITORY %>">code repository</a> and <a href="https://github.com/gitcommitshow/awesome-authentication">awesome-authentication</a> for more details.
+<br/><br/>You can help me add more topics here and make this tutorial better. Contributing is as easy as creating an <a href="<%= NEW_ISSUE_URL %>">issue for suggestion</a> or <a href="<%= CODE_REPOSITORY %>">make a pull request</a>.
+</blockquote>
+
+<br/><br/><br/><br/>
+<footer>
+    <span style="opacity:0.8;float:left;font-size:80%;">
+        <a href="<%= NEW_ISSUE_URL %>" target="_blank" target="_blank">Report a bug/improvement</a>
+        <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=<%= CODE_REPOSITORY %>" target="_blank">Share on twitter</a>
+        <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+        <br/><br/><a style="padding-top:12px;" class="github-button" href="<%= CODE_REPOSITORY %>" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+    </span>
+    <span style="opacity:0.8;float:right;font-size:80%;">
+        <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+    </span>
+<br/><br/><br/>
+</footer>

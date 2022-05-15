@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
+    <h2>Lesson : Authentication workflow for web using cookies as token store</h2>
+    <a href="#!" onclick="openSignInWindow('/demo/authorize','login')">1. Login to get the token</a>
+    <script>
+        let windowObjectReference = null;
+        let previousUrl = null;
+        const BASE_URL = 'http://localhost:3000'
+        const openSignInWindow = function(url, name) {
+            // Opens a new popup window and registers a message listner to get data from the popup window to this window
+            window.removeEventListener('message', receiveMessage);
+            const strWindowFeatures =
+                'toolbar=no, menubar=no, width=600, height=700, top=100, left=100';
+            if (windowObjectReference === null || windowObjectReference.closed) {
+                windowObjectReference = window.open(url, name, strWindowFeatures);
+            } else if (previousUrl !== url) {
+                windowObjectReference = window.open(url, name, strWindowFeatures);
+                windowObjectReference.focus();
+            } else {
+                windowObjectReference.focus();
+            }
+            window.addEventListener('message', event => receiveMessage(event), false);
+            // assign the previous URL
+            previousUrl = url;
+        };
+
+        const receiveMessage = function(event) {
+            console.log("Origin: "+event.origin+", Source: "+event.source+", Data: ", event.data)
+            if (event.origin !== BASE_URL) {
+                return;
+            }
+            const { data } = event;
+            if (data) {
+                //ToDo: Check data source is correct or not
+                document.getElementById('responseText').innerHTML = JSON.stringify(data, null, 4);
+                // const { payload } = data;
+                // const redirectUrl = '/noredirect';
+                // window.location.pathname = redirectUrl;
+            } else {
+                document.getElementById('responseText').innerHTML = "<span style='color:red;'>Login unsuccessful!<br/>Use these credentials instead -> username : user and password:pass</span>"
+            }
+        };
+
+        // Create a postMessage from the popup window
+    </script>
+    <div style="opacity:0.7;">
+    <pre id="responseText">
+    </pre>
+    </div>
+    <a id="apiReqBtn" href="#!" onclick="javasctipt:requestProtectedAPI()">2. Get protected user data</a>
+    <small id="apiReqResponse" style="font-weight:bold;background-color:grey;color:#ffffff;margin-left:16px;"></small>
+    <script>
+    function requestProtectedAPI(){
+        console.log("Going to request API")
+        var oReq = new XMLHttpRequest();
+        oReq.open("GET", "/demo/protected/web-cookies");
+        oReq.withCredentials = true;//To send cookies with the request
+        oReq.setRequestHeader("Content-Type", "application\/json");
+        oReq.addEventListener("load", function(){
+            document.getElementById('apiReqBtn').style.opacity = 0.4;
+            document.getElementById('apiReqResponse').innerText = "✓ HTTP Status: "+this.status;
+            document.getElementById('apiReqResponse').style.padding = "4px";
+            document.getElementById('apiReqResponse').style['background-color'] = this.status=="200" ?  "green" : "red";
+            document.getElementById('responseText2').innerHTML = this.getAllResponseHeaders()+'<br/>'+JSON.stringify(JSON.parse(this.responseText), null, 4)
+        });
+        oReq.send()
+    }</script>
+    <div style="opacity:0.7;">
+    <pre id="responseText2">
+    </pre>
+    </div>
+    3. <a href="/demo/user" style="opacity:0.7;">User data link accessible via token in authorization header with fall back to cookies</a>
+    <br/><br/>
+    4. <a href="/demo/logout">Logout</a>
+    <br/><br/><br/><br/>
+    <a href="https://tools.ietf.org/html/rfc6265" target="_blank" style="opacity:0.7;">Read about securely storing cookies</a>
+    <br/><br/>
+    <a href="/lesson/token-transmit-method-comparison">Next: Choosing best method to send tokens to auth server</a>
+    <br/><br/><br/><br/>
+    
+    <a href="/jwt/form" style="opacity:0.7;">Go Home</a><br/><br/>
+
+    <br/><br/><br/><br/><br/><br/>
+    <footer>
+        <span style="opacity:0.8;float:left;font-size:80%;">
+            <a href="<%= NEW_ISSUE_URL %>" target="_blank" target="_blank">Report a bug/improvement</a>
+            <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=<%= CODE_REPOSITORY %>" target="_blank">Share on twitter</a>
+            <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
+            <script async defer src="https://buttons.github.io/buttons.js"></script>
+            <br/><br/><a style="padding-top:12px;" class="github-button" href="<%= CODE_REPOSITORY %>" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+        </span>
+        <span style="opacity:0.8;float:right;font-size:80%;">
+            <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+        </span>
+    <br/><br/><br/>
+    </footer>

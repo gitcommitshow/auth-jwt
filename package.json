@@ -1,6 +1,6 @@
 {
     "name": "auth-jwt",
-    "version": "2.0.2",
+    "version": "2.1.0",
     "description": "A demo to learn JWT by reverse engineering",
     "keywords": [
         "jwt",
@@ -14,7 +14,7 @@
         "express",
         "node authentication"
     ],
-    "main": "index.js",
+    "main": "app.js",
     "author": {
         "name": "Pradeep Sharma",
         "url": "https://github.com/gitcommitshow"
@@ -28,12 +28,13 @@
     "homepage": "https://auth-jwt--gitcommitshow.repl.co",
     "private": false,
     "scripts": {
-        "start": "node index.js",
+        "start": "node app.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
         "body-parser": "^1.19.0",
         "cookie-parser": "^1.4.5",
+        "ejs": "^3.1.8",
         "express": "^4.17.1",
         "jsonwebtoken": "^8.5.1",
         "multer": "^1.4.2"

@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
+<h2>Sign in</h2>
+<form id="login-form" action="/demo/oauth/token" method="POST">
+    <input value="user" name="username" type="text" placeholder="Username e.g. user"> <br/>
+    <input value="pass" name="password" type="password" placeholder="Password e.g. pass"> <br/>
+    <input type="submit" value="Login"> <br/><br/>
+</form>
+<script>
+// Cross-origin communication about the login info
+function broadcastLoginResponse(data){
+    console.log('The data:', data)
+    if (window.opener) {
+        window.opener.postMessage(data);
+        window.close();
+    }
+}
+</script>
+<script>
+// Submit the form
+window.addEventListener("load", function () {
+    
+
+    const form = document.getElementById("login-form");
+    
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        sendData();
+    });
+
+    function sendData() {
+        console.log('Sending request via js')
+        // const form = new FormData(document.getElementById('login-form'));
+        fetch('/demo/oauth/token', {
+            method: 'POST',
+            body: new FormData(form),
+            headers: {
+                'x-api-key': 'APIPUBLICKEY'
+            },
+            credentials: 'same-origin'
+        }).then(function(response){
+            // Check status
+            if(response.ok){
+                return Promise.resolve(response)
+            } else {
+                return Promise.reject(new Error(response.statusText))
+            }
+        }).then(function(response){
+            // Parse response in JSON
+            return response.json() //returns a promise
+        }).then(function(data){
+            console.log('data', data)
+            // alert(JSON.stringify(data))
+            broadcastLoginResponse(data)
+        }).catch(function(error) {
+            console.log('Request failed', error);
+            broadcastLoginResponse(null)
+        });
+    }
+    
+    } );
+</script>

@@ -1,0 +1,44 @@
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
+<h2>✓ Generated a new token signed with secret!</h2>
+<div style="margin:4px;font-size:70%;overflow-wrap:anywhere;word-wrap:break-word">
+<span id="token-part-header" style="color:red;"><%= token.split(".")[0] %></span><span style="font-weight:bold;font-size:120%;">.</span>
+<span id="token-part-payload" style="color:blue;"><%= token.split(".")[1] %></span><span style="font-weight:bold;font-size:120%;">.</span>
+<span id="token-part-signature" style="color:green;"><%= token.split(".")[2] %></span>
+</div>
+<br/><br/>
+<h3>Token schema</h3>
+<p>Did you notice two dots(.) in the token? These dots (.) separate 3 important parts of the token</p>
+
+<b><code>{<span style="color:red;">header</span>}.{<span style="color:blue;">payload</span>}.{<span style="color:green;">signature</span>}</code></b><br/>
+<ol>
+    <li><b>Header</b>: Metadata about the cryptography methods e.g. Algorithm, Token type.
+    <br/>Encoded with base64UrlEncode, can easily be decoded by anyone who has access to token.
+    <br/><span>Let's <a href="javascript:alert(window.atob(document.getElementById('token-part-header').textContent))">decode header</a> with browser's <code>atob()</code> method</span>
+    </li>
+    <li><b>Payload</b>: Actual data we want to exchange e.g. userId.
+    <br/>This is also encoded with base64UrlEncode. <span>Let's <a href="javascript:alert(window.atob(document.getElementById('token-part-payload').textContent))">decode payload</a></span>
+    </li>
+    <li><b>Signature</b>: To verify sender or ensure message integrity. Can be verified by anyone if they know secret/publicKey. But changing data(spoofing) is not possible.</li>
+</ol>
+
+
+<a target="_blank" href="https://jwt.io/introduction/">Read more..</a><br/>
+
+<br/><br/>
+<a href="/jwt/verify/<%= token %>">Next: Verify JWT.</a><br/>
+
+<br/><br/><br/><br/><br/><br/>
+<footer>
+<span style="opacity:0.8;float:left;font-size:80%;">
+    <a href="<%= NEW_ISSUE_URL %>" target="_blank" target="_blank">Report a bug/improvement</a>
+    <br/><a href="https://twitter.com/intent/tweet?text=%22Learn%20JWT%20by%20reverse%20engineering%22%20%20%40pradeep_io&url=<%= CODE_REPOSITORY %>" target="_blank">Share on twitter</a>
+    <br/><br/><a href="/docs" target="_blank">Read Documentation</a>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <br/><br/><a style="padding-top:12px;" class="github-button" href="<%= CODE_REPOSITORY %>" data-color-scheme="no-preference: light; light: light; light: light;" data-size="small" data-show-count="true" aria-label="Star the repo on GitHub">Star/Fork the repo</a>
+</span>
+<span style="opacity:0.8;float:right;font-size:80%;">
+    <span>Created by <a href="https://twitter.com/pradeep_io" target="_blank">@pradeep_io</a></span>
+</span>
+<br/><br/><br/>
+</footer>
