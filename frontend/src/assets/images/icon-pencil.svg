@@ -1,0 +1,15 @@
+<svg id="_352547_edit_mode_icon" data-name="352547_edit_mode_icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <path id="Path_91569" data-name="Path 91569" class="cls-1" d="M6,15.5V18H8.5l7.377-7.377-2.5-2.5L6,15.5ZM17.8,8.7a.668.668,0,0,0,0-.943L16.247,6.2a.668.668,0,0,0-.943,0l-1.22,1.22,2.5,2.5L17.8,8.7Z" transform="translate(-4 -4.003)"/>
+  <path id="Path_91570" data-name="Path 91570" class="cls-2" d="M0,0H16V16H0Z"/>
+</svg>
