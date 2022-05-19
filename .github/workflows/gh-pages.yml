@@ -1,0 +1,41 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      working-directory: ./frontend
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      working-directory: ./frontend
+      with:
+        node-version: 16
+
+    - name: Install dependencies
+      working-directory: ./frontend
+      run: npm install
+
+    - name: Run tests
+      working-directory: ./frontend
+      run: npm run test:headless
+
+    - name: Build
+      working-directory: ./frontend
+      run: npm run build:prod
+
+    - name: Deploy
+      if: success()
+      uses: peaceiris/actions-gh-pages@v3
+      working-directory: ./frontend
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: dist/supertokens
+        enable_jekyll: true

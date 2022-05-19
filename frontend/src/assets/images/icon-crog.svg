@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20.57" height="20.5" viewBox="0 0 20.57 20.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #7292ff;
+        stroke: #0039ff;
+        stroke-width: 0.5px;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <g id="Page-1" transform="translate(-0.085 -0.05)">
+    <g id="jwt_logo" transform="translate(0.4 0.3)">
+      <g id="Group" transform="translate(0 0)">
+        <g id="Shape" transform="translate(0 0)">
+          <g id="Group_10306" data-name="Group 10306" transform="translate(0 0)">
+            <path id="Path_91478" data-name="Path 91478" class="cls-1" d="M45.72,5.68,45.7.3h-3l.02,5.38,1.5,2.06Z" transform="translate(-34.24 -0.3)"/>
+            <path id="Path_91479" data-name="Path 91479" class="cls-1" d="M42.8,65.06v5.4h3v-5.4L44.3,63Z" transform="translate(-34.32 -50.46)"/>
+            <path id="Path_91480" data-name="Path 91480" class="cls-1" d="M57.8,63.14l3.16,4.36,2.42-1.76-3.16-4.36L57.8,60.6Z" transform="translate(-46.32 -48.54)"/>
+            <path id="Path_91481" data-name="Path 91481" class="cls-1" d="M20.4,9.76,17.22,5.4,14.8,7.16l3.16,4.36,2.44.78Z" transform="translate(-11.92 -4.38)"/>
+            <path id="Path_91482" data-name="Path 91482" class="cls-1" d="M6.44,29.36,1.32,27.7.4,30.54l5.12,1.68,2.42-.8Z" transform="translate(-0.4 -22.22)"/>
+            <path id="Path_91483" data-name="Path 91483" class="cls-1" d="M62.4,51.08l1.5,2.06,5.12,1.66.92-2.84L64.82,50.3Z" transform="translate(-50 -40.3)"/>
+            <path id="Path_91484" data-name="Path 91484" class="cls-1" d="M64.82,32.22l5.12-1.68-.92-2.84L63.9,29.36l-1.5,2.06Z" transform="translate(-50 -22.22)"/>
+            <path id="Path_91485" data-name="Path 91485" class="cls-1" d="M5.52,50.3.4,51.96l.92,2.84,5.12-1.66,1.5-2.06Z" transform="translate(-0.4 -40.3)"/>
+            <path id="Path_91486" data-name="Path 91486" class="cls-1" d="M17.96,61.38,14.8,65.74l2.42,1.76,3.18-4.36V60.6Z" transform="translate(-11.92 -48.54)"/>
+            <path id="Path_91487" data-name="Path 91487" class="cls-1" d="M60.22,11.52l3.16-4.36L60.96,5.4,57.8,9.76V12.3Z" transform="translate(-46.32 -4.38)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
