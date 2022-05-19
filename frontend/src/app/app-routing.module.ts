@@ -8,6 +8,10 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'anatomy',
+    loadChildren: () => import('./anatomy/anatomy.module').then(mod => mod.AnatomyModule),
+  },
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule),
   },

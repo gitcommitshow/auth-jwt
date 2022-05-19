@@ -1,7 +1,4 @@
 
-<div class="row">
-  <div class="col"></div>
-  <div class="col-8">
     <h1 class="mb-5">{{ "home.jwtToken" | transloco }}</h1>
 
     <h6 class="mb-5 font-grey">{{ "home.learnJwt" | transloco }}</h6>
@@ -16,10 +13,12 @@
 
     <p class="font-grey">{{ "home.introduction3" | transloco }}</p>
 
-    <div class="btn btn-outline-primary btn-time mt-5">
-      <img src="assets/images/icon-stopwatch.png" class="me-1" />
-      <span class="btn-time-required me-1">{{ "home.timeRequired" | transloco }}</span>
-      <span class="btn-time-mins">{{ "home.15mins" | transloco }}</span>
+    <div class="card card-time mt-5">
+      <div class="card-header">
+        <img src="assets/images/icon-stopwatch.png" class="me-1" />
+        <span class="time-required me-1">{{ "home.timeRequired" | transloco }}</span>
+        <span class="time-mins">{{ "home.15mins" | transloco }}</span>
+      </div>
     </div>
 
     <h2 class="my-5">{{ "home.knowledge" | transloco }}</h2>
@@ -48,7 +47,4 @@
       {{ "home.knowledge5" | transloco }}
     </p>
 
-    <button type="button" class="btn btn-primary btn-start mt-5">{{ "home.startInteractive" | transloco }}</button>
-  </div>
-  <div class="col"></div>
-</div>
+<button type="button" (click)="nextStep()" class="btn btn-primary btn-start mt-5">{{ "home.startInteractive" | transloco }}</button>

@@ -10,7 +10,54 @@
 </nav>
 
 <div class="container-fluid">
-  <router-outlet></router-outlet>
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col-8">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col">
+      <ul class="nav flex-column nav-right">
+        <li class="nav-item m-2">
+          <img src="assets/images/icon-checked.svg" class="position-fixed" *ngIf="step > 1" />
+          <img src="assets/images/icon-check.svg" class="position-fixed" *ngIf="step === 1" />
+          <span class="ms-4">{{ "app.mainPage" | transloco }}</span>
+        </li>
+        <li class="nav-item m-2">
+          <img src="assets/images/icon-checked.svg" class="position-fixed" *ngIf="step > 2" />
+          <img src="assets/images/icon-check.svg" class="position-fixed" *ngIf="step === 2" />
+          <span class="ms-4">{{ "app.anatomyJwt" | transloco }}</span>
+        </li>
+        <li class="nav-item m-2">
+          <span class="ms-4">{{ "app.verifyingToken" | transloco }}</span>
+        </li>
+        <li class="nav-item m-2">
+          <span class="ms-4">{{ "app.generatingToken" | transloco }}</span>
+        </li>
+        <li class="nav-item m-2">
+          <span class="ms-4">{{ "app.tokenAuthenticate" | transloco }}</span>
+        </li>
+        <li class="nav-item m-2">
+          <span class="ms-5">{{ "app.tokenAuthenticate1" | transloco }}</span>
+        </li>
+        <li class="nav-item m-2">
+          <span class="ms-5">{{ "app.tokenAuthenticate2" | transloco }}</span>
+        </li>
+        <li class="nav-item m-2">
+          <span class="ms-5">{{ "app.tokenAuthenticate3" | transloco }}</span>
+        </li>
+        <li class="nav-item m-2">
+          <span class="ms-4">{{ "app.bestMethod" | transloco }}</span>
+        </li>
+        <li class="nav-item m-2">
+          <span class="ms-4">{{ "app.logout" | transloco }}</span>
+        </li>
+        <li class="nav-item m-2">
+          <span class="ms-4">{{ "app.finishTutorial" | transloco }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <nav class="nav justify-content-center py-3 mt-5 nav-footer">

@@ -1,0 +1,94 @@
+
+<h1 class="mb-5">{{ "anatomy.anatomyJwt" | transloco }}</h1>
+
+<hr>
+
+<div class="card card-jwt my-5">
+  <div class="card-header">
+    <div class="row">
+      <div class="col">
+        <img src="assets/images/icon-check-square.png" class="icon-check-square me-2" />
+        {{ "anatomy.tokenNew" | transloco | uppercase }}
+      </div>
+      <div class="col-auto">
+        <button type="button" class="btn btn-sm btn-outline-primary btn-jwt">
+          {{ "anatomy.edit" | transloco }}
+          <img src="assets/images/icon-pencil.svg" class="ms-1" />
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <span class="jwt-header">{{ jwtHeader }}</span>.<br>
+    <span class="jwt-payload">{{ jwtPayload }}</span>.<br>
+    <span class="jwt-signature">{{ jwtSignature }}</span>
+  </div>
+</div>
+
+<p class="font-grey">{{ "anatomy.anatomyJwt1" | transloco }}</p>
+
+<p class="font-grey">{{ "anatomy.anatomyJwt2" | transloco }}</p>
+
+<p class="font-grey">{{ "anatomy.anatomyJwt3" | transloco }}</p>
+
+<h2 class="my-5">{{ "anatomy.tokenSchema" | transloco }}</h2>
+
+<p class="font-grey">{{ "anatomy.tokenSchema1" | transloco }}</p>
+
+<div class="card card-jwt">
+  <div class="card-header">
+    &#123;<span class="jwt-header">header</span>&#125;.&#123;<span class="jwt-payload">payload</span>&#125;.&#123;<span class="jwt-signature">signature</span>&#125;
+  </div>
+</div>
+
+<h6 class="my-5">1. {{ "anatomy.header" | transloco }} (<span class="jwt-header">eyJhbG...pXVCJ9</span>):</h6>
+
+<p class="font-grey">{{ "anatomy.header1" | transloco }}</p>
+
+<p class="font-grey">{{ "anatomy.header2" | transloco }}</p>
+
+<p class="font-grey" innerHTML="{{ 'anatomy.header3' | transloco }}"></p>
+
+<button type="button" class="btn btn-primary btn-decode my-2">
+  {{ "anatomy.decodeHeader" | transloco }}
+  <img src="assets/images/icon-arrow-right.svg" class="ms-1" />
+</button>
+
+<p class="font-grey fst-italic"><small>{{ "anatomy.decodedHeader" | transloco }}</small></p>
+
+<h6 class="my-5">2. {{ "anatomy.payload" | transloco }} (<span class="jwt-payload">eyJkYX...b20ifQ</span>):</h6>
+
+<p class="font-grey">{{ "anatomy.payload1" | transloco }}</p>
+
+<p class="font-grey" innerHTML="{{ 'anatomy.payload2' | transloco }}"></p>
+
+<button type="button" class="btn btn-primary btn-decode my-2">
+  {{ "anatomy.decodePayload" | transloco }}
+  <img src="assets/images/icon-arrow-right.svg" class="ms-1" />
+</button>
+
+<p class="font-grey fst-italic"><small>{{ "anatomy.decodedPayload" | transloco }}</small></p>
+
+<h6 class="my-5">3. {{ "anatomy.signature" | transloco }} (<span class="jwt-payload">rvOx0i...7Jo0_A</span>):</h6>
+
+<p class="font-grey">{{ "anatomy.signature1" | transloco }}</p>
+
+<p class="font-grey">{{ "anatomy.signature2" | transloco }}</p>
+
+<p class="font-grey">{{ "anatomy.signature3" | transloco }}</p>
+
+<p class="font-grey"><strong>{{ "anatomy.signature4" | transloco }}</strong></p>
+
+<div class="card my-5">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-auto"><i class="fa-solid" [ngClass]="{'fa-caret-right': !showToken, 'fa-caret-down': showToken}" (click)="showToken = !showToken"></i></div>
+      <div class="col">{{ showToken ? token : token.substring(0, 20) + '...' }}</div>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary btn-decode my-2">
+  {{ "anatomy.verifyJwt" | transloco }}
+  <img src="assets/images/icon-arrow-right.svg" class="ms-1" />
+</button>
