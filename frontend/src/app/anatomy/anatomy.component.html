@@ -41,7 +41,7 @@
   </div>
 </div>
 
-<h6 class="my-5">1. {{ "anatomy.header" | transloco }} (<span class="jwt-header">eyJhbG...pXVCJ9</span>):</h6>
+<h6 class="my-5">1. {{ "anatomy.header" | transloco }} (<span class="jwt-header">{{ jwtHeaderShort }}</span>):</h6>
 
 <p class="font-grey">{{ "anatomy.header1" | transloco }}</p>
 
@@ -49,27 +49,47 @@
 
 <p class="font-grey" innerHTML="{{ 'anatomy.header3' | transloco }}"></p>
 
-<button type="button" class="btn btn-primary btn-decode my-2">
+<button type="button" (click)="decodeHeader = !decodeHeader" class="btn btn-primary btn-decode my-2" *ngIf="!decodeHeader">
   {{ "anatomy.decodeHeader" | transloco }}
   <img src="assets/images/icon-arrow-right.svg" class="ms-1" />
 </button>
 
-<p class="font-grey fst-italic"><small>{{ "anatomy.decodedHeader" | transloco }}</small></p>
+<p class="font-grey fst-italic" *ngIf="!decodeHeader"><small>{{ "anatomy.showDecodedHeader" | transloco }}</small></p>
 
-<h6 class="my-5">2. {{ "anatomy.payload" | transloco }} (<span class="jwt-payload">eyJkYX...b20ifQ</span>):</h6>
+<div class="card card-jwt my-2" *ngIf="decodeHeader">
+  <div class="card-header">
+    {{ "anatomy.decodedHeader" | transloco }}
+    <br>
+    {{ jwtHeaderDecoded }}
+  </div>
+</div>
+
+<p class="font-grey fst-italic" *ngIf="decodeHeader"><small>{{ "anatomy.takeawayHeader" | transloco }}</small></p>
+
+<h6 class="my-5">2. {{ "anatomy.payload" | transloco }} (<span class="jwt-payload">{{ jwtPayloadShort }}</span>):</h6>
 
 <p class="font-grey">{{ "anatomy.payload1" | transloco }}</p>
 
 <p class="font-grey" innerHTML="{{ 'anatomy.payload2' | transloco }}"></p>
 
-<button type="button" class="btn btn-primary btn-decode my-2">
+<button type="button" (click)="decodePayload = !decodePayload" class="btn btn-primary btn-decode my-2" *ngIf="!decodePayload">
   {{ "anatomy.decodePayload" | transloco }}
   <img src="assets/images/icon-arrow-right.svg" class="ms-1" />
 </button>
 
-<p class="font-grey fst-italic"><small>{{ "anatomy.decodedPayload" | transloco }}</small></p>
+<p class="font-grey fst-italic" *ngIf="!decodePayload"><small>{{ "anatomy.showDecodedPayload" | transloco }}</small></p>
 
-<h6 class="my-5">3. {{ "anatomy.signature" | transloco }} (<span class="jwt-payload">rvOx0i...7Jo0_A</span>):</h6>
+<div class="card card-jwt my-2" *ngIf="decodePayload">
+  <div class="card-header">
+    {{ "anatomy.decodedPayload" | transloco }}
+    <br>
+    {{ jwtPayloadDecoded }}
+  </div>
+</div>
+
+<p class="font-grey fst-italic" *ngIf="decodePayload"><small>{{ "anatomy.takeawayPayload" | transloco }}</small></p>
+
+<h6 class="my-5">3. {{ "anatomy.signature" | transloco }} (<span class="jwt-signature">{{ jwtSignatureShort }}</span>):</h6>
 
 <p class="font-grey">{{ "anatomy.signature1" | transloco }}</p>
 
