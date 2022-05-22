@@ -29,7 +29,8 @@
     "private": false,
     "scripts": {
         "start": "node app.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "docs": "./node_modules/.bin/jsdoc -d docs -r services/"
     },
     "dependencies": {
         "body-parser": "^1.19.0",
@@ -42,5 +43,8 @@
     },
     "engines": {
         "node": ">= 0.10.0"
+    },
+    "devDependencies": {
+        "jsdoc": "^3.6.10"
     }
 }

@@ -1,3 +1,7 @@
+/**
+ * Routes for informative lessons. Usually static pages.
+ */
+
 var express = require("express");
 var router = express.Router();
 
