@@ -1,24 +1,66 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { JwtService } from '../shared/services/jwt.service';
 
 @Component({
   selector: 'app-anatomy',
   templateUrl: './anatomy.component.html',
   styleUrls: ['./anatomy.component.scss'],
 })
-export class AnatomyComponent {
+export class AnatomyComponent implements OnInit {
 
   showToken: boolean;
   jwtHeader: string;
+  jwtHeaderShort: string;
+  jwtHeaderDecoded: string;
+  decodeHeader: boolean;
   jwtPayload: string;
+  jwtPayloadShort: string;
+  jwtPayloadDecoded: string;
+  decodePayload: boolean;
   jwtSignature: string;
+  jwtSignatureShort: string;
   token: string;
 
-  constructor() {
+  constructor(private jwtService: JwtService) {
     this.showToken = false;
-    this.jwtHeader = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9';
-    this.jwtPayload = 'eyJkYXRhIjoiSSBzZWNyZXRseSBsaWtlIE1vbWluYSBNdXN0ZWhhbiIsImlhdCI6MTY0NjA1NjEzOCwiZXhwIjoxNjQ2MTQyNTM4LCJhdWQiOiJtaWNyb3NvZnQuY29tIiwiaXNzIjoiTWljcm9zb2Z0IEluYyIsInN1YiI6InNvbWVAdXNlci5jb20ifQ';
-    this.jwtSignature = 'rvOx0iNIzDLkVvJaiM_nU7fmrE8Zh9RbR_lh9iCryOYjYmxuHviYVOOdScNJ-exmjDXssxZ84TWV34KJNUA36EHs3Ew5Pcn5N6_UechJ2MTvUaXyR6JrqdWjw8RuXBmAfkEpizST9jPKybTRWzJlqmr-QErpluTIJyonvHmd8FXCcaNzYJDuQ5T56zI7beuEiSL1tyOwx9AQhr4Q1qF28Ek8RRUg1JMlaGs0d5c4YMaNz8xJE6-YkTIr6LSH3gwXKtbY3qgJxzFwXRqmvxnkBTya9Ji1tu1OYso4NffHZHatU4F7xjex3VzQfwM9uVrsWvsspL5ZyKzJcCa67Jo0_A';
+    this.jwtHeader = '';
+    this.jwtHeaderShort = '';
+    this.jwtHeaderDecoded = '';
+    this.decodeHeader = false;
+    this.jwtPayload = '';
+    this.jwtPayloadShort = '';
+    this.jwtPayloadDecoded = '';
+    this.decodePayload = false;
+    this.jwtSignature = '';
+    this.jwtSignatureShort = '';
     this.token = 'b3NvZnQuY29tIiwiaXNzIjoiTWljcm9zb2Z0IEluYyIsInN1YiI6ISsexmjDXssxZ84TWV34KJNUA36EHs3Ew5Pcn5N6_UechJ2MTvUaXyR6JrqdWjw8RuXBmAfkEpizST9jPKybTRWzJlqmr-QErpluTIJyonvHmd8FXACADS';
+  }
+
+  ngOnInit(): void {
+    this.load();
+  }
+
+  public load(): void {
+    this.jwtService.get()
+    .subscribe({
+      next: (success: any) => {
+        console.debug('success:', success);
+        if (success && success.token) {
+          const tokenSplitted = success.token.split('.');
+          this.jwtHeader = tokenSplitted[0];
+          this.jwtHeaderShort = `${this.jwtHeader.substring(0, 6)}...${this.jwtHeader.substring(this.jwtHeader.length-6, this.jwtHeader.length)}`;
+          this.jwtPayload = tokenSplitted[1];
+          this.jwtPayloadShort = `${this.jwtPayload.substring(0, 6)}...${this.jwtPayload.substring(this.jwtPayload.length-6, this.jwtPayload.length)}`;
+          this.jwtSignature = tokenSplitted[2];
+          this.jwtSignatureShort = `${this.jwtSignature.substring(0, 6)}...${this.jwtSignature.substring(this.jwtSignature.length-6, this.jwtSignature.length)}`;
+          this.jwtHeaderDecoded = window.atob(this.jwtHeader);
+          this.jwtPayloadDecoded = window.atob(this.jwtPayload);
+        }
+      }, error: (error: any) => {
+        console.error('error:', error);
+      },
+    });
   }
 
 }

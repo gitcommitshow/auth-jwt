@@ -14,7 +14,7 @@ export class StepService {
     this.step = this.stepSubject.asObservable();
   }
 
-  public nextStep(order: number): void {
+  public setStep(order: number): void {
     this.stepSubject.next(order);
   }
 

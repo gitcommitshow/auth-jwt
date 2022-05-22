@@ -12,10 +12,11 @@ export class HomeComponent {
 
   constructor(private router: Router,
               private stepService: StepService) {
+    this.stepService.setStep(1);
   }
 
   public nextStep(): void {
-    this.stepService.nextStep(2);
+    this.stepService.setStep(2);
     this.router.navigate(['/anatomy']);
   }
 

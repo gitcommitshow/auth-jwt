@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require("path");
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 
 // Some info from package.json
 const package_json = require('./package.json')
@@ -43,6 +44,8 @@ app.use(function(req, res, next){
     }
     next();
 })
+
+app.use(cors());
 
 app.use("/", homeRouter);
 app.use("/jwt", jwtRouter);

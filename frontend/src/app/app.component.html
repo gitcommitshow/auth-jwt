@@ -13,47 +13,75 @@
   <div class="row">
     <div class="col">
     </div>
-    <div class="col-8">
+    <div class="col-8 mx-3">
       <router-outlet></router-outlet>
     </div>
-    <div class="col">
+    <div class="col border-start">
       <ul class="nav flex-column nav-right">
         <li class="nav-item m-2">
-          <img src="assets/images/icon-checked.svg" class="position-fixed" *ngIf="step > 1" />
-          <img src="assets/images/icon-check.svg" class="position-fixed" *ngIf="step === 1" />
-          <span class="ms-4">{{ "app.mainPage" | transloco }}</span>
+          <img src="assets/images/icon-checked.svg" class="w-12px" *ngIf="step > 1" />
+          <img src="assets/images/icon-check.svg" class="w-12px" *ngIf="step === 1" />
+          <span class="ms-2">{{ "app.mainPage" | transloco }}</span>
         </li>
         <li class="nav-item m-2">
-          <img src="assets/images/icon-checked.svg" class="position-fixed" *ngIf="step > 2" />
-          <img src="assets/images/icon-check.svg" class="position-fixed" *ngIf="step === 2" />
-          <span class="ms-4">{{ "app.anatomyJwt" | transloco }}</span>
+          <img src="assets/images/icon-checked.svg" class="w-12px" *ngIf="step > 2" />
+          <img src="assets/images/icon-check.svg" class="w-12px" *ngIf="step === 2" />
+          <span class="w-12px" *ngIf="step > 1"></span>
+          <span class="ms-2">{{ "app.anatomyJwt" | transloco }}</span>
         </li>
         <li class="nav-item m-2">
-          <span class="ms-4">{{ "app.verifyingToken" | transloco }}</span>
+          <img src="assets/images/icon-checked.svg" class="w-12px" *ngIf="step > 3" />
+          <img src="assets/images/icon-check.svg" class="w-12px" *ngIf="step === 3" />
+          <div class="w-12px d-inline-flex" *ngIf="step <= 2"></div>
+          <span class="ms-2">{{ "app.verifyingToken" | transloco }}</span>
         </li>
         <li class="nav-item m-2">
-          <span class="ms-4">{{ "app.generatingToken" | transloco }}</span>
+          <img src="assets/images/icon-checked.svg" class="w-12px" *ngIf="step > 4" />
+          <img src="assets/images/icon-check.svg" class="w-12px" *ngIf="step === 4" />
+          <div class="w-12px d-inline-flex" *ngIf="step <= 3"></div>
+          <span class="ms-2">{{ "app.generatingToken" | transloco }}</span>
         </li>
         <li class="nav-item m-2">
-          <span class="ms-4">{{ "app.tokenAuthenticate" | transloco }}</span>
+          <img src="assets/images/icon-checked.svg" class="w-12px" *ngIf="step > 5" />
+          <img src="assets/images/icon-check.svg" class="w-12px" *ngIf="step === 5" />
+          <div class="w-12px d-inline-flex" *ngIf="step <= 4"></div>
+          <span class="ms-2">{{ "app.tokenAuthenticate" | transloco }}</span>
         </li>
         <li class="nav-item m-2">
-          <span class="ms-5">{{ "app.tokenAuthenticate1" | transloco }}</span>
+          <img src="assets/images/icon-checked.svg" class="w-12px" *ngIf="step > 6" />
+          <img src="assets/images/icon-check.svg" class="w-12px" *ngIf="step === 6" />
+          <div class="w-12px d-inline-flex" *ngIf="step <= 5"></div>
+          <span class="ms-4">{{ "app.tokenAuthenticate1" | transloco }}</span>
         </li>
         <li class="nav-item m-2">
-          <span class="ms-5">{{ "app.tokenAuthenticate2" | transloco }}</span>
+          <img src="assets/images/icon-checked.svg" class="w-12px" *ngIf="step > 7" />
+          <img src="assets/images/icon-check.svg" class="w-12px" *ngIf="step === 7" />
+          <div class="w-12px d-inline-flex" *ngIf="step <= 6"></div>
+          <span class="ms-4">{{ "app.tokenAuthenticate2" | transloco }}</span>
         </li>
         <li class="nav-item m-2">
-          <span class="ms-5">{{ "app.tokenAuthenticate3" | transloco }}</span>
+          <img src="assets/images/icon-checked.svg" class="w-12px" *ngIf="step > 8" />
+          <img src="assets/images/icon-check.svg" class="w-12px" *ngIf="step === 8" />
+          <div class="w-12px d-inline-flex" *ngIf="step <= 7"></div>
+          <span class="ms-4">{{ "app.tokenAuthenticate3" | transloco }}</span>
         </li>
         <li class="nav-item m-2">
-          <span class="ms-4">{{ "app.bestMethod" | transloco }}</span>
+          <img src="assets/images/icon-checked.svg" class="w-12px" *ngIf="step > 9" />
+          <img src="assets/images/icon-check.svg" class="w-12px" *ngIf="step === 9" />
+          <div class="w-12px d-inline-flex" *ngIf="step <= 8"></div>
+          <span class="ms-2">{{ "app.bestMethod" | transloco }}</span>
         </li>
         <li class="nav-item m-2">
-          <span class="ms-4">{{ "app.logout" | transloco }}</span>
+          <img src="assets/images/icon-checked.svg" class="w-12px" *ngIf="step > 10" />
+          <img src="assets/images/icon-check.svg" class="w-12px" *ngIf="step === 10" />
+          <div class="w-12px d-inline-flex" *ngIf="step <= 9"></div>
+          <span class="ms-2">{{ "app.logout" | transloco }}</span>
         </li>
         <li class="nav-item m-2">
-          <span class="ms-4">{{ "app.finishTutorial" | transloco }}</span>
+          <img src="assets/images/icon-checked.svg" class="w-12px" *ngIf="step > 11" />
+          <img src="assets/images/icon-check.svg" class="w-12px" *ngIf="step === 11" />
+          <div class="w-12px d-inline-flex" *ngIf="step <= 10"></div>
+          <span class="ms-2">{{ "app.finishTutorial" | transloco }}</span>
         </li>
       </ul>
     </div>
