@@ -1,5 +1,5 @@
 /**
- * Various reusable functions, express middlewares, strategies for authentication flow
+ * @file Various reusable functions, express middlewares, strategies for authentication flow
  */
 
 exports.isAuthenticated = isAuthenticated;
@@ -8,9 +8,9 @@ const JwtService = require('./JwtService');
 
 /**
  * Express middleware for authentication using JWT paradigm
- * @param {} req : Express request object
- * @param {} res : Express response object
- * @param {} next : Express next callback
+ * @param {} req - Express request object
+ * @param {} res - Express response object
+ * @param {} next - Express next callback
  * 
  * @example
  * app.get('protectedEndpoint', [isAuthenticated], function(req, res){})
@@ -70,10 +70,9 @@ function isAuthenticated(req, res, next) {
  * Abstract implementation of strategy to read/manipulate token in request
  * @example 
  * let tokenExchange = new TokenExchange()
- * // Define your own strategy(a function) to read token, let's call it MyTokenReadStrategy
+ * // Define your own strategy(a function) to read a token
  * tokenExchange.setTokenReadStrategy(new MyTokenReadStrategy())
- * tokenExchange.read(req);
- * returns token
+ * tokenExchange.read(req);//returns token
  * @property {Function} read(req) - Function that extracts token from request object
  * @property {Function} setTokenReadStrategy(strategyInstance) - Set strategy for reading token
  * 
@@ -193,10 +192,10 @@ var ReadFromHeaderWithBearerScheme = function(req) {
 }
 
 /**
- * Default strategy for TokenExchange
+ * @summary Default strategy for TokenExchange
  * @description 
- * Default strategy when authorization header is available in request : ReadFromHeaderWithBearerScheme
- * Default strategy when cookies have `access_token` : ReadFromCookie
+ * Default strategy when authorization header is available in request = `ReadFromHeaderWithBearerScheme`.
+ * Default strategy when cookies have `access_token` = `ReadFromCookie`.
  * @param {*} req 
  * @param {*} tokenExchange 
  * @see {@link TokenExchange}

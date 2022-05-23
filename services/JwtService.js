@@ -1,3 +1,7 @@
+/**
+ * @file Provides easy to use functions for JWT related operations
+ */
+
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 
@@ -37,7 +41,10 @@ var privateKEY, publicKEY;
 var cp = require('child_process'),
     assert = require('assert');
 
-// Genrate public and private key pair programmetically
+/**
+ * Genrate public and private key pair programmetically
+ * @param {Function} cb - callback (info)
+ */
 function genKeys(cb) {
     // gen private
     cp.exec('openssl genrsa 2048', function(err, priv, stderr) {
@@ -69,9 +76,9 @@ if (!STATIC_SIGNING_KEY) {
 var secret = "secret"; //ToDo: Move credentials to env
 
 /**
- * A temporary hack to remember set the choice of user's preferred algorithm and default secret/keys accordingly
- * @param {*} algorithm 
- * @param {*} isSigningRequest 
+ * A temporary hack to set the choice of user's preferred algorithm and default secret/keys accordingly
+ * @param {String} algorithm 
+ * @param {Boolean} isSigningRequest 
  */
 function updateSecretMethod(algorithm, isSigningRequest) {
     //TODO: Maintain different choices for different users instead of keeping one global choice for all.
@@ -90,7 +97,7 @@ function updateSecretMethod(algorithm, isSigningRequest) {
 
 /**
  * Creates a signed JWT token with default configs and payload
- * @param {*} cb (err, token)
+ * @param {Function} cb (err, token)
  */
 function getDefaultToken(cb){
     updateSecretMethod(signOptions.algorithm, true);
@@ -101,8 +108,8 @@ function getDefaultToken(cb){
 
 /**
  * Verifies a JWT token and returns decoded token
- * @param token the JWT token string which needs to be verified
- * @param {*} cb (err, decodedToken)
+ * @param {String} token - The JWT token string which needs to be verified
+ * @param {Function} cb (err, decodedToken)
  */
 function verifyToken(token, cb){
     updateSecretMethod(signOptions.algorithm, false);
@@ -112,10 +119,11 @@ function verifyToken(token, cb){
     })
 }
 
+
 /**
  * Creates a JWT token
- * @param {{algorithm:string, payload: Object}} options  { algorithm : 'RS256', payload : {} }
- * @param {*} cb (err, token)
+ * @param {Object} options  {algorithm:string, payload: Object}
+ * @param {Function} cb (err, token)
  */
 function createToken(options, cb){
     if (options.algorithm) signOptions['algorithm'] = options.algorithm;

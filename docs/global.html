@@ -94,72 +94,6 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id="isAuthenticated"><span class="type-signature"></span>isAuthenticated<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Various reusable functions, express middlewares, strategies for authentication flow
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line5">line 5</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -230,7 +164,7 @@
 
             
 
-            <td class="description last">{ algorithm : 'RS256', payload : {} }</td>
+            <td class="description last">{algorithm:string, payload: Object}</td>
         </tr>
 
     
@@ -243,7 +177,7 @@
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type">function</span>
 
 
             
@@ -294,7 +228,144 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="JwtService.js.html">JwtService.js</a>, <a href="JwtService.js.html#line120">line 120</a>
+        <a href="JwtService.js.html">JwtService.js</a>, <a href="JwtService.js.html#line128">line 128</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="genKeys"><span class="type-signature"></span>genKeys<span class="signature">(cb)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Genrate public and private key pair programmetically
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">callback (info)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="JwtService.js.html">JwtService.js</a>, <a href="JwtService.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -380,7 +451,7 @@
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type">function</span>
 
 
             
@@ -431,7 +502,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="JwtService.js.html">JwtService.js</a>, <a href="JwtService.js.html#line95">line 95</a>
+        <a href="JwtService.js.html">JwtService.js</a>, <a href="JwtService.js.html#line102">line 102</a>
     </li></ul></dd>
     
 
@@ -522,7 +593,7 @@
 
             
 
-            <td class="description last">: Express request object</td>
+            <td class="description last">Express request object</td>
         </tr>
 
     
@@ -540,7 +611,7 @@
 
             
 
-            <td class="description last">: Express response object</td>
+            <td class="description last">Express response object</td>
         </tr>
 
     
@@ -558,7 +629,7 @@
 
             
 
-            <td class="description last">: Express next callback</td>
+            <td class="description last">Express next callback</td>
         </tr>
 
     
@@ -693,7 +764,7 @@ Can be implemted via TokenExchange
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line122">line 122</a>
+        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line121">line 121</a>
     </li></ul></dd>
     
 
@@ -795,7 +866,7 @@ Can be implemted via TokenExchange
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line141">line 141</a>
+        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line140">line 140</a>
     </li></ul></dd>
     
 
@@ -896,7 +967,7 @@ Can be implemted via TokenExchange
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line157">line 157</a>
+        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line156">line 156</a>
     </li></ul></dd>
     
 
@@ -1046,7 +1117,7 @@ Can be implemted via TokenExchange
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line175">line 175</a>
+        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line174">line 174</a>
     </li></ul></dd>
     
 
@@ -1147,7 +1218,7 @@ Can be implemted via TokenExchange
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line105">line 105</a>
+        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line104">line 104</a>
     </li></ul></dd>
     
 
@@ -1200,12 +1271,14 @@ Can be implemted via TokenExchange
     
 
     
+    <p class="summary">Default strategy for TokenExchange</p>
+    
 
 
 
 <div class="description">
-    Default strategy when authorization header is available in request : ReadFromHeaderWithBearerScheme
-Default strategy when cookies have `access_token` : ReadFromCookie
+    Default strategy when authorization header is available in request = `ReadFromHeaderWithBearerScheme`.
+Default strategy when cookies have `access_token` = `ReadFromCookie`.
 </div>
 
 
@@ -1321,7 +1394,7 @@ Default strategy when cookies have `access_token` : ReadFromCookie
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line204">line 204</a>
+        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line203">line 203</a>
     </li></ul></dd>
     
 
@@ -1491,7 +1564,7 @@ Default strategy when cookies have `access_token` : ReadFromCookie
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line81">line 81</a>
+        <a href="DemoAuthService.js.html">DemoAuthService.js</a>, <a href="DemoAuthService.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -1525,8 +1598,7 @@ Default strategy when cookies have `access_token` : ReadFromCookie
     <pre class="prettyprint"><code>let tokenExchange = new TokenExchange()
 // Define your own strategy(a function) to read token, let's call it MyTokenReadStrategy
 tokenExchange.setTokenReadStrategy(new MyTokenReadStrategy())
-tokenExchange.read(req);
-returns token</code></pre>
+tokenExchange.read(req);//returns token</code></pre>
 
 
 
@@ -1544,7 +1616,7 @@ returns token</code></pre>
 
 
 <div class="description">
-    A temporary hack to remember set the choice of user's preferred algorithm and default secret/keys accordingly
+    A temporary hack to set the choice of user's preferred algorithm and default secret/keys accordingly
 </div>
 
 
@@ -1586,7 +1658,7 @@ returns token</code></pre>
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type">String</span>
 
 
             
@@ -1609,7 +1681,7 @@ returns token</code></pre>
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -1660,7 +1732,7 @@ returns token</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="JwtService.js.html">JwtService.js</a>, <a href="JwtService.js.html#line76">line 76</a>
+        <a href="JwtService.js.html">JwtService.js</a>, <a href="JwtService.js.html#line83">line 83</a>
     </li></ul></dd>
     
 
@@ -1745,13 +1817,18 @@ returns token</code></pre>
 
             <td class="type">
             
+                
+<span class="param-type">String</span>
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last">the JWT token string which needs to be verified</td>
+            <td class="description last">The JWT token string which needs to be verified</td>
         </tr>
 
     
@@ -1764,7 +1841,7 @@ returns token</code></pre>
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type">function</span>
 
 
             
@@ -1815,7 +1892,7 @@ returns token</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="JwtService.js.html">JwtService.js</a>, <a href="JwtService.js.html#line107">line 107</a>
+        <a href="JwtService.js.html">JwtService.js</a>, <a href="JwtService.js.html#line114">line 114</a>
     </li></ul></dd>
     
 
@@ -1861,13 +1938,13 @@ returns token</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createToken">createToken</a></li><li><a href="global.html#getDefaultToken">getDefaultToken</a></li><li><a href="global.html#isAuthenticated">isAuthenticated</a></li><li><a href="global.html#ReadFromBody">ReadFromBody</a></li><li><a href="global.html#ReadFromCookies">ReadFromCookies</a></li><li><a href="global.html#ReadFromHeader">ReadFromHeader</a></li><li><a href="global.html#ReadFromHeaderWithBearerScheme">ReadFromHeaderWithBearerScheme</a></li><li><a href="global.html#ReadFromUrlParam">ReadFromUrlParam</a></li><li><a href="global.html#setDefaultStrategy">setDefaultStrategy</a></li><li><a href="global.html#TokenExchange">TokenExchange</a></li><li><a href="global.html#updateSecretMethod">updateSecretMethod</a></li><li><a href="global.html#verifyToken">verifyToken</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createToken">createToken</a></li><li><a href="global.html#genKeys">genKeys</a></li><li><a href="global.html#getDefaultToken">getDefaultToken</a></li><li><a href="global.html#isAuthenticated">isAuthenticated</a></li><li><a href="global.html#ReadFromBody">ReadFromBody</a></li><li><a href="global.html#ReadFromCookies">ReadFromCookies</a></li><li><a href="global.html#ReadFromHeader">ReadFromHeader</a></li><li><a href="global.html#ReadFromHeaderWithBearerScheme">ReadFromHeaderWithBearerScheme</a></li><li><a href="global.html#ReadFromUrlParam">ReadFromUrlParam</a></li><li><a href="global.html#setDefaultStrategy">setDefaultStrategy</a></li><li><a href="global.html#TokenExchange">TokenExchange</a></li><li><a href="global.html#updateSecretMethod">updateSecretMethod</a></li><li><a href="global.html#verifyToken">verifyToken</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Sun May 22 2022 15:06:37 GMT+0530 (India Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Mon May 23 2022 09:59:20 GMT+0530 (India Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

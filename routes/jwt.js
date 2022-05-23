@@ -1,5 +1,5 @@
 /**
- * All JWT related routes
+ * @file All JWT related routes
  */
 var express = require("express");
 var router = express.Router();

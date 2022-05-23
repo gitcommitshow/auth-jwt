@@ -1,5 +1,5 @@
 /**
- * Routes for informative lessons. Usually static pages.
+ * @file Routes for informative lessons. They're usually static pages.
  */
 
 var express = require("express");

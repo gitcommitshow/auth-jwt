@@ -1,5 +1,5 @@
 /**
- * Routes for various authentication examples to demo various techniques
+ * @file Routes for various authentication examples to demo various techniques
  */
 
 var express = require("express");
