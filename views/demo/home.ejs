@@ -1,16 +1,18 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
-<h2>✓ You've been successfully authenticated!</h2>
-<p style="width:70%;"><br/><br/>
+<strong>✓ You've been successfully authenticated!</strong>
+<h2>Method 1: Send JWT in request parameters</h2>
+<p style="width:70%;">
     In this request, we sent token via request URI parameter<br/>
-    GET /demo/protected-endpoint?<b>access_token</b>=mF_9.B5f-4.1JqM HTTP/1.1<br/><br/>
+    <code>GET /demo/protected-endpoint?<b>access_token</b>=mF_9.B5f-4.1JqM HTTP/1.1</code><br/><br/>
     > <a href="https://tools.ietf.org/html/rfc6750#section-2.3" target="_blank">Read about standards to follow while sending token via URI Query Parameter</a><br/><br/>
     Let's learn about more secure ways to send the token to the authorization server.<br/>
 </p>
-<form method="POST" action="/demo/protected/web-form" enctype="application\/x-www-form-urlencoded"><input name="access_token" type="hidden" value="<%= token %>" /><input type="submit" value="Click to send token in form body"></input></form>
+<h2>Method 2: Send JWT in form body</h2>
 <p> 
     > Input Parameter Name: access_token<br/>
     > Content-Type: application/x-www-form-urlencoded<br/>
-    > <a href="https://tools.ietf.org/html/rfc6750#section-2.2" target="_blank">Read about standards to send token via form-encoded body parameters</a>
+    <form method="POST" action="/demo/protected/web-form" enctype="application\/x-www-form-urlencoded"><input name="access_token" type="hidden" value="<%= token %>" /><input type="submit" value="Click to send token in form body"></input></form>
+    <br/>
 </p>
 
 <br/><br/><br/><br/><br/><br/>

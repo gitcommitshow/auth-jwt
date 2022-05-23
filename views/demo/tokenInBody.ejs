@@ -1,12 +1,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
-<h2>✓ You've been successfully authenticated!</h2>
-<p style="width:70%;"><br/><br/>
+<strong>✓ You've been successfully authenticated!</strong>
+<p style="width:70%;">
     In this request, we sent the token in the form body<br/>
     > <a href="https://tools.ietf.org/html/rfc6750#section-2.2" target="_blank">Read about standards to send token via form-encoded body parameters</a><br/><br/>
     There are other ways to send token to authorization server as well. 
     Next, lets's explore
 </p>
-<a id="apiReqBtn" href="#!" onclick="javasctipt:requestProtectedAPI()">Send token in request header now</a>
+<h2>Method 3: Send JWT in request header</h2>
+<button><a id="apiReqBtn" href="#!" onclick="javasctipt:requestProtectedAPI()">Click to send token in request header</a></button>
 <small id="apiReqResponse" style="font-weight:bold;background-color:grey;color:#ffffff;margin-left:16px;"></small><br/><br/>
 <script>function requestProtectedAPI(){
     console.log("Going to request API")
@@ -45,7 +46,8 @@ Pragma: no-cache
 > <a href="https://tools.ietf.org/html/rfc6750#section-2.1" target="_blank" style="opacity:0.7;">Read about standards to send token via request headers</a>
 <br/><br/><br/><br/>
 <b>And there are more ways to send token to authorization server</b><br/>
-<a href="/lesson/jwt-in-web-cookies">Next: Sending token in cookies</a><br/><br/>
+<h2>Method 4: Send JWT in cookies</h2>
+<a href="/lesson/jwt-in-web-cookies">Next: Send JWT in cookies</a><br/><br/>
 
 <br/><br/><br/><br/><br/><br/>
 <footer>

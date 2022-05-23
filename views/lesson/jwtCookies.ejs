@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
-<h2>Lesson : Authentication workflow for web using cookies as token store</h2>
+<h2>Method 4: Send JWT in cookies</h2>
+In this lesson, we will demo a typical authentication workflow for web using cookies as token store
+<br/><br/>
 <a href="#!" onclick="openSignInWindow('/demo/authorize','login')">1. Login to get the token</a>
 <script>
     let windowObjectReference = null;
@@ -71,9 +73,9 @@ function requestProtectedAPI(){
 3. <a href="/demo/user" style="opacity:0.7;">User data link accessible via token in authorization header with fall back to cookies</a>
 <br/><br/>
 4. <a href="/demo/logout">Logout</a>
-<br/><br/><br/><br/>
-<a href="https://tools.ietf.org/html/rfc6265" target="_blank" style="opacity:0.7;">Read about securely storing cookies</a>
 <br/><br/>
+🔗 <a href="https://tools.ietf.org/html/rfc6265" target="_blank" style="opacity:0.7;">Read about securely storing cookies</a>
+<br/><br/><br/><br/>
 <a href="/lesson/token-transmit-method-comparison">Next: Choosing best method to send tokens to auth server</a>
 <br/><br/><br/><br/>
 

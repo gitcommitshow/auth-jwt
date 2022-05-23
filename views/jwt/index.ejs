@@ -6,27 +6,79 @@
 <span id="token-part-payload" style="color:blue;"><%= token.split(".")[1] %></span><span style="font-weight:bold;font-size:120%;">.</span>
 <span id="token-part-signature" style="color:green;"><%= token.split(".")[2] %></span>
 </div>
-<br/><br/>
+<br/>
+<p>
+This is a practical example of a JWT
+<br/>Wow, it looks garbage!
+<br/>Sure it does look like garbage, but it is not. In the next few minutes, you’ll see how easy it is to turn this garbage into useful information.
+</p>
 <h3>Token schema</h3>
 <p>Did you notice two dots(.) in the token? These dots (.) separate 3 important parts of the token</p>
 
 <b><code>{<span style="color:red;">header</span>}.{<span style="color:blue;">payload</span>}.{<span style="color:green;">signature</span>}</code></b><br/>
 <ol>
-    <li><b>Header</b>: Metadata about the cryptography methods e.g. Algorithm, Token type.
-    <br/>Encoded with base64UrlEncode, can easily be decoded by anyone who has access to token.
-    <br/><span>Let's <a href="javascript:alert(window.atob(document.getElementById('token-part-header').textContent))">decode header</a> with browser's <code>atob()</code> method</span>
+    <li><b>Header</b><code style="color: red; font-size: 80%;margin-left: 12px;">eyJhbGciOiJSU....</code>
+        <br/>This part is the metadata about the cryptography methods used for signature(the last part of this token)
+            e.g. The Cryptography Algorithm, Token type, etc.
+        <p style="font-weight: 300;">
+            <span style="font-weight: 200;opacity: 80%;">What! Where? It is not readable.</span>
+            <br/>Hold on! The header is encoded with <code>base64UrlEncode</code>, and can easily be decoded by anyone without any additional information other than the token itself. Let's decode this header with browser's <code>atob()</code> method.
+            <br/><br/><button><a href="javascript:alert(window.atob(document.getElementById('token-part-header').textContent))">Click to decode header</a></button>
+            <br/>(This will show you the decoded header in plain text)
+                    
+            <br/><br/>👉 Takeaway: The header can be decoded by anyone. It’s not garbage for anyone.
+        </p>
     </li>
-    <li><b>Payload</b>: Actual data we want to exchange e.g. userId.
-    <br/>This is also encoded with base64UrlEncode. <span>Let's <a href="javascript:alert(window.atob(document.getElementById('token-part-payload').textContent))">decode payload</a></span>
+    <li><b>Payload</b><code style="color: blue; font-size: 80%;margin-left: 12px;">eyJkYXRhIjoiSSB....</code>
+        <br/>Actual data we want to exchange via this token e.g. userId
+        <p style="font-weight: 300;">
+            This is also encoded with <code>base64UrlEncode</code>. Just like the header, let's decode payload as well with browser’s <code>atob</code> method.
+            <br/><br/><button><a href="javascript:alert(window.atob(document.getElementById('token-part-payload').textContent))">Click to decode payload</a></button>
+            <br/>This will show you the decoded payload in plain text
+            <br/><br/>👉 Takeaway: The payload can be decoded by anyone. It’s not garbage for anyone.
+        </p>
     </li>
-    <li><b>Signature</b>: To verify sender or ensure message integrity. Can be verified by anyone if they know secret/publicKey. But changing data(spoofing) is not possible.</li>
+    <li><b>Signature</b><code style="color: green; font-size: 80%;margin-left: 12px;">RmT_mo6_TjjTiuv....</code>
+        <br/>To verify sender or ensure message integrity
+        <p style="font-weight: 300;">
+            Can be verified by anyone if they know a secret/publicKey. But changing data(spoofing) is not possible.
+            <br/><br/><span style="font-weight: 200;">What do you need to verify a token's integrity?</span>
+            <br/>You need something more than just the token. You need to know a public key corresponding to the private-key used during the creation of this token. 
+            <br/><br/>Because I am the creator of this example token that I just showed you. I used an algorithm called <code>RSA256</code> where I used a pair of public/private keys for this token.
+            <br/>Now, I’m sharing the public key with you, now you go ahead and verify JWT integrity with this public key.
+            <br/><br/><button><a target="_blank" href="/jwt/verify/<%= token %>">Verify this JWT now</a> </button>
+        </p>
+    </li>
 </ol>
 
+<br/>Ok, now you understand how does a JWT look like, but...
+<h2>What can JWTs be used for?</h2>
+<p style="font-weight: 300;">
+JWTs can be used as a digital claim issued by one party, which another party can verify for integrity.
+    <ul>
+        <li>Typical usage of JWTs are</li>
+        <li>To prove whether a user is logged in or not</li>
+        <li>To prove whether a user is authorized to perform admin actions or not</li>
+    </ul>
+    What’s more interesting?
+    <strong>In order to verify JWT integrity, the other party(one that verifies) does not need to communicate with the first party(one that created JWT)</strong>. Well, assuming the first party has shared the public key with the other party already. 
+    <br/>So what if I leverage this to create a system as following
+    <ol>
+        <li>A computer verifies user identity(e.g. username/password) and issues JWTs to the users. Let’s call it an “identity server”</li>
+        <li>Another computer that takes requests for users’ protected resources, let’s call it “application server”. It asks for JWT along with the request. This computer(application server) verifies the JWT and makes sure that the JWT was not tampered with</li>
+        <li>And then the above “application server” uses JWT payload data to decide whether to give access to a particular resource or not. Essentially allowing the access to users as “identity server” wanted (remember the identity server created the JWT in step 1, at that time, it had also put in the access related necessary info in the JWT)</li>
+    </ol>
 
-<a target="_blank" href="https://jwt.io/introduction/">Read more..</a><br/>
+    This is a typical example of authentication/authorization using JWTs and the interesting thing here is that you separated the work related to identity vs work related to actual user resources. You don’t need to rely on a single central system any more to effectively do this and thus can scale and manage in a better way.
+</p>
+
+Let’s see this system in action
+
+
+<!-- <a target="_blank" href="https://jwt.io/introduction/">Read more..</a><br/> -->
 
 <br/><br/>
-<a href="/jwt/verify/<%= token %>">Next: Verify JWT.</a><br/>
+<a href="/jwt/form">Next: Create a JWT</a><br/>
 
 <br/><br/><br/><br/><br/><br/>
 <footer>
