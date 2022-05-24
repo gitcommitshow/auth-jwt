@@ -19,4 +19,8 @@ export class JwtService {
     return this.http.get<any>(this.url);
   }
 
+  public verifyToken(token: string): Observable<any> {
+    return this.http.get<any>(`${this.url}/verify/${token}`);
+  }
+
 }

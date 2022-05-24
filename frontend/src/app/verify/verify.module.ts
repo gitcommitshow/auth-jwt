@@ -1,30 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslocoModule } from '@ngneat/transloco';
 
 // Routes
-import { AnatomyRoutingModule } from './anatomy-routing.module';
+import { VerifyRoutingModule } from './verify-routing.module';
 
 // Components
-import { AnatomyComponent } from './anatomy.component';
+import { VerifyComponent } from './verify.component';
 
 @NgModule({
   declarations: [
     // Components
-    AnatomyComponent,
+    VerifyComponent,
   ],
   imports: [
     CommonModule,
-    NgbModule,
     TranslocoModule,
     // Routes
-    AnatomyRoutingModule,
+    VerifyRoutingModule,
   ],
   providers: [
   ],
   exports: [
   ],
 })
-export class AnatomyModule {
+export class VerifyModule {
 }

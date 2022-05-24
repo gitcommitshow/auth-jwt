@@ -1,0 +1,35 @@
+
+<h1 class="mb-5">{{ "verify.verifyingToken" | transloco }}</h1>
+
+<hr>
+
+<div class="card card-jwt my-5">
+  <div class="card-header">
+    <div class="row">
+      <div class="col">
+        <img src="assets/images/icon-check-square.png" class="icon-check-square me-2" />
+        {{ "verify.verifiedToken" | transloco | uppercase }}
+      </div>
+      <div class="col-auto">
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <span class="jwt-decoded">{{ jwtDecoded }}</span>
+  </div>
+</div>
+
+<p class="font-grey">{{ "verify.verified1" | transloco }}</p>
+
+<p class="font-grey" innerHTML="{{ 'verify.verified2' | transloco }}"></p>
+
+<p class="font-grey">{{ "verify.verified3" | transloco }}</p>
+
+<div class="row">
+  <div class="col text-end">
+    <button type="button" (click)="nextStep()" class="btn btn-outline-light mt-5">{{ "verify.back" | transloco }}</button>
+  </div>
+  <div class="col-auto text-end">
+    <button type="button" (click)="nextStep()" class="btn btn-warning mt-5" innerHTML="{{ 'verify.createMore' | transloco }}"></button>
+  </div>
+</div>

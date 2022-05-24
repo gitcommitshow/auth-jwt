@@ -93,7 +93,7 @@
 
 <p class="font-grey">{{ "anatomy.signature1" | transloco }}</p>
 
-<p class="font-grey">{{ "anatomy.signature2" | transloco }}</p>
+<p class="font-grey">{{ "anatomy.signature2" | transloco }} <span triggers="hover focus" ngbPopover="{{ 'anatomy.signature2Tooltip' | transloco }}" class="c-pointer">(?)</span></p>
 
 <p class="font-grey">{{ "anatomy.signature3" | transloco }}</p>
 
@@ -102,13 +102,13 @@
 <div class="card my-5">
   <div class="card-body">
     <div class="row">
-      <div class="col-auto"><i class="fa-solid" [ngClass]="{'fa-caret-right': !showToken, 'fa-caret-down': showToken}" (click)="showToken = !showToken"></i></div>
+      <div class="col-auto"><i class="fa-solid c-pointer" [ngClass]="{'fa-caret-right': !showToken, 'fa-caret-down': showToken}" (click)="showToken = !showToken"></i></div>
       <div class="col">{{ showToken ? token : token.substring(0, 20) + '...' }}</div>
     </div>
   </div>
 </div>
 
-<button type="button" class="btn btn-primary btn-decode my-2">
+<button type="button" (click)="nextStep()" class="btn btn-primary btn-decode my-2">
   {{ "anatomy.verifyJwt" | transloco }}
   <img src="assets/images/icon-arrow-right.svg" class="ms-1" />
 </button>

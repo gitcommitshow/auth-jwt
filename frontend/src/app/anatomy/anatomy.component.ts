@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { JwtService } from '../shared/services/jwt.service';
+import { StepService } from '../shared/services/step.service';
 
 @Component({
   selector: 'app-anatomy',
@@ -22,7 +24,10 @@ export class AnatomyComponent implements OnInit {
   jwtSignatureShort: string;
   token: string;
 
-  constructor(private jwtService: JwtService) {
+  constructor(private router: Router,
+              private jwtService: JwtService,
+              private stepService: StepService) {
+    this.stepService.setStep(2);
     this.showToken = false;
     this.jwtHeader = '';
     this.jwtHeaderShort = '';
@@ -45,7 +50,6 @@ export class AnatomyComponent implements OnInit {
     this.jwtService.get()
     .subscribe({
       next: (success: any) => {
-        console.debug('success:', success);
         if (success && success.token) {
           const tokenSplitted = success.token.split('.');
           this.jwtHeader = tokenSplitted[0];
@@ -61,6 +65,11 @@ export class AnatomyComponent implements OnInit {
         console.error('error:', error);
       },
     });
+  }
+
+  public nextStep(): void {
+    this.stepService.setStep(3);
+    this.router.navigate(['/verify']);
   }
 
 }

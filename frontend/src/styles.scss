@@ -9,6 +9,22 @@ code {
   color: #ffffff;
 }
 
+.btn-outline-light {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px;
+  border: solid 1px #b9c0ca;
+}
+
+.btn-warning {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px;
+  border: solid 1px #eab500;
+  background-color: #ffd852;
+  color: #1a2035;
+}
+
 .card {
   border: solid 1px #3c4053;
   border-radius: 10px;
@@ -17,6 +33,10 @@ code {
 }
 .card-header {
   background-color: #2a2f44;
+}
+
+.c-pointer {
+  cursor: pointer;
 }
 
 .font-grey {
