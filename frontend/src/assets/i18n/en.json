@@ -40,6 +40,7 @@
     "signature": "Signature",
     "signature1": "To verify sender or ensure token data integrity.",
     "signature2": "What if this token was tampered somewhere in between when it traveled from the server(where it was created) to your browser(where you're seeing it right now)? You can verify that. <strong>>To verify the token integrity, you'll need to know something more than just the token. You'll need to know a public key</strong> corresponding to the private-key used during the creation of this token.",
+    "signature2Tooltip": "In public-key cryptography, a pair of keys is used. A private key is used to create a signature for a message which then can be verified by anyone who has the public key.",
     "signature3": "Luckily, I am the token creator here (for the example token I just showed you). I used a pair of public/private keys for this token and I'm sharing the public key with you, now you go ahead and verify JWT integrity with this public key.",
     "signature4": "The public key (from the public-private key pair I used to secure the token).",
     "takeawayHeader": "Takeaway: The header can be decoded by anyone. It's not garbage for anyone.",
@@ -66,6 +67,16 @@
     "learnJwt": "Learn JWT by reverse engineering & debug easily",
     "startInteractive": "Start interactive tutorial",
     "timeRequired": "TIME REQUIRED:"
+  },
+
+  "verify": {
+    "back": "Back",
+    "createMore": "Next: <strong>Create a more complex token</strong>",
+    "verified1": "It was verified successfully, what does it mean? It means that the token was exactly the same as when it was created. This verification would have failed, if say a sneaky hacker had intercepted our communication and modified the token before it reached your machine. This is very useful. Isn't it?",
+    "verified2": "<strong>Takeaway:</strong> Unlike header and payload, the signature is garbage for everyone, except for someone who got access to the public key from the token creator.",
+    "verified3": "Ok, it seems cool but how is this structure useful? How can I use a JWT?",
+    "verifiedToken": "VERIFIED AND PAYLOAD DECODED SUCCESSFULLY!",
+    "verifyingToken": "Verifying a token"
   }
 
 }

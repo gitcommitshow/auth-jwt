@@ -34,6 +34,7 @@ router.get('/', function(req, res) {
  */
 router.get('/verify/:token', function(req, res) {
     var token = req.params.token;
+    console.log('token:', token);
     if(!token){
         return res.status(400).send({ statusText: "Please provide the token in the request", statusCode: "VALIDATION_ERROR" });
     }

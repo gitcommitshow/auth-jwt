@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule),
   },
   {
+    path: 'verify',
+    loadChildren: () => import('./verify/verify.module').then(mod => mod.VerifyModule),
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },
