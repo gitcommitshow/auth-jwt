@@ -49,7 +49,7 @@ Things that are true for all the API endpoints
 
 ### Verify token
 
-`POST /jwt/verify/:jwtTokenString`
+`GET /jwt/verify/:jwtTokenString`
 
 * `jwtTokenString`: JWT as a token string
 
