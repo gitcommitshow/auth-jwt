@@ -20,6 +20,18 @@ const routes: Routes = [
     loadChildren: () => import('./verify/verify.module').then(mod => mod.VerifyModule),
   },
   {
+    path: 'jwtUses',
+    loadChildren: () => import('./jwtuses/jwtuses.module').then(mod => mod.JwtusesModule),
+  },
+  {
+    path: 'generate-token',
+    loadChildren: () => import('./generate-token/generate-token.module').then(mod => mod.GenerateTokenModule),
+  },
+  {
+    path: 'generate-token1',
+    loadChildren: () => import('./generate-token1/generate-token1.module').then(mod => mod.GenerateToken1Module),
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },

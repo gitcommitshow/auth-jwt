@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { JwtService } from '../shared/services/jwt.service';
 import { StepService } from '../shared/services/step.service';
@@ -13,7 +14,8 @@ export class VerifyComponent implements OnInit {
   jwtDecoded: string;
 
   constructor(private jwtService: JwtService,
-              private stepService: StepService) {
+              private stepService: StepService,
+              private router: Router) {
     this.stepService.setStep(3);
     this.jwtDecoded = '';
   }
@@ -46,8 +48,13 @@ export class VerifyComponent implements OnInit {
     });
   }
 
+  public backStep(): void {
+    this.stepService.setStep(3)
+    this.router.navigate(['/anatomy'])
+  }
   public nextStep(): void {
-    this.stepService.setStep(2);
+    this.stepService.setStep(4);
+    this.router.navigate(['/jwtUses'])
   }
 
 }

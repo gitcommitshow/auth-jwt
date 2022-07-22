@@ -1,0 +1,68 @@
+.algo {
+    font-family: Helvetica;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.5;
+    letter-spacing: 0.16px;
+    color: #bfcad9;
+    
+    a {
+        font-size: 14px;
+        font-weight: normal;
+        font-style: oblique;
+        line-height: 2;
+        letter-spacing: 0.14px;  
+        color: #bfcad9;
+    }
+}
+
+.rectangle {
+    width: 101px;
+    height: 40px;
+    padding: 9px 12px 10px;
+    border-radius: 6px;
+    border: solid 1px #3a3f51;
+    background-color: #272f48;
+    font-family: Helvetica;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    color: #7292ff;
+    display: flex;
+    align-items: center;
+
+    span {
+        width: 0; 
+        height: 0; 
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 11px solid #7292ff;
+        margin: 4px 0 4px 8px;
+    }
+}
+
+.rectangle-1{
+    width: 668px;
+    height: 110px;
+    padding: 17px 397px 72px 24px;
+    border-radius: 6px;
+    border: solid 1px #3a3f51;
+    background-color: #272f48;
+}
+.data1 {
+    font-family: Helvetica;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+}
+
+.note {
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: oblique;  
+}
