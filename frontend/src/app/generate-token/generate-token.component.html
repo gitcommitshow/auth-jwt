@@ -1,0 +1,37 @@
+<h1 class="mb-5">{{ "generate-token.create" | transloco }}</h1>
+
+<hr>
+
+<p class="justify-content-sm-between d-flex algo">
+    <span>{{ "generate-token.algorithm" | transloco }}</span>
+    <a target="_blank" href="https://tools.ietf.org/html/rfc7518#section-3">Recommend algorithms</a>
+</p>
+
+<p class="rectangle">
+    HS256
+    <span></span>
+</p>
+
+<p class="font-grey algo">{{"generate-token.data" | transloco}}</p>
+
+<p class="rectangle-1 data1">
+    {{ "generate-token.data1" | transloco }}
+</p>
+
+<p class="font-grey flex-column note">
+    <span>
+        {{ "generate-token.note" | transloco }}
+    </span>
+    <span>
+        {{ "generate-token.note1" | transloco }}
+    </span>
+    <span>
+        {{ "generate-token.note2" | transloco }}
+    </span>
+</p>
+
+<div class="row">
+    <div class="col-auto text-end">
+      <button type="button" (click)="nextStep()" class="btn btn-warning mt-5" innerHTML="{{ 'generate-token.generateToken' | transloco }}"></button>
+    </div>
+</div>

@@ -15,7 +15,8 @@
     "tokenAuthenticate1": "1. Through Request headers",
     "tokenAuthenticate2": "2. Through form body",
     "tokenAuthenticate3": "3. Through cookies",
-    "verifyingToken": "Verifying a token"
+    "verifyingToken": "Verifying a token",
+    "usedFor": "What is JWT used for?"
   },
 
   "anatomy": {
@@ -77,6 +78,47 @@
     "verified3": "Ok, it seems cool but how is this structure useful? How can I use a JWT?",
     "verifiedToken": "VERIFIED AND PAYLOAD DECODED SUCCESSFULLY!",
     "verifyingToken": "Verifying a token"
+  },
+
+  "jwtusedfor": {
+    "usedFor": "What is JWT used for?",
+    "introduction1": "JWTs can be used as a digital claim issued by one party, which another party can verify for integrity.",
+    "typicalUse" : "Typical usage of JWTs are",
+    "typicalUse1": "To prove whether a user is logged in or not",
+    "typicalUse2": "To prove whether a user is authorized to perform admin actions or not",
+    "introduction2": "What’s more interesting? In order to verify JWT integrity, the other party(one that verifies) does not need to communicate with the first party(one that created JWT). Well, assuming the first party has shared the public key with the other party already.",
+    "leverage": "So what if I leverage this to create a system as following",
+    "leverage1": "A computer verifies user identity(e.g. username/password) and issues JWTs to the users. Let’s call it an “identity server”",
+    "leverage2": "Another computer that takes requests for users’ protected resources, let’s call it “application server”. It asks for JWT along with the request. This computer(application server) verifies the JWT and makes sure that the JWT was not tampered with",
+    "leverage3": "And then the above “application server” uses JWT payload data to decide whether to give access to a particular resource or not. Essentially allowing the access to users as “identity server” wanted (remember the identity server created the JWT in step 1, at that time, it had also put in the access related necessary info in the JWT)",
+    "leverage4":"What if we can show a drawing showcasing the JWT issue counter vs JWT verification+access counter. Similar to how token system work at Dominos work.",
+    "introduction3": "This is a typical example of authentication/authorization using JWTs and the interesting thing here is that you separated the work related to identity vs work related to actual user resources. You don’t need to rely on a single central system any more to effectively do this and thus can scale and manage in a better way.",
+    "system": "Let's see the system in action"
+  },
+
+  "generate-token" : {
+      "create": "1. Create a JWT",
+      "algorithm" : "ALGORITHM:",
+      "data": "DATA (PAYLOAD)",
+      "data1" : " { 'data' : 'We raised series A' }",
+      "note": "Note: Payload needs to be a valid json",
+      "note1" : "1. JSON string keys must have double quotes",
+      "note2": "2. No functions allowed in value",
+      "generateToken": "Generate New Token"
+  },
+
+  "generate-token1" : {
+    "create": "1. Create a JWT",
+    "generate": "generate a new token!",
+    "options": "For following options:",
+    "operation": "Read about the signing operation",
+    "header": "Header : { 'alg':'HS256', 'typ':'JWT' }",
+    "payload": "Payload: {'data':'I secretly love Momina Mustehan','iat':1658487904,'exp':1658574304,'aud':'microsoft.com','iss':'Microsoft Inc','sub':'some@user.com'}",
+    "secret": "Secret: A secret only server knows",
+    "secretKey": "Server can verify this token with secret key (for HMAC algorithm)  or the public key(for RSA algorithm)", 
+    "example": "We created this example token to be used to authenticate a user.",
+    "backend": " Let’s send this token to a backend server",
+    "send": "Next: Send JWT to backend"
   }
 
 }

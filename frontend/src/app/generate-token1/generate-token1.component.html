@@ -1,0 +1,61 @@
+<h1 class="mb-5">{{ "generate-token1.create" | transloco }}</h1>
+
+<hr>
+<div class="card card-jwt my-5">
+    <div class="card-header">
+        <div class="row d-flex align-items-center">
+            <div class="col">
+                <img src="assets/images/icon-check-square.png" class="icon-check-square me-2" />
+                {{ "generate-token1.generate" | transloco | uppercase }}
+            </div>
+            <div class="col-auto resubmit">
+                <a href="#">Resubmit info?</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <span class="jwt-decoded">{{ "From backend" }}</span>
+    </div>
+</div>
+
+<p class="justify-content-sm-between d-flex algo">
+    <span>{{ "generate-token1.options" | transloco }}</span>
+    <a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc7520#section-4.1.2">{{"generate-token1.operation" | transloco}}</a>
+</p>
+
+
+<p class="font-grey options">
+    <img src="assets/images/icon-crog.svg" class="me-2" />
+    {{ "generate-token1.header" | transloco }}
+</p>
+
+<p class="font-grey options">
+    <img src="assets/images/icon-crog.svg" class="me-2" />
+    {{ "generate-token1.payload" | transloco }}
+</p>
+
+<p class="font-grey options">
+    <img src="assets/images/icon-crog.svg" class="me-2" />
+    {{ "generate-token1.secret" | transloco }}
+</p>
+
+<p><a href="https://datatracker.ietf.org/doc/html/rfc7520#section-4.1.2">{{ "generate-token1.operation" | transloco}}</a></p>
+
+<p class="font-grey options">
+    {{ "generate-token1.secretKey" | transloco }}
+</p>
+
+<p class="font-grey options">
+    {{ "generate-token1.example" | transloco }}
+</p>
+
+<h1 class="mb-5">{{ "generate-token1.backend" | transloco }}</h1>
+
+<div class="row">
+    <div class="col text-end">
+      <button type="button" (click)="backStep()" class="btn btn-outline-light mt-5">{{ "verify.back" | transloco }}</button>
+    </div>
+    <div class="col-auto text-end">
+      <button type="button" (click)="nextStep()" class="btn btn-warning mt-5" innerHTML="{{ 'generate-token1.send' | transloco }}"></button>
+    </div>
+  </div>

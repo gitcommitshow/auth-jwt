@@ -40,7 +40,9 @@ code {
 }
 
 .font-grey {
+  display: flex;
   color: #b9c0ca;
+  align-items: self-start;
 }
 
 .w-12px {
