@@ -26,5 +26,6 @@ export class GenerateToken1Component implements OnInit {
   nextStep(){
     this.stepService.setStep(6)
     this.stepService.setStep(7)
+    this.router.navigate(['/send-jwt1'])
   }
 }

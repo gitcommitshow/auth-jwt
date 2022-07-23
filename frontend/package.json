@@ -1,8 +1,7 @@
 {
-  "name": "supertokens-frontend",
+  "name": "auth-jwt-frontend",
   "version": "1.0.0",
-  "author": "Rodrigo Kamada <rodrigo@kamada.com.br> (https://github.com/rodrigokamada)",
-  "private": true,
+  "private": false,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

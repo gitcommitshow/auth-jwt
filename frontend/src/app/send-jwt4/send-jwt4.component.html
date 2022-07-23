@@ -1,0 +1,50 @@
+<h1 class="mb-3">{{ "send-jwt4.introduction" | transloco }}</h1>
+
+<p class="font-grey" style="font-size: 24px;">{{ "send-jwt4.ways" | transloco }}</p>
+
+<hr>
+
+<div class="rectangle">
+        <img src="assets/images/icon-check-square.png"/>
+        <span>{{ "send-jwt4.authenticated" | transloco | uppercase }}</span>
+</div>
+
+<div class="rectangle1">
+    <h1>{{ "send-jwt4.request" | transloco }}</h1>
+    
+    <p class="font-grey">{{ "send-jwt4.request2" | transloco}}</p>
+
+    <div class="innerRectangle">
+        <div class="sampleContent">
+
+        </div>
+        <a href="#" class="edit">
+            Edit
+            <img src="assets/images/icon-pencil.svg" alt="">
+        </a>
+    </div>
+    <div class="small_rectangle">
+      <span>
+        <img src="assets/images/icon-checked.svg" alt="">
+        <span>{{ "send-jwt4.https" | transloco}}</span>
+      </span>
+      <a href="#">Resubmit?</a>
+    </div>
+    <div class="font-grey flex-column inputParamter">
+        <a target="_blank" href="#">{{ "send-jwt4.errorCodes" | transloco}}</a>
+        <span>{{ "send-jwt4.invalidRequest" | transloco }}</span>
+        <span>{{ "send-jwt4.invalidToken" | transloco }}</span>
+        <span>{{ "send-jwt4.scope" | transloco}}</span>
+    </div>
+    <a class="query" target="_blank" href="#">{{ "send-jwt4.queryParameter" | transloco}}</a>
+
+</div>
+
+<div class="row">
+    <div class="col text-end">
+      <button type="button" (click)="backStep()" class="btn btn-outline-light mt-5">{{ "verify.back" | transloco }}</button>
+    </div>
+    <div class="col-auto text-end">
+      <button type="button" (click)="nextStep()" class="btn btn-warning mt-5" innerHTML="{{ 'send-jwt4.body' | transloco }}"></button>
+    </div>
+  </div>

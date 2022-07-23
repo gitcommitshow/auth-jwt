@@ -14,9 +14,12 @@
     "tokenAuthenticate": "Using token to authenticate",
     "tokenAuthenticate1": "1. Through Request headers",
     "tokenAuthenticate2": "2. Through form body",
-    "tokenAuthenticate3": "3. Through cookies",
+    "tokenAuthenticate3": "3. Through request header",
+    "tokenAuthenticate4": "4. Through cookies",
     "verifyingToken": "Verifying a token",
-    "usedFor": "What is JWT used for?"
+    "usedFor": "What is JWT used for?",
+    "disclosure": "Disclosures",
+    "reference" : "References"
   },
 
   "anatomy": {
@@ -119,6 +122,62 @@
     "example": "We created this example token to be used to authenticate a user.",
     "backend": " Let’s send this token to a backend server",
     "send": "Next: Send JWT to backend"
-  }
+  }, 
 
+  "send-jwt1": {
+    "introduction": "2. Send JWT to backend with request to access to resources",
+    "ways": "There are 4 ways you can send JWT to backend",
+    "authenticated": "you have been successfully authenticated",
+    "request": "In request parameter",
+    "request1": "send jwt token in request parameter",
+    "request2": "In this request, we sent token via request URI parameters",
+    "queryParameter": "Read about standards to follow while sending token via URI Query Parameter",
+    "secureWay": "Let's learn about more secure ways to send the token to the authorization server.",
+    "body": "Next: Send token in form body"
+  },
+
+  "send-jwt2": {
+    "introduction": "2. Send JWT to backend with request to access to resources",
+    "ways": "There are 4 ways you can send JWT to backend",
+    "authenticated": "you have been successfully authenticated",
+    "request": "In form body",
+    "request1": "Click to Send Token in form body",
+    "request2": "In this request, we sent token via request URI parameters",
+    "inputParameter": "Input parameter Name: access_token",
+    "contentType": "Content-Type: application/x-www-form-urlencoded",
+    "queryParameter": "Read about standards to send token via form-encoded body parameters",
+    "secureWay": "There are other ways to send token to authorization server as well",
+    "body": "Next: Let's Explore"
+  },
+
+  "send-jwt3": {
+    "introduction": "2. Send JWT to backend with request to access to resources",
+    "ways": "There are 4 ways you can send JWT to backend",
+    "authenticated": "you have been successfully authenticated",
+    "request": "In request header",
+    "request1": "Click to Send Token in form body",
+    "request2": "In this request, we sent token via request URI parameters",
+    "invalidRequest": "Invalid_request(400-Bad request)",
+    "invalidToken": "Invalid_token(401-unauthorized)",
+    "scope": "Insufficient_scope(403-Forbidden)",
+    "errorCodes": "Error Codes:",
+    "queryParameter": "Read about standards to send token via headers",
+    "body": "Next: Sending token in cookies",
+    "requestHeader": "send token to request header"
+  },
+  "send-jwt4": {
+    "introduction": "2. Send JWT to backend with request to access to resources",
+    "ways": "There are 4 ways you can send JWT to backend",
+    "authenticated": "you have been successfully authenticated",
+    "request": "In request header",
+    "request1": "Click to Send Token in form body",
+    "request2": "In this request, we sent token via request URI parameters",
+    "invalidRequest": "Invalid_request(400-Bad request)",
+    "invalidToken": "Invalid_token(401-unauthorized)",
+    "scope": "Insufficient_scope(403-Forbidden)",
+    "errorCodes": "Error Codes:",
+    "queryParameter": "Read about standards to send token via headers",
+    "body": "Next: Sending token in cookies",
+    "https": "HTTP STATUS : 200"
+  }
 }
