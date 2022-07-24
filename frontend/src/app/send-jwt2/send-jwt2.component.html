@@ -1,0 +1,36 @@
+<h1 class="mb-3">{{ "send-jwt2.introduction" | transloco }}</h1>
+
+<p class="font-grey" style="font-size: 24px;">{{ "send-jwt2.ways" | transloco }}</p>
+
+<hr>
+
+<div class="rectangle">
+        <img src="assets/images/icon-check-square.png"/>
+        <span>{{ "send-jwt2.authenticated" | transloco | uppercase }}</span>
+</div>
+
+<div class="rectangle1">
+    <h1>{{ "send-jwt2.request" | transloco }}</h1>
+    <div class="box">
+        <a href="#" class="font-grey">{{ "send-jwt2.request1" | transloco | uppercase }}</a>
+    </div>
+    <div class="font-grey flex-column inputParamter">
+        <span>{{ "send-jwt2.inputParameter" | transloco }}</span>
+        <span>{{ "send-jwt2.contentType" | transloco }}</span>
+        <a target="_blank" href="#">{{ "send-jwt2.queryParameter" | transloco}}</a>
+    </div>
+    <p class="font-grey">{{ "send-jwt2.request2" | transloco}}</p>
+
+    <a class="query" target="_blank" href="#">{{ "send-jwt2.queryParameter" | transloco}}</a>
+
+    <p class="font-grey">{{ "send-jwt2.secureWay" | transloco}}</p>
+</div>
+
+<div class="row">
+    <div class="col text-end">
+      <button type="button" (click)="backStep()" class="btn btn-outline-light mt-5">{{ "verify.back" | transloco }}</button>
+    </div>
+    <div class="col-auto text-end">
+      <button type="button" (click)="nextStep()" class="btn btn-warning mt-5" innerHTML="{{ 'send-jwt2.body' | transloco }}"></button>
+    </div>
+  </div>
