@@ -1,0 +1,78 @@
+<h1 class="mb-3 heading">{{ "logout.introduction" | transloco }}</h1>
+
+<p class="font-grey" style="font-size: 24px;">{{ "logout.lesson" | transloco }}</p>
+
+<hr>
+
+<div class="warning">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true" style="color: #ff5e3e;"></i>
+    <span>{{"logout.warning" | transloco}}</span>
+    <p>{{"logout.warningMessage" | transloco}}</p>
+</div>
+
+
+<p class="font-grey">{{"logout.noAccess" | transloco}}</p>
+
+<p class="font-grey" style="font-weight: bold;">But..</p>
+
+<p class="font-grey">{{"logout.valid" | transloco}}</p>
+
+<p class="font-grey">{{"logout.valid1" | transloco}}</p>
+
+<h1 class="mb-3">{{ "logout.introduction1" | transloco }}</h1>
+
+<p class="font-grey">
+    <img src="assets/images/icon-crog.svg" class="me-2" />
+    {{ "logout.strategy1" | transloco }}
+</p>
+
+<p class="font-grey">
+    <img src="assets/images/icon-crog.svg" class="me-2" />
+    {{ "logout.strategy2" | transloco }}
+</p>
+
+<p class="font-grey">
+    <img src="assets/images/icon-crog.svg" class="me-2" />
+    {{ "logout.strategy3" | transloco }}
+</p>
+
+<p class="font-grey">
+    <img src="assets/images/icon-crog.svg" class="me-2" />
+    {{ "logout.strategy4" | transloco }}
+</p>
+
+<p class="font-grey">{{"logout.strategy5" | transloco}}</p>
+
+<div class="row">
+    <div class="col text-end">
+      <button type="button" (click)="backStep()" class="btn btn-outline-light mt-5">{{ "verify.back" | transloco }}</button>
+    </div>
+    <div class="col-auto text-end">
+      <button type="button" (click)="nextStep()" class="btn btn-warning mt-5" innerHTML="{{ 'logout.body' | transloco }}{{'logout.icon' | transloco}}"></button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="info_rectangle">
+        <i class="fa fa-info-circle" aria-hidden="true" style="color:#7292ff;;"></i>
+        <div class="content">
+            <span class="info">
+                {{"logout.info" | transloco}}
+            </span>
+            <span class="info1">
+                {{"logout.info1" | transloco}}
+                <a href="#">code repository</a>
+                and
+                <a href="#">awesome-authentication</a>
+                for more details.
+            </span>
+            <span class="info2">
+                {{"logout.info2" | transloco}}
+                <a href="#">issue for suggestion</a>
+                or
+                <a href="#">make a pull request</a>
+            </span>
+        </div>
+    </div>
+</div>
+

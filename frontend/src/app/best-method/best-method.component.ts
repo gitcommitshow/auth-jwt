@@ -3,28 +3,27 @@ import { Router } from '@angular/router';
 import { StepService } from '../shared/services/step.service';
 
 @Component({
-  selector: 'app-send-jwt3',
-  templateUrl: './send-jwt3.component.html',
-  styleUrls: ['./send-jwt3.component.scss']
+  selector: 'app-best-method',
+  templateUrl: './best-method.component.html',
+  styleUrls: ['./best-method.component.scss']
 })
-export class SendJwt3Component implements OnInit {
+export class BestMethodComponent implements OnInit {
 
   constructor(
     private router: Router,
     private stepService: StepService
-  ) { 
-    this.stepService.setStep(9)
-  }
+  ) {
+    this.stepService.setStep(11)
+   }
 
   ngOnInit(): void {
   }
-
   backStep(){
-    this.stepService.setStep(8)
-    this.router.navigate(['send-jwt2'])
-  }
-  nextStep(){
     this.stepService.setStep(10)
     this.router.navigate(['send-jwt4'])
+  } 
+  nextStep(){
+    this.stepService.setStep(12)
+    this.router.navigate(['implement-logout'])
   }
 }

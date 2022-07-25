@@ -12,30 +12,38 @@
 <div class="rectangle1">
     <h1>{{ "send-jwt4.request" | transloco }}</h1>
     
+    <p class="font-grey">{{ "send-jwt4.request1" | transloco}}</p>
+
     <p class="font-grey">{{ "send-jwt4.request2" | transloco}}</p>
-
-    <div class="innerRectangle">
-        <div class="sampleContent">
-
-        </div>
-        <a href="#" class="edit">
-            Edit
-            <img src="assets/images/icon-pencil.svg" alt="">
+    
+    <p class="font-grey">
+        <span>1.</span>
+        <a href="#">{{"send-jwt4.step1" | transloco}}
+            <img src="assets/images/icon-arrow-right.svg" alt="">
         </a>
-    </div>
-    <div class="small_rectangle">
-      <span>
-        <img src="assets/images/icon-checked.svg" alt="">
-        <span>{{ "send-jwt4.https" | transloco}}</span>
-      </span>
-      <a href="#">Resubmit?</a>
-    </div>
-    <div class="font-grey flex-column inputParamter">
-        <a target="_blank" href="#">{{ "send-jwt4.errorCodes" | transloco}}</a>
-        <span>{{ "send-jwt4.invalidRequest" | transloco }}</span>
-        <span>{{ "send-jwt4.invalidToken" | transloco }}</span>
-        <span>{{ "send-jwt4.scope" | transloco}}</span>
-    </div>
+    </p>
+
+    <p class="font-grey">
+        <span>2.</span>
+        <a href="#">{{"send-jwt4.step2" | transloco}}
+            <img src="assets/images/icon-arrow-right.svg" alt="">
+        </a>
+    </p>
+
+    <p class="font-grey">
+        <span>3.</span>
+        <a href="#">{{"send-jwt4.step3" | transloco}}
+            <img src="assets/images/icon-arrow-right.svg" alt="">
+        </a>
+    </p>
+
+    <p class="font-grey">
+        <span>4.</span>
+        <a href="#">{{"send-jwt4.step4" | transloco}}
+        <img src="assets/images/icon-arrow-right.svg" alt="">
+        </a>
+    </p>
+    
     <a class="query" target="_blank" href="#">{{ "send-jwt4.queryParameter" | transloco}}</a>
 
 </div>
@@ -47,4 +55,4 @@
     <div class="col-auto text-end">
       <button type="button" (click)="nextStep()" class="btn btn-warning mt-5" innerHTML="{{ 'send-jwt4.body' | transloco }}"></button>
     </div>
-  </div>
+</div>

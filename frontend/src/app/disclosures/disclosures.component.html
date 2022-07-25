@@ -1,0 +1,18 @@
+<h1 class="mb-3 heading">{{ "disclosures.introduction" | transloco }}</h1>
+<hr>
+
+<p class="font-grey">
+    <img src="assets/images/icon-crog.svg" class="me-2" />
+    {{ "disclosures.disclosure1" | transloco }}
+</p>
+
+<p class="font-grey">
+    <img src="assets/images/icon-crog.svg" class="me-2" />
+    {{ "disclosures.disclosure2" | transloco }}
+</p>
+
+<div class="row">
+    <div class="col text-end">
+        <button type="button" (click)="nextStep()" class="btn btn-outline-light mt-5">{{ "finish.next" | transloco }}</button>
+      </div>
+</div>
