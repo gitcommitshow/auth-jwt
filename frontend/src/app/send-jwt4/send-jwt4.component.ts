@@ -10,7 +10,7 @@ import { StepService } from '../shared/services/step.service';
 export class SendJwt4Component implements OnInit {
 
   constructor(
-    private router: Router,
+    private router : Router,
     private stepService: StepService
   ) { 
     this.stepService.setStep(10)
@@ -19,11 +19,12 @@ export class SendJwt4Component implements OnInit {
   ngOnInit(): void {
   }
 
-  backStep(){
+  backStep() {
     this.stepService.setStep(9)
     this.router.navigate(['send-jwt3'])
   }
-  nextStep(){
+  nextStep() {
     this.stepService.setStep(11)
+    this.router.navigate(['best-method'])
   }
 }

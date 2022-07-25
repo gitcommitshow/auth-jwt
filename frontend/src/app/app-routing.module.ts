@@ -48,8 +48,24 @@ const routes: Routes = [
     loadChildren: () => import('./send-jwt4/send-jwt4.module').then(mod => mod.SendJwt4Module),
   },
   {
-    path: 'send-jwt5',
-    loadChildren: () => import('./send-jwt4/send-jwt4.module').then(mod => mod.SendJwt4Module),
+    path: 'best-method',
+    loadChildren: () => import('./best-method/best-method.module').then(mod => mod.BestMethodModule),
+  },
+  {
+    path: 'implement-logout',
+    loadChildren: () => import('./logout/logout.module').then(mod => mod.LogoutModule),
+  },
+  {
+    path: 'finish',
+    loadChildren: () => import('./finish/finish.module').then(mod => mod.FinishModule),
+  },
+  {
+    path: 'disclosures',
+    loadChildren: () => import('./disclosures/disclosures.module').then(mod => mod.DisclosuresModule),
+  },
+  {
+    path: 'reference',
+    loadChildren: () => import('./reference/reference.module').then(mod => mod.ReferenceModule),
   },
   {
     path: '**',

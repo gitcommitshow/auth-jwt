@@ -1,0 +1,45 @@
+<h1 class="mb-3 heading">{{ "finish.introduction" | transloco }}</h1>
+
+<p class="font-grey" style="font-size: 24px;">
+    {{ "finish.learn" | transloco }}
+</p>
+
+<hr>
+
+<div class="celebrate_twitter">
+    <i class="fa-brands fa-twitter" style="color: #ffd852;"></i>
+    <a target="_blank" href="#">{{ "finish.celebrate" | transloco}}</a>
+</div>
+
+<div class="row">
+    <div class="info_rectangle">
+        <i class="fa fa-info-circle" aria-hidden="true" style="color:#7292ff;;"></i>
+        <div class="content">
+            <span class="info">
+                {{"logout.info" | transloco}}
+            </span>
+            <span class="info1">
+                {{"logout.info1" | transloco}}
+                <a href="#">code repository</a>
+                and
+                <a href="#">awesome-authentication</a>
+                for more details.
+            </span>
+            <span class="info2">
+                {{"logout.info2" | transloco}}
+                <a href="#">issue for suggestion</a>
+                or
+                <a href="#">make a pull request</a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-auto text-end">
+      <a href="#" class="btn btn-warning mt-5" innerHTML="{{'finish.icon' | transloco}}{{ 'finish.documentation' | transloco }}"></a>
+    </div>
+    <div class="col text-end">
+        <button type="button" (click)="nextStep()" class="btn btn-outline-light mt-5">{{ "finish.next" | transloco }}</button>
+      </div>
+</div>

@@ -168,16 +168,71 @@
   "send-jwt4": {
     "introduction": "2. Send JWT to backend with request to access to resources",
     "ways": "There are 4 ways you can send JWT to backend",
-    "authenticated": "you have been successfully authenticated",
-    "request": "In request header",
-    "request1": "Click to Send Token in form body",
-    "request2": "In this request, we sent token via request URI parameters",
-    "invalidRequest": "Invalid_request(400-Bad request)",
-    "invalidToken": "Invalid_token(401-unauthorized)",
-    "scope": "Insufficient_scope(403-Forbidden)",
-    "errorCodes": "Error Codes:",
+    "request": "In  cookies",
+    "request1": "Anything stored in cookies is sent with the request by default. So there's nothing special that you need to do in this case.",
+    "request2": "Lets see the complete authentication workflow in action using cookies",
+    "step1": "Login to get the token",
+    "step2": "Get protected user data",
+    "step3" : "User data link accessible via token in authorization header with fall back to cookies",
+    "step4" : "Logout",
     "queryParameter": "Read about standards to send token via headers",
-    "body": "Next: Sending token in cookies",
-    "https": "HTTP STATUS : 200"
+    "body": "Next: Choosing the best method",
+    "authenticated": "you have been successfully authenticated"
+  },
+
+  "best-method": {
+    "introduction": "Choosing the best method to send tokens to auth server",
+    "method": "So, which method is the best method to send token to authorization server?",
+    "method1": "For APIs, the recommended approach is to send token in authorization header as per Oauth RFC (Bearer Token)",
+    "method2": "For web, it's debatable how to send and store the token, considering the possible attacks(e.g. XSS, CSRF, etc) vs Performance",
+    "method3": "So now, we can generate token, we can send it to server to access the protected resource, verify if the token is valid.",
+    "implement":"But how do we implement logout?",
+    "body": "Next: Implementing Logout"
+  },
+
+  "logout": {
+    "introduction": "Implementing logout",
+    "lesson": "Lesson: Logout = Invalidating tokens",
+    "warning": "Warning",
+    "warningMessage": "This is a complex and highly debatable topic. Don't leave without reading the last paragraph.",
+    "noAccess": "You may simply remove the token from the client side => No token, No access",
+    "valid": "The token you created earlier is still valid(till the expiry time of that token). So if anyone who makes the request with that token, will get access to the protected resources just like before.",
+    "valid1": "Also what happens when you change your password? The token is still valid.",
+    "introduction1": "So, what are common strategies to avoid such misuse of the tokens?",
+    "strategy1": "Create a token blacklist e.g. on logout request, add the token to blacklist; use the blacklist to deny access to tokens which are still valid but should not be authorized",
+    "strategy2": "Keep token expiry times short and rotate them often",
+    "strategy3": "Contingency Plan : allow the user to change an underlying user lookup ID with their login credentials",
+    "strategy4": "A common approach for invalidating tokens when a user changes their password is to sign the token with a hash of their password. Thus if the password changes, any previous tokens automatically fail to verify. You can extend this to logout by including a last-logout-time in the user's record and using a combination of the last-logout-time and password hash to sign the token. This requires a DB lookup each time you need to verify the token signature, but presumably you're looking up the user anyway.",
+    "strategy5": "These strategies can be debated based on the trade offs that need to be made between Performance vs Security.",
+    "body":"Finish Tutorial",
+    "info": "Information",
+    "info1": "To be honest, we just touched the surface of the topic here. I would recommend to further read the references on this project's",
+    "info2": "You can help me add more topics here and make this tutorial better. Contributing is as easy as creating an",
+    "icon": "<i class='fa-regular fa-party-horn'></i>"
+  },
+
+  "finish": {
+    "introduction": "Resource to learn more",
+    "learn": "Congratulations on finishing this tutorial",
+    "celebrate": "Celebrate on Twitter",
+    "documentation": "Visit awsome documentation",
+    "icon": "<i class='fa-brands fa-github'></i>",
+    "next": "Next"
+  },
+
+  "disclosures": {
+    "introduction": "Disclosures",
+    "disclosure1": "In this tutorial, we focused only on JWS - a particular type of JWT that is secured with digital signatures. It is the most commonly used type of JWT when people talk in the context of authentication. The other type is JWE which means the token is encrypted so unlike JWS, JWE header/payload is not readable by anyone else who doesn’t have the keys to decrypt.",
+    "disclosure2": "We always talked about the need of public/private keys to verify/sign the token which means we were assuming to use public-private keys cryptography for the signature. While most practical applications, you’ll be using public-keys cryptography only, this is not the only standard to do it, you could also use MAC"
+  },
+  
+  "reference": {
+    "introduction": "References",
+    "base": "Base64 - ",
+    "jwt": "JWT RFC - ",
+    "jws": "JWS RFC - ",
+    "jwe": "JWE RFC - ",
+    "best-practice": "JWT best practice RFC - ",
+    "cookies": "Cookies - "
   }
 }
