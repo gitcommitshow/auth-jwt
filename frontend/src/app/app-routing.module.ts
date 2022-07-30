@@ -68,6 +68,10 @@ const routes: Routes = [
     loadChildren: () => import('./reference/reference.module').then(mod => mod.ReferenceModule),
   },
   {
+    path: 'authorize',
+    loadChildren: () => import('./login/login.module').then(mod => mod.LoginModule),
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },

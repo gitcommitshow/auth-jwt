@@ -40,13 +40,15 @@
         display: flex;
         align-items: center;
 
-        a {
+        button {
             font-size: 14px;
             font-weight: bold;
             font-stretch: normal;
             font-style: normal;  
             font-style: oblique;
             color: #1a2035;
+            border: none;
+            background: transparent;
             text-decoration: none;
         }
 

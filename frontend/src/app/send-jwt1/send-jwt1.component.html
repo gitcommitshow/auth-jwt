@@ -4,7 +4,7 @@
 
 <hr>
 
-<div class="rectangle">
+<div *ngIf="successToken" class="rectangle">
         <img src="assets/images/icon-check-square.png"/>
         <span>{{ "send-jwt1.authenticated" | transloco | uppercase }}</span>
 </div>
@@ -12,14 +12,15 @@
 <div class="rectangle1">
     <h1>{{ "send-jwt1.request" | transloco }}</h1>
     <div class="box">
-        <a href="#" class="font-grey">{{ "send-jwt1.request1" | transloco | uppercase }}</a>
+        <button (click)="sendJwtThroughRequestParameter()" class="font-grey">{{ "send-jwt1.request1" | transloco | uppercase }}</button>
         <img src="assets/images/icon-arrow-right.svg"/>
     </div>
 
     <p class="font-grey">{{ "send-jwt1.request2" | transloco}}</p>
 
-    <div class="box1">
-
+    <div class="box1" style="margin-bottom: 20px;">
+      <code>
+      {{ "send-jwt1.code" | transloco }}</code>
     </div>
 
     <a class="query" target="_blank" href="#">{{ "send-jwt1.queryParameter" | transloco}}</a>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StepService } from '../shared/services/step.service';
+import { DemoService } from '../shared/services/demo.service';
 
 @Component({
   selector: 'app-send-jwt2',
@@ -9,14 +10,30 @@ import { StepService } from '../shared/services/step.service';
 })
 export class SendJwt2Component implements OnInit {
 
+  token: any | null
+
   constructor(
     private router : Router,
+    private demoService : DemoService,
     private stepService: StepService
   ) { 
     this.stepService.setStep(8)
   }
 
   ngOnInit(): void {
+    var outToken : any = localStorage.getItem('token')
+    this.token = outToken
+  }
+
+  sendJwtThroughBody(value: string){
+    this.token = value
+    this.demoService.remote().postFromBody(value).subscribe({
+      next: (success: any)=>{
+        console.log('yes')
+      }, error: (error: any) => {
+        console.error('error:', error);
+      },
+    })
   }
 
   backStep() {
