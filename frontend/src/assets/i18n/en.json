@@ -133,7 +133,8 @@
     "request2": "In this request, we sent token via request URI parameters",
     "queryParameter": "Read about standards to follow while sending token via URI Query Parameter",
     "secureWay": "Let's learn about more secure ways to send the token to the authorization server.",
-    "body": "Next: Send token in form body"
+    "body": "Next: Send token in form body",
+    "code": "GET /demo/protected-endpoint?<b>access_token</b>=mF_9.B5f-4.1JqM HTTP/1.1"
   },
 
   "send-jwt2": {
@@ -163,7 +164,9 @@
     "errorCodes": "Error Codes:",
     "queryParameter": "Read about standards to send token via headers",
     "body": "Next: Sending token in cookies",
-    "requestHeader": "send token to request header"
+    "requestHeader": "send token to request header",
+    "openBracket": "{",
+    "closeBracket": "}"
   },
   "send-jwt4": {
     "introduction": "2. Send JWT to backend with request to access to resources",

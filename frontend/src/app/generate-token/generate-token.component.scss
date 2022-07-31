@@ -33,7 +33,8 @@
     color: #7292ff;
     display: flex;
     align-items: center;
-
+    -webkit-appearance : none
+    
     span {
         width: 0; 
         height: 0; 
@@ -47,10 +48,12 @@
 .rectangle-1{
     width: 668px;
     height: 110px;
-    padding: 17px 397px 72px 24px;
+    padding: 17px 17px;
+    font-weight: bold;
     border-radius: 6px;
     border: solid 1px #3a3f51;
     background-color: #272f48;
+    color: #fff
 }
 .data1 {
     font-family: Helvetica;

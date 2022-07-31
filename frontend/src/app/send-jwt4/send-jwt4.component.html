@@ -18,30 +18,30 @@
     
     <p class="font-grey">
         <span>1.</span>
-        <a href="#">{{"send-jwt4.step1" | transloco}}
+        <button (click)="getAuthorizePage()">{{"send-jwt4.step1" | transloco}}
             <img src="assets/images/icon-arrow-right.svg" alt="">
-        </a>
+        </button>
     </p>
 
     <p class="font-grey">
         <span>2.</span>
-        <a href="#">{{"send-jwt4.step2" | transloco}}
+        <button (click)="getProtectedUserData()">{{"send-jwt4.step2" | transloco}}
             <img src="assets/images/icon-arrow-right.svg" alt="">
-        </a>
+        </button>
     </p>
 
     <p class="font-grey">
         <span>3.</span>
-        <a href="#">{{"send-jwt4.step3" | transloco}}
+        <button (click)="getUser()">{{"send-jwt4.step3" | transloco}}
             <img src="assets/images/icon-arrow-right.svg" alt="">
-        </a>
+        </button>
     </p>
 
     <p class="font-grey">
         <span>4.</span>
-        <a href="#">{{"send-jwt4.step4" | transloco}}
+        <button (click)="logOut()">{{"send-jwt4.step4" | transloco}}
         <img src="assets/images/icon-arrow-right.svg" alt="">
-        </a>
+        </button>
     </p>
     
     <a class="query" target="_blank" href="#">{{ "send-jwt4.queryParameter" | transloco}}</a>

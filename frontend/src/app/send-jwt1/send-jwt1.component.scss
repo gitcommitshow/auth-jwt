@@ -40,12 +40,13 @@
         display: flex;
         align-items: center;
 
-        a {
+        button {
             font-size: 13px;
             font-weight: bold;
             font-stretch: normal;
             font-style: normal;
-            letter-spacing: 0.13px;
+            border: none;
+            background: transparent;
             color: #2a2f44;
             text-decoration: none;
         }

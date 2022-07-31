@@ -11,9 +11,12 @@
 
 <div class="rectangle1">
     <h1>{{ "send-jwt2.request" | transloco }}</h1>
-    <div class="box">
-        <a href="#" class="font-grey">{{ "send-jwt2.request1" | transloco | uppercase }}</a>
-    </div>
+    <form #bodyForm="ngForm" (ngSubmit)="sendJwtThroughBody(bodyForm.value)">
+      <div class="box">
+        <input type="hidden" [(ngModel)]="token" name="access_token">
+          <button type="submit"  class="font-grey">{{ "send-jwt2.request1" | transloco | uppercase }}</button>
+      </div>
+    </form>
     <div class="font-grey flex-column inputParamter">
         <span>{{ "send-jwt2.inputParameter" | transloco }}</span>
         <span>{{ "send-jwt2.contentType" | transloco }}</span>
