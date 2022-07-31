@@ -8,13 +8,13 @@
 </p>
 
 <form #postForm="ngForm" (ngSubmit)="onCreateToken(postForm.value)">
-    <select ngModel name="algo" class="rectangle">
-        <option selected>HS256</option>
-        <option>RS256</option>
+    <select [(ngModel)]="algo" name="algo" class="rectangle">
+        <option>HS256</option>
+        <option [selected]="true">RS256</option>
         <option>ES256</option>
     </select>
 
-    <p  class="font-grey algo">{{"generate-token.data" | transloco}}</p>
+    <p class="font-grey algo">{{"generate-token.data" | transloco}}</p>
 
     <textarea [(ngModel)]="payloadValue" name="payload" class="rectangle-1 data1"></textarea>
 
@@ -32,7 +32,7 @@
 
     <div class="row">
         <div class="col-auto text-end">
-        <button type="submit" (click)="nextStep()" class="btn btn-warning mt-5" innerHTML="{{ 'generate-token.generateToken' | transloco }}"></button>
+        <button type="submit" class="btn btn-warning mt-5" innerHTML="{{ 'generate-token.generateToken' | transloco }}"></button>
         </div>
     </div>
 </form>

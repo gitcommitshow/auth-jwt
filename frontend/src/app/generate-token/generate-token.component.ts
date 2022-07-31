@@ -11,6 +11,7 @@ import { StepService } from '../shared/services/step.service';
 export class GenerateTokenComponent implements OnInit {
 
   payloadValue = '{ "data" : "We raised series A" }'
+  algo ="RS256"
 
   @Input() token = ""
   
@@ -24,10 +25,12 @@ export class GenerateTokenComponent implements OnInit {
   }
 
   onCreateToken(postData: {algo: string, payload: string}){
+      console.log("Creating token for: "+JSON.stringify(postData));
       this.jwtService.post(postData).subscribe({
         next: (success: any)=>{
           this.token = success.token
-          localStorage.setItem('token', this.token)
+          localStorage.setItem('token', this.token);
+          this.nextStep();
         }, error: (error: any) => {
           console.error('error:', error);
         },
@@ -35,7 +38,6 @@ export class GenerateTokenComponent implements OnInit {
   }
 
   nextStep(){
-    this.onCreateToken
     this.stepService.setStep(5)
     this.router.navigate(['generate-token1'])
   }
