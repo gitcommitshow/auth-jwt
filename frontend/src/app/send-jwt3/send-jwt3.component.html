@@ -4,9 +4,14 @@
 
 <hr>
 
-<div class="rectangle">
+<div *ngIf="successText" class="rectangle">
         <img src="assets/images/icon-check-square.png"/>
-        <span>{{ "send-jwt3.authenticated" | transloco | uppercase }}</span>
+        <span>{{ successText }}</span>
+</div>
+
+<div *ngIf="errorText" class="rectangle error">
+  <img src="assets/images/icon-error.svg"/>
+  <span>{{ errorText | transloco | uppercase }}</span>
 </div>
 
 <div class="rectangle1">
@@ -17,18 +22,13 @@
     <div class="innerRectangle">
         <div class="sampleContent">
           <pre id="responseText">
-            <b>Sample Response</b>
-            HTTP/1.1 200 OK
-            Content-Type: application/json;charset=UTF-8
-            Cache-Control: no-store
-            Pragma: no-cache
-            
-            {{'send-jwt3.openBracket' | transloco}}
-            "access_token":"mF_9.B5f-4.1JqM",
-            "token_type":"Bearer",
-            "expires_in":3600,
-            "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA"
-            {{ 'send-jwt3.closeBracket' | transloco}}
+            <b>Sample Request</b>
+            Request URL: /demo/protected/api/bearer
+            Request Method: GET
+
+            --Headers--
+            Content-Type: application/json
+            Authorization: "Bearer thetoken"
           </pre>
         </div>
         <a href="#" class="edit">

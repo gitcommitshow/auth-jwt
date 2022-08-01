@@ -4,9 +4,14 @@
 
 <hr>
 
-<div class="rectangle">
-        <img src="assets/images/icon-check-square.png"/>
-        <span>{{ "send-jwt4.authenticated" | transloco | uppercase }}</span>
+<div *ngIf="successText" class="rectangle">
+    <img src="assets/images/icon-check-square.png"/>
+    <span>{{ successText }}</span>
+</div>
+
+<div *ngIf="errorText" class="rectangle error">
+<img src="assets/images/icon-error.svg"/>
+<span>{{ errorText | transloco | uppercase }}</span>
 </div>
 
 <div class="rectangle1">

@@ -14,6 +14,13 @@ const upload = multer();
 
 router.get('/protected', DemoAuthService.isAuthenticated, function(req, res) {
     var token = req.query.access_token;
+    if(req.wantsJson){
+        return res.status(200).send({
+            token: token,
+            statusText: "User authenticated successfully",
+            statusCode: "Authentication_Success"
+         })
+    }
     res.render('demo/home', {
         token: token,
         statusText: "User authenticated successfully",
@@ -24,6 +31,13 @@ router.get('/protected', DemoAuthService.isAuthenticated, function(req, res) {
 router.post('/protected/web-form', DemoAuthService.isAuthenticated, function(req, res) {
     console.log(req.get('Content-Type'));
     var token = req.body.access_token;
+    if(req.wantsJson){
+        return res.status(200).send({
+            token: token,
+            statusText: "User authenticated successfully",
+            statusCode: "Authentication_Success"
+         })
+    }
     res.render('demo/tokenInBody', {
         token: token,
         statusText: "User authenticated successfully",

@@ -12,6 +12,9 @@ export class SendJwt2Component implements OnInit {
 
   token: any | null
 
+  successText = "";
+  errorText = "";
+
   constructor(
     private router : Router,
     private demoService : DemoService,
@@ -26,12 +29,15 @@ export class SendJwt2Component implements OnInit {
   }
 
   sendJwtThroughBody(value: string){
-    this.token = value
-    this.demoService.remote().postFromBody(value).subscribe({
+    this.demoService.remote().sendTokenViaWebFormBody(value).subscribe({
       next: (success: any)=>{
-        console.log('yes')
+        console.log('Authenticated')
+        this.errorText = "";
+        this.successText = success && success.statusText ? success.statusText : "You have been successfully authenticated"
       }, error: (error: any) => {
         console.error('error:', error);
+        this.successText = "";
+        this.errorText = error && error.statusText ? error.statusText : "Authentication failed"
       },
     })
   }

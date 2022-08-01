@@ -42,6 +42,8 @@ app.use(function(req, res, next){
     } else  {
         req.wantsJson = true;
     }
+    console.debug(new Date().toString() + "Requested :: ", req.method, req.url);
+    console.debug(req.headers)
     next();
 })
 

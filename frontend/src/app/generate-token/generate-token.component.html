@@ -2,10 +2,10 @@
 
 <hr>
 
-<p class="justify-content-sm-between d-flex algo">
+<div class="justify-content-sm-between d-flex algo">
     <span>{{ "generate-token.algorithm" | transloco }}</span>
     <a target="_blank" href="https://tools.ietf.org/html/rfc7518#section-3">Recommend algorithms</a>
-</p>
+</div>
 
 <form #postForm="ngForm" (ngSubmit)="onCreateToken(postForm.value)">
     <select [(ngModel)]="algo" name="algo" class="rectangle">
@@ -13,8 +13,8 @@
         <option [selected]="true">RS256</option>
         <option>ES256</option>
     </select>
-
-    <p class="font-grey algo">{{"generate-token.data" | transloco}}</p>
+    <br/>
+    <div class="font-grey algo">{{"generate-token.data" | transloco}}</div>
 
     <textarea [(ngModel)]="payloadValue" name="payload" class="rectangle-1 data1"></textarea>
 

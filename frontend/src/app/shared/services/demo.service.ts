@@ -22,18 +22,18 @@ export class DemoService {
     }
     let httpRequest = this.http
     return {
-      getFromRequestParameter(accessToken: any): Observable<any> {
+      sendTokenViaRequestParam(accessToken: any): Observable<any> {
         let url = REMOTE_SERVER+ENDPOINTS.protected
         let params = {
           access_token: accessToken
         }
         return httpRequest.get<any>(url, {params: params});
       },
-      postFromBody(body: any): Observable<any> {
+      sendTokenViaWebFormBody(body: any): Observable<any> {
         let url = REMOTE_SERVER+ENDPOINTS.webForm
-        return httpRequest.post<any>(url, body.access_token);
+        return httpRequest.post<any>(url, body);
       },
-      getFromRequestHeader(headers: any): Observable<any> {
+      sendTokenViaRequestHeader(headers: any): Observable<any> {
         let url = REMOTE_SERVER+ENDPOINTS.bearer
         return httpRequest.get<any>(url, {headers: headers});
       },
@@ -41,7 +41,7 @@ export class DemoService {
         let url = REMOTE_SERVER+ENDPOINTS.login
         return httpRequest.post<any>(url, body);
       },
-      webCookies(): Observable<any> {
+      sendTokenViaWebCookies(): Observable<any> {
         let url = REMOTE_SERVER+ENDPOINTS.webCookies
         return httpRequest.get<any>(url);
       },

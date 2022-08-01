@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DemoService } from '../shared/services/demo.service';
@@ -17,16 +18,26 @@ export class SendJwt1Component implements OnInit {
   ) { 
     this.stepService.setStep(7)
   }
+  
   ngOnInit(): void {
   }
-  successToken = false
+
+  successText = "";
+  errorText = "";
+
   sendJwtThroughRequestParameter(){
     var myToken = localStorage.getItem('token')
-    this.demoService.remote().getFromRequestParameter(myToken).subscribe({
+    this.demoService.remote().sendTokenViaRequestParam(myToken).subscribe({
       next: (success: any)=>{
-        this.successToken = true
-      }, error: (error: any) => {
-        console.error('error:', error);
+        console.log("success")
+        this.errorText = ""
+        this.successText = success && success.statusText ? success.statusText : "Authenticated"
+      },
+      complete: () => console.log("Sent token in request parameter"),
+      error: (error: HttpErrorResponse) => {
+        this.successText = "";
+        this.errorText = error.statusText || "Unsuccessful"
+        console.error('error:', error)
       },
     })
   }

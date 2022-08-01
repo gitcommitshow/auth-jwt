@@ -48,6 +48,12 @@ function isAuthenticated(req, res, next) {
     }
     JwtService.verifyToken(tokenExchange.token, function(err, decodedToken){
         if (err) {
+            if(req.wantsJson){
+                return res.status(401).send({ 
+                    statusText: "Authentication failed. Token not verified.",
+                    statusCode: "Authentication_Failure" 
+                })
+            }
             return res.status(401).send(`
                     <b>Not Authenticated! </b><br/><code>${JSON.stringify(err)}</code>
                     <br/><a href="/">Go Home</a><br/>

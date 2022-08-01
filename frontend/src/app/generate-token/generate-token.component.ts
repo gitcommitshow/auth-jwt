@@ -11,7 +11,9 @@ import { StepService } from '../shared/services/step.service';
 export class GenerateTokenComponent implements OnInit {
 
   payloadValue = '{ "data" : "We raised series A" }'
-  algo ="RS256"
+  //TODO Update payload to {"data":"This is Pradeep with id xyz and he can access files owned by xyz","iat":1646252217,"exp":1646338617,"aud":"supertokens.com","iss":"Supertokens Inc","sub":"auth@supertokens.com"}
+
+  algo ="HS256"
 
   @Input() token = ""
   

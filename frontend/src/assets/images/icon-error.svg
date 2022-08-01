@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="640" height="640" viewBox="0 0 640 640">
+  <metadata><?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c142 79.160924, 2017/07/13-01:06:39        ">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description rdf:about=""/>
+   </rdf:RDF>
+</x:xmpmeta>
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                           
+<?xpacket end="w"?></metadata>
+<defs>
+    <style>
+      .cls-1 {
+        fill: #226122;
+        filter: url(#filter);
+      }
+
+      .cls-2, .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: #0ec00e;
+        filter: url(#filter-2);
+      }
+
+      .cls-4 {
+        fill-rule: evenodd;
+      }
+    </style>
+    <filter id="filter" x="6" y="6" width="628" height="628" filterUnits="userSpaceOnUse">
+      <feFlood result="flood" flood-color="#b43a3a"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+    <filter id="filter-2" x="35" y="39" width="562" height="562" filterUnits="userSpaceOnUse">
+      <feFlood result="flood" flood-color="#f55"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <circle class="cls-1" cx="320" cy="320" r="314"/>
+  <circle id="Ellipse_1_Kopie" data-name="Ellipse 1 Kopie" class="cls-2" cx="317" cy="320" r="290"/>
+  <circle id="Ellipse_1_Kopie_2" data-name="Ellipse 1 Kopie 2" class="cls-3" cx="316" cy="320" r="281"/>
+  <path id="Abgerundetes_Rechteck_1" data-name="Abgerundetes Rechteck 1" class="cls-4" d="M217.023,370.289L369.8,217.467c19.147-19.153,46.691-22.654,61.521-7.821s11.329,42.385-7.818,61.538L270.725,424.006c-19.147,19.153-46.691,22.654-61.52,7.82S197.876,389.441,217.023,370.289Z"/>
+  <path id="Abgerundetes_Rechteck_1_Kopie" data-name="Abgerundetes Rechteck 1 Kopie" class="cls-4" d="M270.912,217.051L423.949,370.088c19.179,19.18,22.685,46.77,7.831,61.624s-42.445,11.348-61.624-7.831L217.119,270.844c-19.18-19.179-22.686-46.769-7.831-61.624S251.732,197.872,270.912,217.051Z"/>
+</svg>

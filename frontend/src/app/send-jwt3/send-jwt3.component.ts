@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StepService } from '../shared/services/step.service';
 import { DemoService } from '../shared/services/demo.service'
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-send-jwt3',
@@ -10,6 +10,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./send-jwt3.component.scss']
 })
 export class SendJwt3Component implements OnInit {
+
+  successText = "";
+  errorText = "";
 
   constructor(
     private router: Router,
@@ -27,8 +30,18 @@ export class SendJwt3Component implements OnInit {
     var headers = new HttpHeaders()
     .set("Content-Type", "application\/json")
     .set("Authorization", "Bearer " + token)
-    this.demoService.remote().getFromRequestHeader(headers).subscribe((response)=>{
-      console.log(response)
+    this.demoService.remote().sendTokenViaRequestHeader(headers).subscribe({
+      next: (success: any)=>{
+        console.log("success")
+        this.errorText = ""
+        this.successText = JSON.stringify(success, null, 4)
+      },
+      complete: () => console.log("Sent token in header"),
+      error: (error: HttpErrorResponse) => {
+        this.successText = ""
+        this.errorText = error.statusText || "Unsuccessful"
+        console.error('error:', error)
+      }
     })
   }
 

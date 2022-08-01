@@ -1,4 +1,4 @@
-import { HttpHeaders } from '@angular/common/http';
+import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DemoService } from '../shared/services/demo.service';
@@ -10,6 +10,9 @@ import { StepService } from '../shared/services/step.service';
   styleUrls: ['./send-jwt4.component.scss']
 })
 export class SendJwt4Component implements OnInit {
+
+  successText = "";
+  errorText = "";
 
   constructor(
     private router : Router,
@@ -27,8 +30,18 @@ export class SendJwt4Component implements OnInit {
   }
 
   getProtectedUserData(){
-    this.demoService.remote().webCookies().subscribe((success)=>{
-      console.log(success)
+    this.demoService.remote().webCookies().subscribe({
+      next: (success: any)=>{
+        console.log("success")
+        this.errorText = ""
+        this.successText = JSON.stringify(success, null, 4)
+      },
+      complete: () => console.log("Sent token in header"),
+      error: (error: HttpErrorResponse) => {
+        this.successText = ""
+        this.errorText = error.statusText || "Unsuccessful"
+        console.error('error:', error)
+      }
     })
   }
 
