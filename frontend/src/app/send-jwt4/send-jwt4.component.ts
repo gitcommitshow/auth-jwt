@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DemoService } from '../shared/services/demo.service';
 import { StepService } from '../shared/services/step.service';
+import { environment } from '../../environments/environment'
 
 @Component({
   selector: 'app-send-jwt4',
@@ -11,6 +12,7 @@ import { StepService } from '../shared/services/step.service';
 })
 export class SendJwt4Component implements OnInit {
 
+  AUTH_SERVER = `${environment.server}`;
   successText = "";
   errorText = "";
 
@@ -26,17 +28,18 @@ export class SendJwt4Component implements OnInit {
   }
 
   getAuthorizePage(){
-    this.router.navigate(['authorize'])
+    window.open(this.AUTH_SERVER+"/demo/authorize", "_blank");
+    // this.router.navigate(['authorize'])
   }
 
   getProtectedUserData(){
-    this.demoService.remote().webCookies().subscribe({
+    this.demoService.remote().sendTokenViaWebCookies().subscribe({
       next: (success: any)=>{
         console.log("success")
         this.errorText = ""
         this.successText = JSON.stringify(success, null, 4)
       },
-      complete: () => console.log("Sent token in header"),
+      complete: () => console.log("Sent token in cookies"),
       error: (error: HttpErrorResponse) => {
         this.successText = ""
         this.errorText = error.statusText || "Unsuccessful"
@@ -46,15 +49,31 @@ export class SendJwt4Component implements OnInit {
   }
 
   getUser(){
-    this.demoService.remote().getUser().subscribe((user)=>{
-      console.log(user)
+    var token: any = localStorage.getItem('token');
+    var headers = new HttpHeaders()
+    .set("Content-Type", "application\/json")
+    if(token) headers.set("Authorization", token);
+    this.demoService.remote().getUserViaHeaderOrCookies(headers).subscribe({
+      next: (success: any)=>{
+        console.log("success")
+        this.errorText = ""
+        this.successText = JSON.stringify(success, null, 4)
+      },
+      complete: () => console.log("Sent token in header/cookies"),
+      error: (error: HttpErrorResponse) => {
+        this.successText = ""
+        this.errorText = error.statusText || "Unsuccessful"
+        console.error('error:', error)
+      }
     })
   }
 
   logOut(){
-    this.demoService.remote().logOut().subscribe(success=>{
-      console.log(success)
-    })
+    let popup = window.open(this.AUTH_SERVER+"/demo/logout", "_blank");
+    setTimeout(() => popup?.close(), 1000);
+    // this.demoService.remote().logOut().subscribe(success=>{
+    //   console.log(success)
+    // })
   }
 
   backStep() {

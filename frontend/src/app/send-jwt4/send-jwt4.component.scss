@@ -1,6 +1,6 @@
 .rectangle {
     width: 667px;
-    height: 53px;
+    height: fit-content;
     padding: 16.5px 223.1px 15.5px 19.9px;
     border-radius: 12px;
     border: solid 1px rgba(0, 195, 15, 0.75);
@@ -18,6 +18,11 @@
     font-stretch: normal;
     font-style: normal
     }
+}
+
+.rectangle.error {
+    border: solid 1px rgba(255, 5, 5, 0.75);
+    background-color: rgba(209, 66, 31, 0.15);
 }
 
 .rectangle1 {   

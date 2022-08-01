@@ -1,9 +1,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
+<h1>Welcome to the authorization server</h1>
 <h2>Sign in</h2>
 <form id="login-form" action="/demo/oauth/token" method="POST">
     <input value="user" name="username" type="text" placeholder="Username e.g. user"> <br/>
     <input value="pass" name="password" type="password" placeholder="Password e.g. pass"> <br/>
     <input type="submit" value="Login"> <br/><br/>
+    <p>After successful login, a cookie <code>access_token</code> will be set in your browser. 
+        <br/>So next time, when you make a request to authorization server, <br/>this cookie <code>access_token</code> will be sent to the auth server.</p>
 </form>
 <script>
 // Cross-origin communication about the login info

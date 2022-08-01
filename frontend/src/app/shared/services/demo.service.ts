@@ -38,18 +38,20 @@ export class DemoService {
         return httpRequest.get<any>(url, {headers: headers});
       },
       login(body: any): Observable<any> {
+        //NOT TO BE USED. Otherwise, cookies won't set correctly
         let url = REMOTE_SERVER+ENDPOINTS.login
         return httpRequest.post<any>(url, body);
       },
       sendTokenViaWebCookies(): Observable<any> {
         let url = REMOTE_SERVER+ENDPOINTS.webCookies
-        return httpRequest.get<any>(url);
+        return httpRequest.get<any>(url, { withCredentials: true });
       },
-      getUser(): Observable<any> {
+      getUserViaHeaderOrCookies(headers: any): Observable<any> {
         let url = REMOTE_SERVER+ENDPOINTS.getUser
-        return httpRequest.get<any>(url);
+        return httpRequest.get<any>(url, { headers: headers, withCredentials: true });
       },
       logOut(): Observable<any> {
+        //NOT TO BE USED. Otherwise, cookies won't reset correctly
         let url = REMOTE_SERVER+ENDPOINTS.logOut
         return httpRequest.get<any>(url);
       }

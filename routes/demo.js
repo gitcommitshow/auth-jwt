@@ -111,16 +111,16 @@ router.get('/protected/web-cookies', DemoAuthService.isAuthenticated, function(r
 
 router.get('/user', DemoAuthService.isAuthenticated, function(req, res) {
     if (req.wantsJson) {
-        return res.send(
-            `<pre>
-            { 
-                success: true, 
-                user: ${JSON.stringify(req.user)}
-            }</pre>
-            <a href="/demo/logout">Logout</a>
-            `)
+        return res.status(200).send({ success: true, user: req.user, statusText: "Authorized" })
     }
-    return res.send({ success: true, user: req.user })
+    res.send(
+        `<pre>
+        { 
+            success: true, 
+            user: ${JSON.stringify(req.user)}
+        }</pre>
+        <a href="/demo/logout">Logout</a>
+        `)
 })
 
 router.get('/logout', [], function(req, res) {

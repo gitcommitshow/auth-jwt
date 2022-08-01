@@ -125,7 +125,7 @@
   }, 
 
   "send-jwt1": {
-    "introduction": "2. Send JWT to backend with request to access to resources",
+    "introduction": "2. Send JWT to backend requesting protected resources",
     "ways": "There are 4 ways you can send JWT to backend",
     "authenticated": "you have been successfully authenticated",
     "request": "Send JWT in request parameter",
@@ -138,7 +138,7 @@
   },
 
   "send-jwt2": {
-    "introduction": "2. Send JWT to backend with request to access to resources",
+    "introduction": "2. Send JWT to backend requesting protected resources",
     "ways": "There are 4 ways you can send JWT to backend",
     "authenticated": "you have been successfully authenticated",
     "request": "Send token in form body",
@@ -152,7 +152,7 @@
   },
 
   "send-jwt3": {
-    "introduction": "2. Send JWT to backend with request to access to resources",
+    "introduction": "2. Send JWT to backend requesting protected resources",
     "ways": "There are 4 ways you can send JWT to backend",
     "authenticated": "you have been successfully authenticated",
     "request": "Send token in request header",
@@ -169,7 +169,7 @@
     "closeBracket": "}"
   },
   "send-jwt4": {
-    "introduction": "2. Send JWT to backend with request to access to resources",
+    "introduction": "2. Send JWT to backend requesting protected resources",
     "ways": "There are 4 ways you can send JWT to backend",
     "request": "Send token via cookies",
     "request1": "Anything stored in cookies is sent with the request by default. So there's nothing special that you need to do in this case as long as the backend server had set the cookie header when it generted the token.",
@@ -178,7 +178,7 @@
     "step2": "Get protected user data",
     "step3" : "User data link accessible via token in authorization header with fall back to cookies",
     "step4" : "Logout",
-    "queryParameter": "Read about standards to send token via headers",
+    "queryParameter": "Read about securely storing cookies",
     "body": "Next: Choosing the best method",
     "authenticated": "you have been successfully authenticated"
   },

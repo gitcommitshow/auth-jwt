@@ -5,13 +5,11 @@
 <hr>
 
 <div *ngIf="successText" class="rectangle">
-    <img src="assets/images/icon-check-square.png"/>
-    <span>{{ successText }}</span>
+    <pre>{{ successText }}</pre>
 </div>
 
 <div *ngIf="errorText" class="rectangle error">
-<img src="assets/images/icon-error.svg"/>
-<span>{{ errorText | transloco | uppercase }}</span>
+    <span>{{ errorText | transloco | uppercase }}</span>
 </div>
 
 <div class="rectangle1">
@@ -48,8 +46,8 @@
         <img src="assets/images/icon-arrow-right.svg" alt="">
         </button>
     </p>
-    
-    <a class="query" target="_blank" href="#">{{ "send-jwt4.queryParameter" | transloco}}</a>
+    <br/>
+    <a class="query" target="_blank" href="https://datatracker.ietf.org/doc/html/rfc6265">{{ "send-jwt4.queryParameter" | transloco}}</a>
 
 </div>
 
