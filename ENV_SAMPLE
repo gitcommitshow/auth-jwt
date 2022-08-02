@@ -1,0 +1,5 @@
+# Sample .env file
+# Change the values and save it as .env
+FRONTEND_URL="http://localhost:4200"
+API_URL="http://localhost:3000"
+API_PORT=3000

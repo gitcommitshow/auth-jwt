@@ -6,7 +6,7 @@ In this lesson, we will demo a typical authentication workflow for web using coo
 <script>
     let windowObjectReference = null;
     let previousUrl = null;
-    const BASE_URL = 'http://localhost:3000'
+    const BASE_URL = "<%= process.env.API_URL %>"
     const openSignInWindow = function(url, name) {
         // Opens a new popup window and registers a message listner to get data from the popup window to this window
         window.removeEventListener('message', receiveMessage);

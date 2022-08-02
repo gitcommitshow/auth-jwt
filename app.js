@@ -1,7 +1,8 @@
-const express = require('express')
+const express = require('express');
 const path = require("path");
-const cookieParser = require('cookie-parser')
-const cors = require('cors')
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+require('dotenv').config()
 
 // Some info from package.json
 const package_json = require('./package.json')
@@ -11,7 +12,7 @@ const AUTHOR_URL = package_json.author && package_json.author.url ? package_json
 const ISSUE_TRACKER = package_json.bugs;
 NEW_ISSUE_URL = ISSUE_TRACKER ? `${ISSUE_TRACKER.replace(/\/$/, "")}/new` : '';
 
-const PORT = 3000
+const PORT = process.env.API_PORT || 3000;
 
 var app = express(module.exports);
 app.disable('x-powered-by');
@@ -52,7 +53,7 @@ app.use(function(req, res, next){
 //Using explicit header settings for cors instead of cors package to make it easier to understand what exaxtly we are doing
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || 'http://localhost:4200');
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     // Request headers you wish to allow
