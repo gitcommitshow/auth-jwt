@@ -26,20 +26,20 @@
 }
 
 .rectangle1 {   
-    width: 668px;
-    height: 529px;
+    width: auto;
+    height: fit-content;
     margin-top: 34px;
-    padding: 26.5px 4px 33.5px 26.9px;
+    padding: 26.5px 26.5px 33.5px 26.9px;
     border-radius: 12px;
     border: dashed 1px #505255;
     p {
         margin: 22px 0px 0px 0;
         font-family: Helvetica;
         font-size: 18px;
-        font-weight: bold;
+        // font-weight: bold;
         font-stretch: normal;
         font-style: normal;
-        color: #7292ff;
+        // color: #7292ff;
 
         span {
             color: #fff;

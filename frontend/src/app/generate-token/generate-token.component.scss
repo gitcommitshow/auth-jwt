@@ -19,8 +19,8 @@
 }
 
 .rectangle {
-    width: 101px;
-    height: 40px;
+    width: fit-content;
+    height: auto;
     padding: 9px 12px 10px;
     border-radius: 6px;
     border: solid 1px #3a3f51;

@@ -19,15 +19,15 @@
 
     <div class="innerRectangle">
         <div class="sampleContent">
-          <pre id="responseText">
-            <b>Sample Request</b>
-            Request URL: /demo/protected/api/bearer
-            Request Method: GET
-
-            --Headers--
-            Content-Type: application/json
-            Authorization: "Bearer thetoken"
-          </pre>
+          <code id="responseText">
+            <b>Sample Request</b><br/>
+            Request URL: /demo/protected/api/bearer<br/>
+            Request Method: GET<br/>
+            <br/>
+            --Headers--<br/>
+            Content-Type: application/json<br/>
+            Authorization: "Bearer thetoken"<br/>
+          </code>
         </div>
         <a href="#" class="edit">
             Edit
@@ -40,12 +40,12 @@
         </button>
     </div>
     <div class="font-grey flex-column inputParamter">
-        <a target="_blank" href="#">{{ "send-jwt3.errorCodes" | transloco}}</a>
-        <span>{{ "send-jwt3.invalidRequest" | transloco }}</span>
-        <span>{{ "send-jwt3.invalidToken" | transloco }}</span>
-        <span>{{ "send-jwt3.scope" | transloco}}</span>
+        <a target="_blank" href="https://www.rfc-editor.org/rfc/rfc6750.html#section-3.1">{{ "send-jwt3.errorCodes" | transloco}}</a> 
+        <code> {{ "send-jwt3.invalidRequest" | transloco }} </code>
+        <code> {{ "send-jwt3.invalidToken" | transloco }} </code>
+        <code> {{ "send-jwt3.scope" | transloco}} </code>
     </div>
-    <a class="query" target="_blank" href="#">{{ "send-jwt3.queryParameter" | transloco}}</a>
+    <a class="query" target="_blank" href="https://www.rfc-editor.org/rfc/rfc6750.html#section-2.1">{{ "send-jwt3.queryParameter" | transloco}}</a>
 
 </div>
 

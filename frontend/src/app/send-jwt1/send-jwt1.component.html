@@ -16,19 +16,18 @@
 
 <div class="rectangle1">
     <h1>{{ "send-jwt1.request" | transloco }}</h1>
-    <div class="box">
-        <button (click)="sendJwtThroughRequestParameter()" class="font-grey">{{ "send-jwt1.request1" | transloco | uppercase }}</button>
-        <img src="assets/images/icon-arrow-right.svg"/>
-    </div>
-
     <p class="font-grey">{{ "send-jwt1.request2" | transloco}}</p>
 
     <div class="box1" style="margin-bottom: 20px;">
       <code>
       {{ "send-jwt1.code" | transloco }}</code>
     </div>
-
-    <a class="query" target="_blank" href="#">{{ "send-jwt1.queryParameter" | transloco}}</a>
+    <div class="box">
+        <button (click)="sendJwtThroughRequestParameter()" class="font-grey">{{ "send-jwt1.request1" | transloco | uppercase }}</button>
+        <img src="assets/images/icon-arrow-right.svg"/>
+    </div>
+    <br/>
+    <a class="query" target="_blank" href="https://www.rfc-editor.org/rfc/rfc6750.html#section-2.3">{{ "send-jwt1.queryParameter" | transloco}}</a>
 
     <p class="font-grey">{{ "send-jwt1.secureWay" | transloco}}</p>
 </div>

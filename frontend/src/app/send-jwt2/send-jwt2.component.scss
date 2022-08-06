@@ -26,16 +26,16 @@
 }
 
 .rectangle1 { 
-    width: 668px;
-    height: 419px;
+    width: auto;
+    height: fit-content;
     margin-top: 34px;
-    padding: 26.5px 4px 33.5px 26.9px;
+    padding: 26.5px 26.5px 33.5px 26.9px;
     border-radius: 12px;
     border: dashed 1px #505255;
 
     .box {
-        width: 325.3px;
-        height: 58px;
+        width: fit-content;
+        height: auto;
         padding: 17px 20.3px 20px 20px;
         border-radius: 6px;
         box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.16);

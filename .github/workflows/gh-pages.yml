@@ -37,5 +37,5 @@ jobs:
       working-directory: ./frontend
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: dist/supertokens
+        publish_dir: dist/frontend
         enable_jekyll: true

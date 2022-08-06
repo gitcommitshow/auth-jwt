@@ -26,10 +26,10 @@
 }
 
 .rectangle1 { 
-    width: 668px;
-    height: 721px;
+    width: auto;
+    height: fit-content;
     margin-top: 34px;
-    padding: 26.5px 4px 33.5px 26.9px;
+    padding: 26.5px 26.5px 33.5px 26.9px;
     border-radius: 12px;
     border: dashed 1px #505255;
     .innerRectangle {
