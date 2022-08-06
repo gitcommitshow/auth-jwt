@@ -35,7 +35,7 @@ export class VerifyComponent implements OnInit {
             next: (successDecoded: any) => {
               console.debug('successDecoded:', successDecoded);
               if (successDecoded && successDecoded.decodedToken) {
-                this.jwtDecoded = JSON.stringify(successDecoded.decodedToken);
+                this.jwtDecoded = JSON.stringify(successDecoded.decodedToken, null, 4);
               }
             }, error: (error: any) => {
               console.error('error:', error);
