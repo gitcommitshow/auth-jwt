@@ -59,8 +59,7 @@
 <div class="card card-jwt my-2" *ngIf="decodeHeader">
   <div class="card-header">
     {{ "anatomy.decodedHeader" | transloco }}
-    <br>
-    {{ jwtHeaderDecoded }}
+    <pre>{{ jwtHeaderDecoded }}</pre>
   </div>
 </div>
 
@@ -82,8 +81,7 @@
 <div class="card card-jwt my-2" *ngIf="decodePayload">
   <div class="card-header">
     {{ "anatomy.decodedPayload" | transloco }}
-    <br>
-    {{ jwtPayloadDecoded }}
+    <pre>{{ jwtPayloadDecoded }}</pre>
   </div>
 </div>
 

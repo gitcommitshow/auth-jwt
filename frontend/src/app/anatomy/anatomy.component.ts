@@ -58,8 +58,8 @@ export class AnatomyComponent implements OnInit {
           this.jwtPayloadShort = `${this.jwtPayload.substring(0, 6)}...${this.jwtPayload.substring(this.jwtPayload.length-6, this.jwtPayload.length)}`;
           this.jwtSignature = tokenSplitted[2];
           this.jwtSignatureShort = `${this.jwtSignature.substring(0, 6)}...${this.jwtSignature.substring(this.jwtSignature.length-6, this.jwtSignature.length)}`;
-          this.jwtHeaderDecoded = window.atob(this.jwtHeader);
-          this.jwtPayloadDecoded = window.atob(this.jwtPayload);
+          this.jwtHeaderDecoded = JSON.stringify(JSON.parse(window.atob(this.jwtHeader)), null, 4);
+          this.jwtPayloadDecoded = JSON.stringify(JSON.parse(window.atob(this.jwtPayload)), null, 4);
         }
       }, error: (error: any) => {
         console.error('error:', error);
