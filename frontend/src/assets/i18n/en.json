@@ -144,10 +144,10 @@
     "request": "b. Send token in form body",
     "request1": "Click to send token in form body",
     "request2": "In this request, we will send token via form body",
-    "inputParameter": "Input parameter Name: access_token",
+    "inputParameter": "Request Body: { access_token: 'jwtstring'}",
     "contentType": "Content-Type: application/x-www-form-urlencoded",
     "queryParameter": "Read about standards to send token via form-encoded body parameters",
-    "secureWay": "There are other ways to send token to authorization server as well",
+    "secureWay": "This is a neat way to authenticate a request made via an html form. On the client side, just include access_token as hidden input. You'll receive this on your server where you can verify the token and take necessary actions accordingly. There are other ways to send token to authorization server as well",
     "body": "Next: Send token in request header"
   },
 
@@ -166,13 +166,14 @@
     "body": "Next: Send token via cookies",
     "requestHeader": "Send token via request header",
     "openBracket": "{",
-    "closeBracket": "}"
+    "closeBracket": "}",
+    "conclusion": "This is usually the recommended method to send JWT to backend in most use cases. Specially when you're dealing with REST APIs, you'd definitely want to choose this method. But, wait. Until now, we were talking in context of sending JWT for just one request. A real world use case(e.g. a web app) makes tonnes of requests to the backend. It requires us to store the JWT securely on the client side and then send it in all subsequent requests. Sure, you can store it anywhere you want on the client side and send via any of the previous 3 methods we discussed. But cookies are usually the most secure way to store such info for a web client. And if you store it in cookies, can you also just send this cookie to server as a way to verify user access? Yes."
   },
   "send-jwt4": {
     "introduction": "Send JWT to backend requesting protected resources",
     "ways": "There are 4 ways you can send JWT to backend",
     "request": "d. Send token via cookies",
-    "request1": "Anything stored in cookies is sent with the request by default. So there's nothing special that you need to do in this case as long as the backend server had set the cookie header when it generted the token.",
+    "request1": "When browser makes a request, anything stored in the browser's cookies is sent by default(only the cookies that are related to that particular request's domain). So there's nothing special that you need to do in this case as long as the backend server had set the cookie header when it generted the token.",
     "request2": "Let's see the complete authentication workflow in action using cookies",
     "step1": "Login to get the token",
     "step2": "Get protected user data",

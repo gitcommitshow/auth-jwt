@@ -17,17 +17,18 @@
 <div class="rectangle1">
     <h1>{{ "send-jwt2.request" | transloco }}</h1>
     <p class="font-grey">{{ "send-jwt2.request2" | transloco}}</p>
+    <div class="font-grey flex flex-column inputParamter">
+      <code>{{ "send-jwt2.inputParameter" | transloco }}</code>
+      <code>{{ "send-jwt2.contentType" | transloco }}</code>
+    </div>
     <form #bodyForm="ngForm" (ngSubmit)="sendJwtThroughBody(bodyForm.value)">
       <div class="box">
         <input type="hidden" [(ngModel)]="token" name="access_token">
-          <button type="submit"  class="font-grey">{{ "send-jwt2.request1" | transloco | uppercase }}</button>
+        <button type="submit"  class="font-grey">{{ "send-jwt2.request1" | transloco | uppercase }}</button>
       </div>
     </form>
-    <div class="font-grey flex flex-column inputParamter">
-        <code>{{ "send-jwt2.inputParameter" | transloco }}</code>
-        <code>{{ "send-jwt2.contentType" | transloco }}</code>
-        <a class="query" target="_blank" href="https://www.rfc-editor.org/rfc/rfc6750.html#section-2.2">{{ "send-jwt2.queryParameter" | transloco}}</a>
-    </div>
+    <br/>
+    <a class="query" target="_blank" href="https://www.rfc-editor.org/rfc/rfc6750.html#section-2.2">{{ "send-jwt2.queryParameter" | transloco}}</a>
 
     <p class="font-grey">{{ "send-jwt2.secureWay" | transloco}}</p>
 </div>
