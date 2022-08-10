@@ -3,6 +3,9 @@
 
 <hr>
 
+<div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+  {{errorMessage}}
+</div>
 <div class="card card-jwt my-5">
   <div class="card-header">
     <div class="row">
@@ -11,17 +14,29 @@
         {{ "anatomy.tokenNew" | transloco | uppercase }}
       </div>
       <div class="col-auto">
-        <button type="button" class="btn btn-sm btn-outline-primary btn-jwt">
-          {{ "anatomy.edit" | transloco }}
-          <img src="assets/images/icon-pencil.svg" class="ms-1" />
-        </button>
+        <button type="button" *ngIf="editToken && !tokenSubmitted else editButton" (click)="submitToken()" class="btn btn-sm btn-outline-primary btn-jwt">Submit Token</button>
+          <ng-template #editButton>
+            <button type="button" (click)="editMode()"  class="btn btn-sm btn-outline-primary btn-jwt">
+              {{ "anatomy.edit" | transloco }}
+              <img src="assets/images/icon-pencil.svg" class="ms-1" />
+            </button>
+          </ng-template>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <span class="jwt-header">{{ jwtHeader }}</span>.<br>
-    <span class="jwt-payload">{{ jwtPayload }}</span>.<br>
-    <span class="jwt-signature">{{ jwtSignature }}</span>
+    <div *ngIf="editToken && !tokenSubmitted  else otherContent">
+      <textarea class="form-control editToken" rows="15" name="generatedToken" [(ngModel)]="generatedToken" ></textarea>
+      <!-- <button class="btn btn-sm btn-outline-primary btn-jwt" (click)="submitToken()">Submit token</button> -->
+      <div *ngIf="tokenSubmitted">
+        <span>{{ generatedToken }}</span>
+      </div>
+    </div>
+    <ng-template #otherContent>
+      <span class="jwt-header">{{ jwtHeader }}</span>.<br>
+      <span class="jwt-payload">{{ jwtPayload }}</span>.<br>
+      <span class="jwt-signature">{{ jwtSignature }}</span>
+    </ng-template>
   </div>
 </div>
 

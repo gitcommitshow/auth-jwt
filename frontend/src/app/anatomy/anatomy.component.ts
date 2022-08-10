@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { JwtService } from '../shared/services/jwt.service';
@@ -23,6 +23,12 @@ export class AnatomyComponent implements OnInit {
   jwtSignature: string;
   jwtSignatureShort: string;
   token: string;
+
+
+  tokenSubmitted: boolean = false
+  editToken : boolean = false;
+  generatedToken : string | any
+  errorMessage: string | any
 
   constructor(private router: Router,
               private jwtService: JwtService,
@@ -51,6 +57,15 @@ export class AnatomyComponent implements OnInit {
     .subscribe({
       next: (success: any) => {
         if (success && success.token) {
+          if(this.tokenSubmitted){
+            let checkToken = this.generatedToken.match(/\./g)
+            let checkTokenResult = checkToken != null && checkToken.length == 2  ? true : false
+            if(checkTokenResult){
+              success.token = this.generatedToken
+            } else {
+                this.errorMessage = 'Provided token is not valid please provide a valid token'
+            }
+          }
           const tokenSplitted = success.token.split('.');
           this.jwtHeader = tokenSplitted[0];
           this.jwtHeaderShort = `${this.jwtHeader.substring(0, 6)}...${this.jwtHeader.substring(this.jwtHeader.length-6, this.jwtHeader.length)}`;
@@ -66,6 +81,26 @@ export class AnatomyComponent implements OnInit {
       },
     });
   }
+
+  public editMode(): void {
+    this.editToken = true
+    this.tokenSubmitted = false
+  }
+
+  public submitToken(){
+    this.tokenSubmitted = true
+    this.load()
+    if(this.editToken === true){
+      this.editToken = false
+    }
+  }
+  // @HostListener('document:click', ['$event'])
+  //   documentClick(event: MouseEvent) {
+  //       // your click logic
+  //       if(this.editToken && this.tokenSubmitted){
+  //           this.submitToken()
+  //       }
+  //   }
 
   public nextStep(): void {
     this.stepService.setStep(3);
