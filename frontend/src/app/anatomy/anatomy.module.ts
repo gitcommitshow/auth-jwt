@@ -8,6 +8,7 @@ import { AnatomyRoutingModule } from './anatomy-routing.module';
 
 // Components
 import { AnatomyComponent } from './anatomy.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AnatomyComponent } from './anatomy.component';
     CommonModule,
     NgbModule,
     TranslocoModule,
+    FormsModule,
     // Routes
     AnatomyRoutingModule,
   ],
