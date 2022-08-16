@@ -94,13 +94,15 @@ export class AnatomyComponent implements OnInit {
       this.editToken = false
     }
   }
-  // @HostListener('document:click', ['$event'])
-  //   documentClick(event: MouseEvent) {
-  //       // your click logic
-  //       if(this.editToken && this.tokenSubmitted){
-  //           this.submitToken()
-  //       }
-  //   }
+  @HostListener('document:click', ['$event', '$event.target'])
+    documentClick(event: MouseEvent, targetElement: HTMLElement) {
+        // your click logic
+        if(targetElement.classList.contains('btn') || targetElement.classList.contains('card-body') || targetElement.classList.contains('editToken')){
+          
+        } else if(this.editToken && !this.tokenSubmitted){
+            this.submitToken()
+        }
+    }
 
   public nextStep(): void {
     this.stepService.setStep(3);
